@@ -5,6 +5,6 @@ import 'package:startup_mvp_starter_flutter/utils/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    await setupLocator(flavor: Flavor.prod);
+  await setupLocator(flavor: Flavor.dev);
   runApp(const MyApp());
 }
