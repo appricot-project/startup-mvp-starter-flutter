@@ -51,12 +51,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         appBarTheme: AppBarTheme(backgroundColor: ColorConstants.background),
         scaffoldBackgroundColor: ColorConstants.background,
       ),
-      home: Scaffold(body: HomePage(delegate: Detegate())),
+      home: Scaffold(body: HomePage(dataSource: DataSource())),
     );
   }
 }
 
-class Detegate implements BottomNavigationDataSource {
+class DataSource implements BottomNavigationDataSource {
   List<TabNavigatorItem> items() {
     return [
       TabNavigatorItem(
@@ -68,6 +68,10 @@ class Detegate implements BottomNavigationDataSource {
         activeIcon: Container(height: 24, width: 24, color: Colors.green),
         name: 'TwoTest',
         icon: Container(height: 24, width: 24, color: Colors.grey),
+      ),
+      TabNavigatorItem.fromSvg(
+        name: "TestSVG",
+        icon: "assets/images/tabBar_profile.svg",
       ),
     ];
   }

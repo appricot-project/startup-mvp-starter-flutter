@@ -37,6 +37,10 @@ class ColorConstants {
       ? const Color.fromRGBO(146, 144, 135, 1)
       : const Color.fromRGBO(30, 30, 30, 1);
 
+  static Color get selectedNavigation => _isLight
+      ? const Color.fromRGBO(200, 250, 135, 1)
+      : const Color.fromRGBO(30, 30, 30, 1);
+
   static Color get disable => Color.fromRGBO(115, 120, 125, 1);
 
   static Color get pressedColor => Color.fromRGBO(115, 120, 125, 1);

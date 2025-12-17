@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:startup_mvp_starter_flutter/navigation/bottom_navigation.dart';
 import 'package:startup_mvp_starter_flutter/navigation/tab_item.dart';
-import 'package:startup_mvp_starter_flutter/navigation/tab_navigator.dart';
 
 class HomePage<TabItem extends TabNavigatorItem> extends StatefulWidget {
-  final BottomNavigationDataSource<TabItem> delegate;
+  final BottomNavigationDataSource<TabItem> dataSource;
 
-  HomePage({super.key, required this.delegate});
+  HomePage({super.key, required this.dataSource});
 
   @override
-  State<HomePage> createState() => _HomePageState(delegate);
+  State<HomePage> createState() => _HomePageState(dataSource);
 }
 
 class _HomePageState<TabItem extends TabNavigatorItem> extends State<HomePage>
     with WidgetsBindingObserver {
-  BottomNavigationDataSource<TabItem> _delegate;
+  BottomNavigationDataSource<TabItem> _dataSource;
 
-  _HomePageState(this._delegate);
+  _HomePageState(this._dataSource);
 
   late List<GlobalKey<NavigatorState>> _navigatorKeys;
   int _currentTab = 0;
-  Map<TabItem, String> _additionalParams = {};
+  Map<int, String> _additionalParams = {};
   bool _isKeyboardVisible = false;
 
   @override
   void initState() {
     super.initState();
-    _navigatorKeys = _delegate
+    _navigatorKeys = _dataSource
         .items()
         .map((_) => GlobalKey<NavigatorState>())
         .toList();
@@ -64,10 +63,7 @@ class _HomePageState<TabItem extends TabNavigatorItem> extends State<HomePage>
     }
   }
 
-  _selectTab(
-    int tabItemIndex, {
-    Map<TabItem, String> additionalParams = const {},
-  }) {
+  _selectTab(int tabItemIndex, {Map<int, String> additionalParams = const {}}) {
     _additionalParams = additionalParams;
     if (tabItemIndex == _currentTab) {
       _navigatorKeys[tabItemIndex].currentState!.popUntil(
@@ -153,7 +149,7 @@ class _HomePageState<TabItem extends TabNavigatorItem> extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    print(_delegate.items());
+    print(_dataSource.items());
     return Scaffold(
       // backgroundColor: ColorConstants.mainWhite,
       body: Stack(
@@ -165,16 +161,24 @@ class _HomePageState<TabItem extends TabNavigatorItem> extends State<HomePage>
       bottomNavigationBar: MyBottomNavigation(
         currentTabIndex: _currentTab,
         onSelectTab: _selectTab,
-        tabs: _delegate.items(),
+        tabs: _dataSource.items(),
       ),
     );
   }
 
   Widget _buildOffstageNavigator(int index) {
-    return TabNavigator(
-      navigatorKey: _navigatorKeys[index],
-      tabItemWidget: _delegate.tabWidget(index),
-      additionalParams: _additionalParams,
+    return Navigator(
+      key: _navigatorKeys[index],
+      onGenerateRoute: (routeSettings) {
+        return MaterialPageRoute(
+          builder: (context) {
+            return _dataSource.tabWidget(
+              index,
+              additionalParam: _additionalParams[index],
+            );
+          },
+        );
+      },
     );
   }
 }

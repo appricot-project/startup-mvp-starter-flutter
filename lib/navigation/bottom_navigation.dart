@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:startup_mvp_starter_flutter/navigation/tab_item.dart';
+import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 
 class MyBottomNavigation extends StatelessWidget {
   MyBottomNavigation({
@@ -13,28 +14,12 @@ class MyBottomNavigation extends StatelessWidget {
   final ValueChanged<int> onSelectTab;
   final List<TabNavigatorItem> tabs;
 
-  // final Map<TabItem, MyTab> tabs = {
-  //   TabItem.menu: MyTab(name: 'Меню', icon: 'assets/images/tabBar_menu.svg'),
-  //   TabItem.support: MyTab(
-  //     name: 'Поддержка',
-  //     icon: 'assets/images/tabBar_support.svg',
-  //   ),
-  //   TabItem.basket: MyTab(
-  //     name: 'Корзина',
-  //     icon: 'assets/images/tabBar_basket.svg',
-  //   ),
-  //   TabItem.more: MyTab(
-  //     name: 'Профиль',
-  //     icon: 'assets/images/tabBar_profile.svg',
-  //   ),
-  // };
-
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      // selectedItemColor: ColorConstants.darkText,
-      // backgroundColor: ColorConstants.mainWhite,
-      // unselectedItemColor: ColorConstants.unselectedNavigation,
+      selectedItemColor: ColorConstants.selectedNavigation,
+      backgroundColor: ColorConstants.background,
+      unselectedItemColor: ColorConstants.unselectedNavigation,
       elevation: 0,
       type: BottomNavigationBarType.fixed,
       currentIndex: currentTabIndex,
@@ -52,20 +37,6 @@ class MyBottomNavigation extends StatelessWidget {
       return BottomNavigationBarItem(
         icon: tab.icon,
         activeIcon: tab.activeIcon,
-        // icon: SvgPicture.asset(
-        //   value.icon,
-        //   colorFilter: ColorFilter.mode(
-        //     ColorConstants.unselectedNavigation,
-        //     BlendMode.srcIn,
-        //   ),
-        // ),
-        // activeIcon: SvgPicture.asset(
-        //   value.icon,
-        //   colorFilter: ColorFilter.mode(
-        //     ColorConstants.darkText,
-        //     BlendMode.srcIn,
-        //   ),
-        // ),
         label: tab.name,
       );
     }).toList();
