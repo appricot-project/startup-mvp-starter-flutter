@@ -81,13 +81,9 @@ class SharedStorageImpl implements SharedStorage {
 
   // * MARK: Them
 
-  Future<bool> setThemeIsDark(bool? value) async {
+  Future<bool> setThemeIsDark(bool value) async {
     final prefs = await _getPrefs();
-    if (value != null) {
-      return prefs.setBool('them', value);
-    } else {
-      return prefs.remove('them');
-    }
+    return prefs.setBool('them', value);
   }
 
   Future<bool?> getThemeIsDark() async {

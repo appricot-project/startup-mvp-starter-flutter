@@ -38,7 +38,11 @@ class _UiTestingWidgetState extends State<UiTestingWidget> {
                   CustomButton(
                     text: AppLocalizations.of(context)!.settingsChangeLanguage,
                     onPressed: () {
-                      locator<LocalizationCubit>().changeLanguage();
+                      if (locator<LocalizationCubit>().state == 'en') {
+                        locator<LocalizationCubit>().changeLocalize("ru");
+                      } else {
+                        locator<LocalizationCubit>().changeLocalize("en");
+                      }
                     },
                     color: ButtonColor.primary,
                   ),

@@ -36,16 +36,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   }
 
   @override
-  void didChangeLocales(List<Locale>? locales) {
-    super.didChangeLocales(locales);
-    locator<LocalizationCubit>().changeLanguage();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeCubit, Brightness>(
       builder: (context, them) {
-        return BlocBuilder<LocalizationCubit, String?>(
+        return BlocBuilder<LocalizationCubit, String>(
           builder: (context, localeState) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
@@ -56,7 +50,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 GlobalCupertinoLocalizations.delegate,
               ],
               supportedLocales: [Locale('en'), Locale('ru')],
-              locale: localeState != null ? Locale(localeState) : null,
+              locale: Locale(localeState),
               theme: ThemeData(
                 dividerColor: Colors.transparent,
                 highlightColor: Colors.transparent,

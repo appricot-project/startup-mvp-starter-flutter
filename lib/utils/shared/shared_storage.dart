@@ -19,7 +19,7 @@ abstract class SharedStorage {
 
   // * MARK: Locale
 
-  Future<bool> setLocale(String? value);
+  Future<bool> setLocale(String value);
   Future<String?> getLocale();
 
   // * MARK: Them

@@ -11,15 +11,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupLocator(flavor: Flavor.prod);
   runApp(
-    BlocProvider<AuthCubit>.value(
-      value: locator<AuthCubit>(),
-      child: BlocProvider.value(
-        value: locator<LocalizationCubit>(),
-        child: BlocProvider.value(
-          value: locator<ThemeCubit>(),
-          child: const MyApp(),
-        ),
-      ),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider.value(value: locator<AuthCubit>()),
+        BlocProvider.value(value: locator<LocalizationCubit>()),
+        BlocProvider.value(value: locator<ThemeCubit>()),
+      ],
+      child: const MyApp(),
     ),
   );
 }
