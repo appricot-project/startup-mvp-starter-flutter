@@ -16,4 +16,14 @@ abstract class SharedStorage {
   Future<bool> setAuthorized(bool value);
   Future<bool> isAuthorized();
   Future<void> clearAuthData();
+
+  // * MARK: Locale
+
+  Future<bool> setLocale(String? value);
+  Future<String?> getLocale();
+
+  // * MARK: Them
+
+  Future<bool> setThemeIsDark(bool value);
+  Future<bool?> getThemeIsDark();
 }

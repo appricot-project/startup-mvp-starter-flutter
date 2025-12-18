@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:startup_mvp_starter_flutter/utils/service_locator.dart';
+import 'package:startup_mvp_starter_flutter/utils/theme_cubit.dart';
 
 class ColorConstants {
   static bool get _isLight {
-    return SchedulerBinding.instance.platformDispatcher.platformBrightness ==
-        Brightness.light;
+    return locator<ThemeCubit>().state == Brightness.light;
   }
 
   static Color get background => _isLight

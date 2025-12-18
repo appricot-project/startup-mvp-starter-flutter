@@ -1,0 +1,85 @@
+{
+  "@@locale": "en",
+
+  "authSignin": "Sign in",
+  "authLogout": "Log out",
+  "authLoginSuccess": "You have successfully logged in",
+  "authLogoutConfirm": "Are you sure you want to log out?",
+
+  "authUsername": "Username",
+  "authEmail": "Email",
+  "authPassword": "Password",
+  "authRepeatPassword": "Repeat password",
+  "authForgotPassword": "Forgot password?",
+  "authResetPassword": "Reset password",
+
+  "commonOk": "OK",
+  "commonYes": "Yes",
+  "commonNo": "No",
+
+  "commonCancel": "Cancel",
+  "commonConfirm": "Confirm",
+
+  "commonBack": "Back",
+  "commonNext": "Next",
+  "commonSkip": "Skip",
+
+  "commonAgree": "Agree",
+  "commonDisagree": "Disagree",
+
+  "commonSave": "Save",
+  "commonDelete": "Delete",
+  "commonEdit": "Edit",
+
+  "commonClose": "Close",
+  "commonOpen": "Open",
+  "commonContinue": "Continue",
+  "commonFinish": "Finish",
+  "commonApply": "Apply",
+  "commonReset": "Reset",
+  "commonClear": "Clear",
+  "commonRefresh": "Refresh",
+  "commonCopy": "Copy",
+  "commonShare": "Share",
+  "commonSelect": "Select",
+
+  "navigationHome": "Home",
+  "navigationProfile": "Profile",
+  "navigationSettings": "Settings",
+
+  "settingsLanguage": "Language",
+  "settingsTheme": "Theme",
+  "settingsChangeLanguage": "Change language",
+  "settingsChangeTheme": "Change theme",
+
+  "settingsDarkTheme": "Dark theme",
+  "settingsLightTheme": "Light theme",
+  "settingsSystemTheme": "System theme",
+
+  "settingsNotifications": "Notifications",
+  "settingsPrivacy": "Privacy",
+  "settingsSecurity": "Security",
+
+  "statusLoading": "Loading",
+  "statusSuccess": "Success",
+  "statusError": "Error",
+
+  "errorsSomethingWentWrong": "Something went wrong",
+  "errorsNetworkError": "Network error",
+  "errorsNoInternet": "No internet connection",
+
+  "errorsRequiredField": "Required field",
+  "errorsInvalidEmail": "Invalid email",
+  "errorsPasswordTooShort": "Password is too short",
+
+  "errorsTryAgainLater": "Please try again later",
+
+  "actionsRetry": "Retry",
+  "actionsSearch": "Search",
+
+  "dialogsAreYouSure": "Are you sure?",
+
+  "emptyNoData": "No data",
+  "emptyEmptyList": "Empty list",
+  "emptyNoResults": "No results found"
+}
