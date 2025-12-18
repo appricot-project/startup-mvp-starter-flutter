@@ -1,9 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:startup_mvp_starter_flutter/utils/app_config.dart';
 import 'package:startup_mvp_starter_flutter/utils/auth_cubit.dart';
+import 'package:startup_mvp_starter_flutter/utils/localization_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/rest_client/rest_client.dart';
 import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage.dart';
 import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage_impl.dart';
+import 'package:startup_mvp_starter_flutter/utils/theme_cubit.dart';
 
 final GetIt locator = GetIt.instance;
 
@@ -19,5 +21,13 @@ Future<void> setupLocator({required Flavor flavor}) async {
   locator.registerSingleton<AuthCubit>(
     AuthCubit(sharedStorage: locator<SharedStorage>()),
   );
+  locator.registerSingleton<LocalizationCubit>(
+    LocalizationCubit(sharedStorage: locator<SharedStorage>()),
+  );
+  locator.registerSingleton<ThemeCubit>(
+    ThemeCubit(sharedStorage: locator<SharedStorage>()),
+  );
   await locator<AuthCubit>().checkAuthStatus();
+  await locator<LocalizationCubit>().checkLocalizeStatus();
+  await locator<ThemeCubit>().checkThemeStatus();
 }

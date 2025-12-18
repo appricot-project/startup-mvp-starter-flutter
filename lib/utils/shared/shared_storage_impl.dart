@@ -62,4 +62,32 @@ class SharedStorageImpl implements SharedStorage {
     await deleteToken();
     await deleteRefreshToken();
   }
+
+  // * MARK: Locale
+
+  Future<bool> setLocale(String? value) async {
+    final prefs = await _getPrefs();
+    if (value != null) {
+      return prefs.setString('locale', value);
+    } else {
+      return prefs.remove('locale');
+    }
+  }
+
+  Future<String?> getLocale() async {
+    final prefs = await _getPrefs();
+    return prefs.getString("locale");
+  }
+
+  // * MARK: Them
+
+  Future<bool> setThemeIsDark(bool value) async {
+    final prefs = await _getPrefs();
+    return prefs.setBool('them', value);
+  }
+
+  Future<bool?> getThemeIsDark() async {
+    final prefs = await _getPrefs();
+    return prefs.getBool("them");
+  }
 }
