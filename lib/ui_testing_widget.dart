@@ -50,7 +50,11 @@ class _UiTestingWidgetState extends State<UiTestingWidget> {
                   CustomButton(
                     text: AppLocalizations.of(context)!.settingsChangeTheme,
                     onPressed: () {
-                      locator<ThemeCubit>().changeTheme();
+                      if (locator<ThemeCubit>().state == Brightness.light) {
+                        locator<ThemeCubit>().changeTheme(Brightness.dark);
+                      } else {
+                        locator<ThemeCubit>().changeTheme(Brightness.light);
+                      }
                     },
                     color: ButtonColor.secondary,
                   ),

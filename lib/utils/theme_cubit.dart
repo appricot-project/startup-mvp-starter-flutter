@@ -8,14 +8,9 @@ class ThemeCubit extends Cubit<Brightness> {
 
   ThemeCubit({required this.sharedStorage}) : super(Brightness.light);
 
-  Future<void> changeTheme() async {
-    if (state == Brightness.light) {
-      await sharedStorage.setThemeIsDark(true);
-      emit(Brightness.dark);
-    } else {
-      await sharedStorage.setThemeIsDark(false);
-      emit(Brightness.light);
-    }
+  Future<void> changeTheme(Brightness newTheme) async {
+    await sharedStorage.setThemeIsDark(newTheme == Brightness.dark);
+    emit(newTheme);
   }
 
   Future<void> checkThemeStatus() async {
