@@ -1,0 +1,85 @@
+{
+  "@@locale": "ru",
+
+  "authSignin": "Войти",
+  "authLogout": "Выйти",
+  "authLoginSuccess": "Вы успешно вошли",
+  "authLogoutConfirm": "Вы действительно хотите выйти?",
+
+  "authUsername": "Имя пользователя",
+  "authEmail": "Электронная почта",
+  "authPassword": "Пароль",
+  "authRepeatPassword": "Повторите пароль",
+  "authForgotPassword": "Забыли пароль?",
+  "authResetPassword": "Сбросить пароль",
+
+  "commonOk": "Ок",
+  "commonYes": "Да",
+  "commonNo": "Нет",
+
+  "commonCancel": "Отмена",
+  "commonConfirm": "Подтвердить",
+
+  "commonBack": "Назад",
+  "commonNext": "Дальше",
+  "commonSkip": "Пропустить",
+
+  "commonAgree": "Согласен",
+  "commonDisagree": "Не согласен",
+
+  "commonSave": "Сохранить",
+  "commonDelete": "Удалить",
+  "commonEdit": "Редактировать",
+
+  "commonClose": "Закрыть",
+  "commonOpen": "Открыть",
+  "commonContinue": "Продолжить",
+  "commonFinish": "Завершить",
+  "commonApply": "Применить",
+  "commonReset": "Сбросить",
+  "commonClear": "Очистить",
+  "commonRefresh": "Обновить",
+  "commonCopy": "Копировать",
+  "commonShare": "Поделиться",
+  "commonSelect": "Выбрать",
+
+  "navigationHome": "Главная",
+  "navigationProfile": "Профиль",
+  "navigationSettings": "Настройки",
+
+  "settingsLanguage": "Язык",
+  "settingsTheme": "Тема",
+  "settingsChangeLanguage": "Изменить язык",
+  "settingsChangeTheme": "Поменять тему",
+
+  "settingsDarkTheme": "Тёмная тема",
+  "settingsLightTheme": "Светлая тема",
+  "settingsSystemTheme": "Системная тема",
+
+  "settingsNotifications": "Уведомления",
+  "settingsPrivacy": "Конфиденциальность",
+  "settingsSecurity": "Безопасность",
+
+  "statusLoading": "Загрузка",
+  "statusSuccess": "Успешно",
+  "statusError": "Ошибка",
+
+  "errorsSomethingWentWrong": "Что-то пошло не так",
+  "errorsNetworkError": "Ошибка сети",
+  "errorsNoInternet": "Нет подключения к интернету",
+
+  "errorsRequiredField": "Обязательное поле",
+  "errorsInvalidEmail": "Некорректный email",
+  "errorsPasswordTooShort": "Пароль слишком короткий",
+
+  "errorsTryAgainLater": "Попробуйте позже",
+
+  "actionsRetry": "Повторить",
+  "actionsSearch": "Поиск",
+
+  "dialogsAreYouSure": "Вы уверены?",
+
+  "emptyNoData": "Нет данных",
+  "emptyEmptyList": "Список пуст",
+  "emptyNoResults": "Ничего не найдено"
+}

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
+import 'package:startup_mvp_starter_flutter/utils/localization_cubit.dart';
+import 'package:startup_mvp_starter_flutter/utils/service_locator.dart';
+import 'package:startup_mvp_starter_flutter/utils/theme_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_icon_button.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/text_fields/basic_text_field.dart';
@@ -32,25 +36,49 @@ class _UiTestingWidgetState extends State<UiTestingWidget> {
                 children: [
                   10.h,
                   CustomButton(
-                    text: 'primary',
-                    onPressed: () {},
+                    text: AppLocalizations.of(context)!.settingsChangeLanguage,
+                    onPressed: () {
+                      if (locator<LocalizationCubit>().state == 'en') {
+                        locator<LocalizationCubit>().changeLocalize("ru");
+                      } else {
+                        locator<LocalizationCubit>().changeLocalize("en");
+                      }
+                    },
                     color: ButtonColor.primary,
                   ),
                   10.h,
                   CustomButton(
-                    text: 'secondary',
-                    onPressed: () {},
+                    text: AppLocalizations.of(context)!.settingsLightTheme,
+                    onPressed: () {
+                      locator<ThemeCubit>().changeTheme(CustomTheme.light);
+                    },
                     color: ButtonColor.secondary,
                   ),
                   10.h,
                   CustomButton(
-                    text: 'tertiary',
+                    text: AppLocalizations.of(context)!.settingsDarkTheme,
+                    onPressed: () {
+                      locator<ThemeCubit>().changeTheme(CustomTheme.dark);
+                    },
+                    color: ButtonColor.secondary,
+                  ),
+                  10.h,
+                  CustomButton(
+                    text: AppLocalizations.of(context)!.settingsSystemTheme,
+                    onPressed: () {
+                      locator<ThemeCubit>().changeTheme(CustomTheme.system);
+                    },
+                    color: ButtonColor.secondary,
+                  ),
+                  10.h,
+                  CustomButton(
+                    text: AppLocalizations.of(context)!.authLogout,
                     onPressed: () {},
                     color: ButtonColor.tertiary,
                   ),
                   10.h,
                   CustomButton(
-                    text: 'primary small',
+                    text: AppLocalizations.of(context)!.authSignin,
                     onPressed: () {},
                     color: ButtonColor.primary,
                     size: ButtonSize.small,
