@@ -1,12 +1,14 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage.dart';
 
 part 'onboarding_event.dart';
 part 'onboarding_state.dart';
 
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
+  SharedStorage shared;
+
   final double duration;
   final List<String> assets;
   int currentPage;
@@ -22,6 +24,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   }
 
   OnboardingBloc({
+    required this.shared,
     required this.assets,
     this.currentPage = 0,
     required this.duration,
@@ -33,7 +36,17 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
            isFirstStartTimer: true,
          ),
        ) {
-    on<OnboardingOnAppear>((event, emit) {});
+    on<OnboardingOnAppear>((event, emit) async {
+      await shared.setShowOnboarding();
+      emit(
+        OnboardingUpdated(
+          assets: assets,
+          currentPage: currentPage,
+          progress: _progress,
+          isFirstStartTimer: _isFirstStartTimer,
+        ),
+      );
+    });
     on<OnboardingOnSkip>((event, emit) {
       _timer?.cancel();
       emit(
@@ -45,8 +58,26 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         ),
       );
     });
-    on<OnboardingOnReturn>((event, emit) {});
-    on<OnboardingOnTimerTicked>((event, emit) {});
+    on<OnboardingOnReturn>((event, emit) {
+      emit(
+        OnboardingUpdated(
+          assets: assets,
+          currentPage: currentPage,
+          progress: _progress,
+          isFirstStartTimer: _isFirstStartTimer,
+        ),
+      );
+    });
+    on<OnboardingOnTimerTicked>((event, emit) {
+      emit(
+        OnboardingUpdated(
+          assets: assets,
+          currentPage: currentPage,
+          progress: _progress,
+          isFirstStartTimer: _isFirstStartTimer,
+        ),
+      );
+    });
     on<OnboardingOnChangedCurrentPage>((event, emit) {});
   }
 }
