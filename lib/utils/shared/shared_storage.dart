@@ -24,7 +24,7 @@ abstract class SharedStorage {
 
   // * MARK: Them
 
-  Future<bool> setThemeIsDark(bool value);
+  Future<bool?> setThemeIsDark(bool? value);
   Future<bool?> getThemeIsDark();
 
   // * MARK: Onboarding

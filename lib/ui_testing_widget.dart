@@ -48,9 +48,25 @@ class _UiTestingWidgetState extends State<UiTestingWidget> {
                   ),
                   10.h,
                   CustomButton(
-                    text: AppLocalizations.of(context)!.settingsChangeTheme,
+                    text: AppLocalizations.of(context)!.settingsLightTheme,
                     onPressed: () {
-                      locator<ThemeCubit>().changeTheme();
+                      locator<ThemeCubit>().changeTheme(CustomTheme.light);
+                    },
+                    color: ButtonColor.secondary,
+                  ),
+                  10.h,
+                  CustomButton(
+                    text: AppLocalizations.of(context)!.settingsDarkTheme,
+                    onPressed: () {
+                      locator<ThemeCubit>().changeTheme(CustomTheme.dark);
+                    },
+                    color: ButtonColor.secondary,
+                  ),
+                  10.h,
+                  CustomButton(
+                    text: AppLocalizations.of(context)!.settingsSystemTheme,
+                    onPressed: () {
+                      locator<ThemeCubit>().changeTheme(CustomTheme.system);
                     },
                     color: ButtonColor.secondary,
                   ),

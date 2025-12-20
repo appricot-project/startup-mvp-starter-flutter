@@ -31,8 +31,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void didChangePlatformBrightness() {
     super.didChangePlatformBrightness();
-    locator<ThemeCubit>().changeTheme();
-    setState(() {});
+    locator<ThemeCubit>().checkThemeStatus();
   }
 
   @override
