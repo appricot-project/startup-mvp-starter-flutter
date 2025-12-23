@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage.dart';
@@ -6,78 +5,40 @@ import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage.dart';
 part 'onboarding_event.dart';
 part 'onboarding_state.dart';
 
-class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
+class OnboardingBloc<SlideModel>
+    extends Bloc<OnboardingEvent, OnboardingState> {
   SharedStorage shared;
 
-  final double duration;
-  final List<String> assets;
+  final List<SlideModel> slides;
   int currentPage;
-
-  double _progress = 0;
-  Timer? _timer;
-  bool _isFirstStartTimer = true;
-
-  @override
-  Future<void> close() {
-    _timer?.cancel();
-    return super.close();
-  }
 
   OnboardingBloc({
     required this.shared,
-    required this.assets,
+    required this.slides,
     this.currentPage = 0,
-    required this.duration,
-  }) : super(
-         OnboardingInitial(
-           assets: assets,
-           currentPage: currentPage,
-           progress: 0,
-           isFirstStartTimer: true,
-         ),
-       ) {
+  }) : super(OnboardingInitial(slides: slides, currentPage: currentPage)) {
     on<OnboardingOnAppear>((event, emit) async {
       await shared.setShowOnboarding();
-      emit(
-        OnboardingUpdated(
-          assets: assets,
-          currentPage: currentPage,
-          progress: _progress,
-          isFirstStartTimer: _isFirstStartTimer,
-        ),
-      );
+      emit(OnboardingUpdated(slides: slides, currentPage: currentPage));
     });
     on<OnboardingOnSkip>((event, emit) {
-      _timer?.cancel();
-      emit(
-        OnboardingSkip(
-          assets: assets,
-          currentPage: currentPage,
-          progress: _progress,
-          isFirstStartTimer: _isFirstStartTimer,
-        ),
-      );
+      emit(OnboardingSkip(slides: slides, currentPage: currentPage));
     });
     on<OnboardingOnReturn>((event, emit) {
-      emit(
-        OnboardingUpdated(
-          assets: assets,
-          currentPage: currentPage,
-          progress: _progress,
-          isFirstStartTimer: _isFirstStartTimer,
-        ),
-      );
+      emit(OnboardingUpdated(slides: slides, currentPage: currentPage));
     });
     on<OnboardingOnTimerTicked>((event, emit) {
-      emit(
-        OnboardingUpdated(
-          assets: assets,
-          currentPage: currentPage,
-          progress: _progress,
-          isFirstStartTimer: _isFirstStartTimer,
-        ),
-      );
+      emit(OnboardingUpdated(slides: slides, currentPage: currentPage));
     });
-    on<OnboardingOnChangedCurrentPage>((event, emit) {});
+    on<OnboardingOnChangedCurrentPage>((event, emit) {
+      if (event.newPage == slides.length) {
+        emit(OnboardingSkip(slides: slides, currentPage: currentPage));
+      } else if (event.newPage == -1) {
+        return;
+      } else {
+        currentPage = event.newPage;
+        emit(OnboardingUpdated(slides: slides, currentPage: currentPage));
+      }
+    });
   }
 }

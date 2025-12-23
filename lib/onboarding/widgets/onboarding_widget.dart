@@ -5,35 +5,43 @@ import 'package:startup_mvp_starter_flutter/onboarding/bloc/onboarding_bloc.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_indicator_cell_widget.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_indicator_widget.dart';
+import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_slide_widget.dart';
+import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
+import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 
 enum SkipButtonAlignment { topCenter, bottomLeft, bottomRight, bottomCenter }
 
-class OnboardingWidget extends StatefulWidget {
+class OnboardingWidget<SlideModel> extends StatefulWidget {
   final Widget? onboardingSkipWidget;
-  final SkipButtonAlignment skipAligmnmentl;
-  final OnboardingIndicatorCellWidget Function(
-    int index,
-    int currentPage,
-    double progress,
-  )?
+  final SkipButtonAlignment skipAligmnment;
+  final OnboardingIndicatorCellWidget Function(int index, int currentPage)?
   indicatorCellBuilder;
+  final OnboardingSlideWidget Function(SlideModel) slideBuilder;
+  final EdgeInsetsGeometry indicatorPadding;
+  final Function(int)? tapOnIndicator;
+  final double? indicatorSpacing;
 
   const OnboardingWidget({
     super.key,
-    this.skipAligmnmentl = SkipButtonAlignment.topCenter,
+    this.skipAligmnment = SkipButtonAlignment.topCenter,
     this.onboardingSkipWidget,
     this.indicatorCellBuilder,
+    this.indicatorPadding = EdgeInsetsGeometry.zero,
+    this.tapOnIndicator,
+    this.indicatorSpacing,
+    required this.slideBuilder,
   });
 
   @override
-  State<OnboardingWidget> createState() => _OnboardingWWidgetState();
+  State<OnboardingWidget> createState() => _OnboardingWidgetState<SlideModel>();
 }
 
-class _OnboardingWWidgetState extends State<OnboardingWidget> {
+class _OnboardingWidgetState<SlideModel>
+    extends State<OnboardingWidget<SlideModel>> {
   @override
   Widget build(BuildContext context) {
-    return BlocListener<OnboardingBloc, OnboardingState>(
+    return BlocListener<OnboardingBloc<SlideModel>, OnboardingState>(
       listener: (context, state) {
         if (state is OnboardingError) {
           showErrorAlert(context: context, error: state.error ?? '');
@@ -43,74 +51,52 @@ class _OnboardingWWidgetState extends State<OnboardingWidget> {
         }
       },
       child: Scaffold(
-        body: BlocBuilder<OnboardingBloc, OnboardingState>(
+        body: BlocBuilder<OnboardingBloc<SlideModel>, OnboardingState>(
           builder: (context, state) {
             return Stack(
               children: [
-                // Builder(
-                //   builder: (context) {
-                //     if (state.assets.isEmpty) {
-                //       return Container();
-                //     } else {
-                //       return Stack(
-                //         children: [
-                //           Container(
-                //             height: MediaQuery.of(context).size.height,
-                //             width: MediaQuery.of(context).size.width,
-                //             decoration: BoxDecoration(
-                //               gradient: GradientConstants.gray,
-                //             ),
-                //           ),
-                //           FutureBuilder(
-                //             initialData: Container(
-                //               color: ColorConstants.darkText,
-                //             ),
-                //             future: loadImage(
-                //               state.stories[state.currentPage].url,
-                //               context,
-                //             ),
-                //             builder: (context, snapshot) {
-                //               if (snapshot.data == null) {
-                //                 return Container();
-                //               } else {
-                //                 if (state.isFirstStartTimer) {
-                //                   context.read<StoriesBloc>().add(
-                //                     StoriesOnEndLoading(),
-                //                   );
-                //                 }
-                //                 return GestureDetector(
-                //                   onTapUp: (details) {
-                //                     final width = MediaQuery.of(
-                //                       context,
-                //                     ).size.width;
-                //                     if (details.localPosition.dx > width / 2) {
-                //                       context.read<StoriesBloc>().add(
-                //                         StoriesOnChangedCurrentPage(
-                //                           newPage: state.currentPage + 1,
-                //                         ),
-                //                       );
-                //                     } else {
-                //                       context.read<StoriesBloc>().add(
-                //                         StoriesOnChangedCurrentPage(
-                //                           newPage: state.currentPage - 1,
-                //                         ),
-                //                       );
-                //                     }
-                //                   },
-                //                   child: Container(
-                //                     height: MediaQuery.of(context).size.height,
-                //                     width: MediaQuery.of(context).size.width,
-                //                     child: snapshot.data,
-                //                   ),
-                //                 );
-                //               }
-                //             },
-                //           ),
-                //         ],
-                //       );
-                //     }
-                //   },
-                // ),
+                Builder(
+                  builder: (context) {
+                    if (state.slides.isEmpty) {
+                      return Container();
+                    } else {
+                      return Stack(
+                        children: [
+                          Container(
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                          ),
+                          GestureDetector(
+                            onTapUp: (details) {
+                              final width = MediaQuery.of(context).size.width;
+                              if (details.localPosition.dx > width / 2) {
+                                context.read<OnboardingBloc<SlideModel>>().add(
+                                  OnboardingOnChangedCurrentPage(
+                                    newPage: state.currentPage + 1,
+                                  ),
+                                );
+                              } else {
+                                context.read<OnboardingBloc<SlideModel>>().add(
+                                  OnboardingOnChangedCurrentPage(
+                                    newPage: state.currentPage - 1,
+                                  ),
+                                );
+                              }
+                            },
+                            child: Container(
+                              height: MediaQuery.of(context).size.height,
+                              width: MediaQuery.of(context).size.width,
+                              color: ColorConstants.background,
+                              child: widget.slideBuilder(
+                                state.slides[state.currentPage],
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                  },
+                ),
                 SafeArea(
                   child: Stack(
                     alignment: AlignmentGeometry.topRight,
@@ -119,7 +105,7 @@ class _OnboardingWWidgetState extends State<OnboardingWidget> {
                         padding: EdgeInsetsGeometry.only(),
                         child: GestureDetector(
                           onTap: () {
-                            context.read<OnboardingBloc>().add(
+                            context.read<OnboardingBloc<SlideModel>>().add(
                               OnboardingOnSkip(),
                             );
                           },
@@ -140,17 +126,29 @@ class _OnboardingWWidgetState extends State<OnboardingWidget> {
                               bottom: 8,
                             ),
                             child: OnboardingIndicatorWidget(
-                              countPage: state.assets.length,
+                              countPage: state.slides.length,
                               currentPage: state.currentPage,
-                              progress: state.progress,
+                              alignment: widget.skipAligmnment,
+                              padding: widget.indicatorPadding,
                               cellBuilder:
                                   widget.indicatorCellBuilder ??
-                                  (index, currentPage, progress) =>
+                                  (index, currentPage) =>
                                       CustomOnboardingIndicatorCellWidget(
                                         index: index,
                                         currentPage: currentPage,
-                                        progress: progress,
                                       ),
+                              tapOn:
+                                  widget.tapOnIndicator ??
+                                  (index) {
+                                    context
+                                        .read<OnboardingBloc<SlideModel>>()
+                                        .add(
+                                          OnboardingOnChangedCurrentPage(
+                                            newPage: index,
+                                          ),
+                                        );
+                                  },
+                              spacing: widget.indicatorSpacing ?? 4,
                             ),
                           ),
                         ],
@@ -167,7 +165,7 @@ class _OnboardingWWidgetState extends State<OnboardingWidget> {
   }
 
   MainAxisAlignment _skipMainAlignment() {
-    if (widget.skipAligmnmentl == SkipButtonAlignment.topCenter) {
+    if (widget.skipAligmnment == SkipButtonAlignment.topCenter) {
       return MainAxisAlignment.start;
     } else {
       return MainAxisAlignment.end;
@@ -175,10 +173,10 @@ class _OnboardingWWidgetState extends State<OnboardingWidget> {
   }
 
   CrossAxisAlignment _skipCrossAlignment() {
-    if (widget.skipAligmnmentl == SkipButtonAlignment.topCenter ||
-        widget.skipAligmnmentl == SkipButtonAlignment.bottomCenter) {
+    if (widget.skipAligmnment == SkipButtonAlignment.topCenter ||
+        widget.skipAligmnment == SkipButtonAlignment.bottomCenter) {
       return CrossAxisAlignment.center;
-    } else if (widget.skipAligmnmentl == SkipButtonAlignment.bottomRight) {
+    } else if (widget.skipAligmnment == SkipButtonAlignment.bottomRight) {
       return CrossAxisAlignment.end;
     } else {
       return CrossAxisAlignment.start;
@@ -187,9 +185,16 @@ class _OnboardingWWidgetState extends State<OnboardingWidget> {
 
   Widget _customSkipButton() {
     return Container(
+      margin: EdgeInsets.only(right: 16),
       padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(6)),
-      child: Text(AppLocalizations.of(context)!.commonSkip),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6),
+        color: ColorConstants.primary.withValues(alpha: 0.5),
+      ),
+      child: Text(
+        AppLocalizations.of(context)!.commonSkip,
+        style: CustomTextStyle.buttonText(color: ColorConstants.background),
+      ),
     );
   }
 

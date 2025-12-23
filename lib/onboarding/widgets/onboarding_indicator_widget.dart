@@ -1,43 +1,57 @@
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
-
 import 'package:flutter/material.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_indicator_cell_widget.dart';
+import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_widget.dart';
 
 class OnboardingIndicatorWidget extends StatelessWidget {
   final int countPage;
   final int currentPage;
-  final double progress;
   final Function(int)? tapOn;
-  final OnboardingIndicatorCellWidget Function(
-    int index,
-    int currentPage,
-    double progress,
-  )
+  final SkipButtonAlignment alignment;
+  final EdgeInsetsGeometry padding;
+  final double spacing;
+  final OnboardingIndicatorCellWidget Function(int index, int currentPage)
   cellBuilder;
 
   OnboardingIndicatorWidget({
     required this.countPage,
     required this.currentPage,
-    required this.progress,
     required this.cellBuilder,
-    this.tapOn,
+    required this.alignment,
+    required this.padding,
+    required this.tapOn,
+    required this.spacing,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 4,
+      padding: padding,
+      // height: 4,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: _skipCrossAlignment(),
         children: List.generate(countPage, (index) {
           return GestureDetector(
             onTap: () {
-              tapOn.call(index);
+              tapOn?.call(index);
             },
-            child: cellBuilder(index, currentPage, progress),
+            child: Padding(
+              padding: EdgeInsetsGeometry.only(right: spacing),
+              child: cellBuilder.call(index, currentPage),
+            ),
           );
         }),
       ),
     );
+  }
+
+  MainAxisAlignment _skipCrossAlignment() {
+    if (alignment == SkipButtonAlignment.topCenter ||
+        alignment == SkipButtonAlignment.bottomCenter) {
+      return MainAxisAlignment.center;
+    } else if (alignment == SkipButtonAlignment.bottomRight) {
+      return MainAxisAlignment.end;
+    } else {
+      return MainAxisAlignment.start;
+    }
   }
 }

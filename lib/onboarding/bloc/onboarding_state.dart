@@ -1,24 +1,18 @@
 part of 'onboarding_bloc.dart';
 
-abstract class OnboardingState extends Equatable {
-  final List<String> assets;
+abstract class OnboardingState<SlideModel> extends Equatable {
+  final List<SlideModel> slides;
   final int currentPage;
-  final double progress;
-  final bool isFirstStartTimer;
 
   const OnboardingState({
-    required this.assets,
+    required this.slides,
     required this.currentPage,
-    required this.progress,
-    required this.isFirstStartTimer,
   });
 
   @override
   List<Object?> get props => [
-    assets,
+    slides,
     currentPage,
-    progress,
-    isFirstStartTimer,
   ];
 }
 
@@ -26,19 +20,15 @@ abstract class OnboardingState extends Equatable {
 
 class OnboardingInitial extends OnboardingState {
   const OnboardingInitial({
-    required super.assets,
+    required super.slides,
     required super.currentPage,
-    required super.progress,
-    required super.isFirstStartTimer,
   });
 }
 
 class OnboardingUpdated extends OnboardingState {
   const OnboardingUpdated({
-    required super.assets,
+    required super.slides,
     required super.currentPage,
-    required super.progress,
-    required super.isFirstStartTimer,
   });
 }
 
@@ -47,10 +37,8 @@ class OnboardingError extends OnboardingState {
 
   const OnboardingError({
     required this.error,
-    required super.assets,
+    required super.slides,
     required super.currentPage,
-    required super.progress,
-    required super.isFirstStartTimer,
   });
 
   @override
@@ -59,9 +47,7 @@ class OnboardingError extends OnboardingState {
 
 class OnboardingSkip extends OnboardingState {
   const OnboardingSkip({
-    required super.assets,
+    required super.slides,
     required super.currentPage,
-    required super.progress,
-    required super.isFirstStartTimer,
   });
 }
