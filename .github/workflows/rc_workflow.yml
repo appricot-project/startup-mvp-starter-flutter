@@ -4,7 +4,9 @@ on:
   pull_request:
     branches:
       - rc
-  workflow_dispatch:
+  push:
+    branches:
+      - feature/FOUNDATION-48
 
 jobs:
   build-test:
@@ -33,4 +35,3 @@ jobs:
       # - run: flutter analyze
       - run: flutter test
       - run: flutter build apk --release
-        
