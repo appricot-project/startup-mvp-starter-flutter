@@ -4,9 +4,6 @@ on:
   pull_request:
     branches:
       - rc
-  push:
-    branches:
-      - feature/FOUNDATION-48
 
 jobs:
   build-test:
@@ -36,4 +33,4 @@ jobs:
       # - run: flutter analyze
       - run: flutter test
       - run: flutter build apk --release
-      - run: flutter build ios --flavor dev --release --no-codesign
+      - run: flutter build ios --release --no-codesign
