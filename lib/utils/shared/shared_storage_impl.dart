@@ -94,4 +94,16 @@ class SharedStorageImpl implements SharedStorage {
     final prefs = await _getPrefs();
     return prefs.getBool("them");
   }
+
+  // * MARK: Onboarding
+
+  Future<bool> setShowOnboarding() async {
+    final prefs = await _getPrefs();
+    return prefs.setBool('onboarding', true);
+  }
+
+  Future<bool> isShowOnboarding() async {
+    final prefs = await _getPrefs();
+    return prefs.getBool('onboarding') ?? false;
+  }
 }
