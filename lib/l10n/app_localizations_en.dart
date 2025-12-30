@@ -24,7 +24,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authUsername => 'Username';
 
   @override
-  String get authEmail => 'Email';
+  String get authEnterEmail => 'Enter email';
 
   @override
   String get authPassword => 'Password';
@@ -37,6 +37,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authResetPassword => 'Reset password';
+
+  @override
+  String get authGetCode => 'Get code';
+
+  @override
+  String get authGetNewCode => 'Get new code';
+
+  @override
+  String get authAfterThrough => 'through';
+
+  @override
+  String get authVerificationTitle => 'Enter code from mail';
 
   @override
   String get commonOk => 'OK';

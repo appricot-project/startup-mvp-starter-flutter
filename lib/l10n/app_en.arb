@@ -7,11 +7,16 @@
   "authLogoutConfirm": "Are you sure you want to log out?",
 
   "authUsername": "Username",
-  "authEmail": "Email",
+  "authEnterEmail": "Enter email",
   "authPassword": "Password",
   "authRepeatPassword": "Repeat password",
   "authForgotPassword": "Forgot password?",
   "authResetPassword": "Reset password",
+  "authGetCode": "Get code",
+  "authGetNewCode": "Get new code",
+  "authAfterThrough": "through",
+
+  "authVerificationTitle": "Enter code from mail",
 
   "commonOk": "OK",
   "commonYes": "Yes",

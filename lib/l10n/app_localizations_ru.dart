@@ -24,7 +24,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get authUsername => 'Имя пользователя';
 
   @override
-  String get authEmail => 'Электронная почта';
+  String get authEnterEmail => 'Введите почту почта';
 
   @override
   String get authPassword => 'Пароль';
@@ -37,6 +37,18 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get authResetPassword => 'Сбросить пароль';
+
+  @override
+  String get authGetCode => 'Получить код';
+
+  @override
+  String get authGetNewCode => 'Получить новый код';
+
+  @override
+  String get authAfterThrough => 'через';
+
+  @override
+  String get authVerificationTitle => 'Введите код из почты';
 
   @override
   String get commonOk => 'Ок';

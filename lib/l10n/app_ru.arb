@@ -7,11 +7,16 @@
   "authLogoutConfirm": "Вы действительно хотите выйти?",
 
   "authUsername": "Имя пользователя",
-  "authEmail": "Электронная почта",
+  "authEnterEmail": "Введите почту почта",
   "authPassword": "Пароль",
   "authRepeatPassword": "Повторите пароль",
   "authForgotPassword": "Забыли пароль?",
   "authResetPassword": "Сбросить пароль",
+  "authGetCode": "Получить код",
+  "authGetNewCode": "Получить новый код",
+  "authAfterThrough": "через",
+
+  "authVerificationTitle": "Введите код из почты",
 
   "commonOk": "Ок",
   "commonYes": "Да",
