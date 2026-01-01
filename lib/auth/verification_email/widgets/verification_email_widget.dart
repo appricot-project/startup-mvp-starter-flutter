@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/auth/verification_email/bloc/verification_email_bloc.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
+import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
@@ -97,7 +98,25 @@ class _VerificationEmailWidgetState extends State<VerificationEmailWidget> {
                         ],
                       ),
                       16.h,
-                      PinCodeTextField(length: 4),
+                      PinCodeTextField(
+                        controller: _controller,
+                        length: 4,
+                        onChangedValue: (value) {
+                          context.read<VerificationEmailBloc>().add(
+                            VerificationEmailOnCodeChanged(code: value),
+                          );
+                        },
+                      ),
+                      if (state.codeError != null)
+                        Padding(
+                          padding: EdgeInsetsGeometry.only(top: 8),
+                          child: Text(
+                            state.codeError ?? '',
+                            style: CustomTextStyle.body1(
+                              color: ColorConstants.error,
+                            ),
+                          ),
+                        ),
                       16.h,
                       CustomButton(
                         text:

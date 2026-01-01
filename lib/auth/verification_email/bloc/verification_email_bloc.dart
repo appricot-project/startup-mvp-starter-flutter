@@ -63,7 +63,6 @@ class VerificationEmailBloc
       }
     });
     on<VerificationEmailOnCodeChanged>((event, emit) async {
-      codeError = null;
       if (event.code.length == 4) {
         loading = Loading.actionLoading;
         _updating(emit);
@@ -74,6 +73,9 @@ class VerificationEmailBloc
           codeError = 'Неверный код';
           _updating(emit);
         }
+      } else {
+        codeError = null;
+        _updating(emit);
       }
     });
   }

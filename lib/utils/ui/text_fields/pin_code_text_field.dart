@@ -1,43 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
+import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 
 class PinCodeTextField extends StatefulWidget {
   final TextEditingController? controller;
   final int length;
   final MainAxisAlignment mainAxisAlignment;
-  // final String? error;
-  // final FocusNode? focusNode;
-  // final ValueChanged<String> onChanged;
-  // final VoidCallback? onEditingComplete;
-  // final VoidCallback? onStartEditing;
-  // final bool expands;
-  // final bool obscureText;
-  // final String obscuringCharacter;
-  // final TextCapitalization? textCapitalization;
-  // final bool isEnabled;
-  // final double height;
-  // final double borderRadius;
-  // final Color? backgroundColor;
-  // final void Function(bool hasFocus)? onFocusChanged;
+  final double spaceBetween;
+  final double height;
+  final double width;
+  final TextStyle? textStyle;
+  final Function(String) onChangedValue;
+  final Decoration? decoration;
 
   const PinCodeTextField({
     super.key,
     this.controller,
     required this.length,
     this.mainAxisAlignment = MainAxisAlignment.center,
-    // this.borderRadius = 12,
-    // this.error,
-    // this.height = 44,
-    // this.expands = false,
-    // this.focusNode,
-    // required this.onChanged,
-    // this.obscureText = false,
-    // this.obscuringCharacter = '•',
-    // this.textCapitalization,
-    // this.onEditingComplete,
-    // this.onStartEditing,
-    // this.isEnabled = true,
-    // this.backgroundColor,
-    // this.onFocusChanged,
+    this.spaceBetween = 16,
+    this.height = 44,
+    this.width = 44,
+    this.textStyle,
+    required this.onChangedValue,
+    this.decoration,
   });
 
   @override
@@ -45,39 +31,90 @@ class PinCodeTextField extends StatefulWidget {
 }
 
 class _PinCodeTextFieldState extends State<PinCodeTextField> {
-  late FocusNode myFocusNode;
+  late FocusNode _focusNode;
+  late TextEditingController _controller;
 
   @override
   void initState() {
     super.initState();
+
+    _focusNode = FocusNode();
+    _controller = widget.controller ?? TextEditingController();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _focusNode.requestFocus();
+    });
   }
 
-  // Color _color() {
-  //   if (!widget.isEnabled) {
-  //     return ColorConstants.disable;
-  //   }
-  //   if (!(widget.error == null || widget.error == '')) {
-  //     return ColorConstants.error;
-  //   } else {
-  //     if (myFocusNode.hasFocus) {
-  //       return ColorConstants.activeTextField;
-  //     } else {
-  //       return ColorConstants.secondary;
-  //     }
-  //   }
-  // }
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
+    super.dispose();
+  }
+
+  void _requestFocus() {
+    _focusNode.requestFocus();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: widget.mainAxisAlignment,
-      children: List<Widget>.generate(widget.length, (index) {
-        return pinCell();
-      }),
+    return Stack(
+      children: [
+        Opacity(
+          opacity: 0,
+          child: SizedBox(
+            height: widget.height,
+            child: TextField(
+              focusNode: _focusNode,
+              controller: _controller,
+              keyboardType: TextInputType.number,
+              maxLength: widget.length,
+              autofocus: true,
+              onChanged: (value) {
+                widget.onChangedValue.call(value);
+                setState(() {});
+              },
+            ),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: widget.mainAxisAlignment,
+          children: List<Widget>.generate(widget.length, (index) {
+            return GestureDetector(
+              child: _pinCell(index),
+              onTap: _requestFocus,
+            );
+          }),
+        ),
+      ],
     );
   }
 
-  Widget pinCell() {
-    return Container(height: 40, width: 40, color: Colors.red);
+  Widget _pinCell(int index) {
+    final text = _controller.text;
+    final char = index < text.length ? text[index] : '';
+
+    return Container(
+      height: widget.height,
+      width: widget.width,
+      margin: EdgeInsets.symmetric(horizontal: widget.spaceBetween / 2),
+      decoration:
+          widget.decoration ??
+          BoxDecoration(
+            color: ColorConstants.primary,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(width: 2, color: ColorConstants.border),
+          ),
+      alignment: Alignment.center,
+      child: Text(
+        char,
+        style:
+            widget.textStyle ??
+            CustomTextStyle.mobileH1(color: ColorConstants.background),
+      ),
+    );
   }
 }
