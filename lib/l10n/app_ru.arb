@@ -15,6 +15,7 @@
   "authGetCode": "Получить код",
   "authGetNewCode": "Получить новый код",
   "authAfterThrough": "через",
+  "authCodeError": "Неверный код",
 
   "authVerificationTitle": "Введите код из почты",
 

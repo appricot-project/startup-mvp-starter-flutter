@@ -15,6 +15,7 @@
   "authGetCode": "Get code",
   "authGetNewCode": "Get new code",
   "authAfterThrough": "through",
+  "authCodeError": "Error code",
 
   "authVerificationTitle": "Enter code from mail",
 

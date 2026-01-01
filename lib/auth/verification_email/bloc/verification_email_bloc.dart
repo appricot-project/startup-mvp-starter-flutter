@@ -70,7 +70,7 @@ class VerificationEmailBloc
         loading = null;
         if (event.code == "1111") {
         } else {
-          codeError = 'Неверный код';
+          codeError = 'error';
           _updating(emit);
         }
       } else {

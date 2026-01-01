@@ -173,6 +173,12 @@ abstract class AppLocalizations {
   /// **'through'**
   String get authAfterThrough;
 
+  /// No description provided for @authCodeError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error code'**
+  String get authCodeError;
+
   /// No description provided for @authVerificationTitle.
   ///
   /// In en, this message translates to:

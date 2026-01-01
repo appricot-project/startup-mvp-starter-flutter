@@ -111,7 +111,7 @@ class _VerificationEmailWidgetState extends State<VerificationEmailWidget> {
                         Padding(
                           padding: EdgeInsetsGeometry.only(top: 8),
                           child: Text(
-                            state.codeError ?? '',
+                            AppLocalizations.of(context)!.authCodeError,
                             style: CustomTextStyle.body1(
                               color: ColorConstants.error,
                             ),

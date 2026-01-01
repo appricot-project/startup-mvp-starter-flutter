@@ -48,6 +48,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get authAfterThrough => 'через';
 
   @override
+  String get authCodeError => 'Неверный код';
+
+  @override
   String get authVerificationTitle => 'Введите код из почты';
 
   @override

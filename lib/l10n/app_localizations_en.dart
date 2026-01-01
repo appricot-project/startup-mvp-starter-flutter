@@ -48,6 +48,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authAfterThrough => 'through';
 
   @override
+  String get authCodeError => 'Error code';
+
+  @override
   String get authVerificationTitle => 'Enter code from mail';
 
   @override
