@@ -4,6 +4,7 @@ import 'package:startup_mvp_starter_flutter/onboarding/models/video_onboarding_s
 import 'package:startup_mvp_starter_flutter/onboarding/page/onboarding_page.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_slide_widget.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/video_onboarding_slide_widget.dart';
+import 'package:startup_mvp_starter_flutter/profile/page/profile_page.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/localization_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/service_locator.dart';
@@ -122,7 +123,15 @@ class _UiTestingWidgetState extends State<UiTestingWidget> {
                   10.h,
                   CustomButton(
                     text: AppLocalizations.of(context)!.authSignin,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ProfilePage();
+                          },
+                        ),
+                      );
+                    },
                     color: ButtonColor.primary,
                     size: ButtonSize.small,
                     subtitle: 'Subtitle',
