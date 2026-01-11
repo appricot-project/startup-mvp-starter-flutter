@@ -125,11 +125,11 @@ abstract class AppLocalizations {
   /// **'Username'**
   String get authUsername;
 
-  /// No description provided for @authEmail.
+  /// No description provided for @authEnterEmail.
   ///
   /// In en, this message translates to:
-  /// **'Email'**
-  String get authEmail;
+  /// **'Enter email'**
+  String get authEnterEmail;
 
   /// No description provided for @authPassword.
   ///
@@ -154,6 +154,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reset password'**
   String get authResetPassword;
+
+  /// No description provided for @authGetCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Get code'**
+  String get authGetCode;
+
+  /// No description provided for @authGetNewCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Get new code'**
+  String get authGetNewCode;
+
+  /// No description provided for @authAfterThrough.
+  ///
+  /// In en, this message translates to:
+  /// **'through'**
+  String get authAfterThrough;
+
+  /// No description provided for @authCodeError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error code'**
+  String get authCodeError;
+
+  /// No description provided for @authVerificationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter code from mail'**
+  String get authVerificationTitle;
 
   /// No description provided for @commonOk.
   ///

@@ -55,6 +55,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 highlightColor: Colors.transparent,
                 splashColor: Colors.transparent,
                 appBarTheme: AppBarTheme(
+                  elevation: 0,
                   backgroundColor: ColorConstants.background,
                 ),
                 scaffoldBackgroundColor: ColorConstants.background,

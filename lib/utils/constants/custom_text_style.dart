@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 
 class CustomTextStyle {
   static TextStyle mobileH1({
@@ -10,7 +11,7 @@ class CustomTextStyle {
       fontFamily: 'Calibri',
       fontSize: fontSize ?? 24,
       fontWeight: fontWeight ?? FontWeight.w700,
-      color: color ?? Colors.black,
+      color: color ?? ColorConstants.primary,
     );
   }
 
@@ -23,7 +24,7 @@ class CustomTextStyle {
       fontFamily: 'Calibri',
       fontSize: fontSize ?? 20,
       fontWeight: fontWeight ?? FontWeight.w700,
-      color: color ?? Colors.black,
+      color: color ?? ColorConstants.primary,
     );
   }
 
@@ -36,7 +37,7 @@ class CustomTextStyle {
       fontFamily: 'Calibri',
       fontSize: fontSize ?? 18,
       fontWeight: fontWeight ?? FontWeight.w600,
-      color: color ?? Colors.black,
+      color: color ?? ColorConstants.primary,
     );
   }
 
@@ -49,7 +50,7 @@ class CustomTextStyle {
       fontFamily: 'Calibri',
       fontSize: fontSize ?? 16,
       fontWeight: fontWeight ?? FontWeight.w600,
-      color: color ?? Colors.black,
+      color: color ?? ColorConstants.primary,
     );
   }
 
@@ -62,7 +63,7 @@ class CustomTextStyle {
       fontFamily: 'Calibri',
       fontSize: fontSize ?? 16,
       fontWeight: fontWeight ?? FontWeight.w600,
-      color: color ?? Colors.black,
+      color: color ?? ColorConstants.primary,
       letterSpacing: 0,
     );
   }
@@ -76,7 +77,7 @@ class CustomTextStyle {
       fontFamily: 'Calibri',
       fontSize: fontSize ?? 16,
       fontWeight: fontWeight ?? FontWeight.w400,
-      color: color ?? Colors.black,
+      color: color ?? ColorConstants.primary,
     );
   }
 
@@ -89,7 +90,7 @@ class CustomTextStyle {
       fontFamily: 'Calibri',
       fontSize: fontSize ?? 14,
       fontWeight: fontWeight ?? FontWeight.w400,
-      color: color ?? Colors.black,
+      color: color ?? ColorConstants.primary,
     );
   }
 
@@ -102,7 +103,7 @@ class CustomTextStyle {
       fontFamily: 'Calibri',
       fontSize: fontSize ?? 14,
       fontWeight: fontWeight ?? FontWeight.w600,
-      color: color ?? Colors.black,
+      color: color ?? ColorConstants.primary,
     );
   }
 
@@ -115,7 +116,7 @@ class CustomTextStyle {
       fontFamily: 'Calibri',
       fontSize: fontSize ?? 12,
       fontWeight: fontWeight ?? FontWeight.w400,
-      color: color ?? Colors.black,
+      color: color ?? ColorConstants.primary,
     );
   }
 
@@ -129,7 +130,7 @@ class CustomTextStyle {
       fontFamily: 'Calibri',
       fontSize: fontSize ?? 16,
       fontWeight: fontWeight ?? FontWeight.w400,
-      color: color ?? Colors.black,
+      color: color ?? ColorConstants.primary,
       height: height,
     );
   }
@@ -143,7 +144,7 @@ class CustomTextStyle {
       fontFamily: 'SFPro',
       fontSize: fontSize ?? 17,
       fontWeight: fontWeight ?? FontWeight.w600,
-      color: color ?? Colors.black,
+      color: color ?? ColorConstants.primary,
     );
   }
 }
