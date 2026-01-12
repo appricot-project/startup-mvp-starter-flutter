@@ -22,7 +22,7 @@ class MaskTextInputFormatterConsts {
     );
   }
 
-  static MaskTextInputFormatter bonusCardMaskFormatter() {
+  static MaskTextInputFormatter cardMaskFormatter() {
     return MaskTextInputFormatter(
       mask: '#### #### #### ####',
       filter: {"#": RegExp(r'[0-9]')},
