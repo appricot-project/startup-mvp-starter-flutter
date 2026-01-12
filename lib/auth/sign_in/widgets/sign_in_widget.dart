@@ -35,28 +35,26 @@ class _SignInWidgetState extends State<SignInWidget> {
     return BlocListener<SignInBloc, SignInState>(
       listener: (context, state) {
         if (state is SignInClose) {
-          Future.delayed(Duration.zero, () {
-            Navigator.of(context, rootNavigator: true).pop();
-          });
+          Navigator.of(context, rootNavigator: true).pop();
         }
         if (state is SignInError) {
           showErrorAlert(context: context, error: state.error);
         }
         if (state is SignInShowVerification) {
-          Future.delayed(Duration.zero, () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return VerificationEmailPage(
-                    gmail: state.gmail,
-                    expireIn: Duration(minutes: 1),
-                  );
-                },
-              ),
-            ).then((_) {
-              context.read<SignInBloc>().add(SignInOnReturned());
-            });
-          });
+          Navigator.of(context)
+              .push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return VerificationEmailPage(
+                      gmail: state.gmail,
+                      expireIn: Duration(minutes: 1),
+                    );
+                  },
+                ),
+              )
+              .then((_) {
+                context.read<SignInBloc>().add(SignInOnReturned());
+              });
         }
       },
       child: Scaffold(

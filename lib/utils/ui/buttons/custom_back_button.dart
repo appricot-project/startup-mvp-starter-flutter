@@ -28,9 +28,7 @@ class _CustomBackButtonState extends State<CustomBackButton> {
 
   _back() {
     if (widget.onPressed == null) {
-      Future.delayed(Duration.zero, () {
-        Navigator.of(context).pop();
-      });
+      Navigator.of(context).pop();
     } else {
       widget.onPressed!();
     }
