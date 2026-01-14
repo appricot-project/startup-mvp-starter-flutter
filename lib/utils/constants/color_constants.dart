@@ -34,8 +34,8 @@ class ColorConstants {
   static Color get error => const Color.fromRGBO(235, 85, 69, 1);
 
   static Color get unselectedNavigation => _isLight
-      ? const Color.fromRGBO(146, 144, 135, 1)
-      : const Color.fromRGBO(30, 30, 30, 1);
+      ? const Color.fromRGBO(30, 30, 30, 1)
+      : const Color.fromRGBO(146, 144, 135, 1);
 
   static Color get disable => Color.fromRGBO(115, 120, 125, 1);
 

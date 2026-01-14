@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
-import 'package:startup_mvp_starter_flutter/ui_testing_widget.dart';
+import 'package:startup_mvp_starter_flutter/navigation/app_router.dart';
+import 'package:startup_mvp_starter_flutter/navigation/my_router_obsever.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 import 'package:startup_mvp_starter_flutter/utils/localization_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/service_locator.dart';
 import 'package:startup_mvp_starter_flutter/utils/theme_cubit.dart';
+
+final appRouter = AppRouter();
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -40,7 +43,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       builder: (context, them) {
         return BlocBuilder<LocalizationCubit, String>(
           builder: (context, localeState) {
-            return MaterialApp(
+            return MaterialApp.router(
               debugShowCheckedModeBanner: false,
               localizationsDelegates: [
                 AppLocalizations.delegate,
@@ -60,7 +63,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 ),
                 scaffoldBackgroundColor: ColorConstants.background,
               ),
-              home: Scaffold(body: UiTestingWidget()),
+              routerConfig: appRouter.config(
+                navigatorObservers: () => [MyRouterObserver()],
+              ),
             );
           },
         );
