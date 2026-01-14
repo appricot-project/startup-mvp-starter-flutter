@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile_service/profile_service.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile_service/profile_service_mock.dart';
 import 'package:startup_mvp_starter_flutter/utils/app_config.dart';
 import 'package:startup_mvp_starter_flutter/utils/auth_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/localization_cubit.dart';
@@ -27,6 +29,7 @@ Future<void> setupLocator({required Flavor flavor}) async {
   locator.registerSingleton<ThemeCubit>(
     ThemeCubit(sharedStorage: locator<SharedStorage>()),
   );
+  locator.registerSingleton<ProfileService>(ProfileServiceMock());
   await locator<AuthCubit>().checkAuthStatus();
   await locator<LocalizationCubit>().checkLocalizeStatus();
   await locator<ThemeCubit>().checkThemeStatus();

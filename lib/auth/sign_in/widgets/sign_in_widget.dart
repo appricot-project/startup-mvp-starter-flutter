@@ -44,18 +44,20 @@ class _SignInWidgetState extends State<SignInWidget> {
         }
         if (state is SignInShowVerification) {
           Future.delayed(Duration.zero, () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return VerificationEmailPage(
-                    gmail: state.gmail,
-                    expireIn: Duration(minutes: 1),
-                  );
-                },
-              ),
-            ).then((_) {
-              context.read<SignInBloc>().add(SignInOnReturned());
-            });
+            Navigator.of(context)
+                .push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return VerificationEmailPage(
+                        gmail: state.gmail,
+                        expireIn: Duration(minutes: 1),
+                      );
+                    },
+                  ),
+                )
+                .then((_) {
+                  context.read<SignInBloc>().add(SignInOnReturned());
+                });
           });
         }
       },
@@ -99,7 +101,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                             );
                           },
                           keyboardType: TextInputType.emailAddress,
-                          error: state.textFieldsErrors['email'],
+                          error: decodeError(state.textFieldsErrors['email']),
                           label: AppLocalizations.of(context)!.authEnterEmail,
                         ),
                         SizedBox(height: 16),
@@ -124,5 +126,15 @@ class _SignInWidgetState extends State<SignInWidget> {
         ),
       ),
     );
+  }
+
+  String? decodeError(String? errorCode) {
+    switch (errorCode) {
+      case 'requiredField':
+        return AppLocalizations.of(context)!.errorsRequiredField;
+      case 'invalidEmail':
+        return AppLocalizations.of(context)!.errorsInvalidEmail;
+    }
+    return null;
   }
 }

@@ -1,6 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:startup_mvp_starter_flutter/utils/auth_cubit.dart';
 import 'dart:async';
+
+import 'package:startup_mvp_starter_flutter/utils/service_locator.dart';
 
 part 'verification_email_event.dart';
 part 'verification_email_state.dart';
@@ -69,6 +72,16 @@ class VerificationEmailBloc
         await Future.delayed(Duration(seconds: 1));
         loading = null;
         if (event.code == "1111") {
+          await locator<AuthCubit>().login(refreshToken: '', accessToken: '');
+          timer?.cancel();
+          emit(
+            VerificationEmailClose(
+              loading: loading,
+              gmail: gmail,
+              time: time,
+              codeError: codeError,
+            ),
+          );
         } else {
           codeError = 'error';
           _updating(emit);

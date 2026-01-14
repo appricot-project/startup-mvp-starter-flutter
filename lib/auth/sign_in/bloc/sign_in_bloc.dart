@@ -47,10 +47,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       case 'email':
         if (value.isEmpty) {
           isValid = false;
-          textFieldsErrors[key] = 'Обязательное поле';
+          textFieldsErrors[key] = 'requiredField';
         } else if (!isValidEmail(value)) {
           isValid = false;
-          textFieldsErrors[key] = 'Неверный формат почты';
+          textFieldsErrors[key] = 'invalidEmail';
         } else {
           textFieldsErrors[key] = '';
         }
