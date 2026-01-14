@@ -46,7 +46,7 @@ class AppRouter extends RootStackRouter {
           path: 'profile',
           page: ProfileTabRoute.page,
           children: [
-            AutoRoute(path: '', page: UiTestingRoute.page, initial: true),
+            AutoRoute(path: '', page: ProfileTabRoute.page, initial: true),
             // ..._commonTabChildren,
           ],
         ),

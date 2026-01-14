@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/auth/sign_in/page/sign_in_page.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
-import 'package:startup_mvp_starter_flutter/profile/profile/bloc/profile_bloc.dart';
-import 'package:startup_mvp_starter_flutter/profile/profile/models/profile_info.dart';
-import 'package:startup_mvp_starter_flutter/profile/profile/widgets/logout_alert.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile_tab/bloc/profile_tab_bloc.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile_tab/models/profile_info.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile_tab/widgets/logout_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/auth_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
@@ -15,26 +15,26 @@ import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart'
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/text_fields/basic_text_field.dart';
 
-class ProfileWidget extends StatefulWidget {
-  const ProfileWidget({super.key});
+class ProfileTabWidget extends StatefulWidget {
+  const ProfileTabWidget({super.key});
 
   @override
-  State<ProfileWidget> createState() => _ProfileWidgetState();
+  State<ProfileTabWidget> createState() => _ProfileTabWidgetState();
 }
 
-class _ProfileWidgetState extends State<ProfileWidget> {
+class _ProfileTabWidgetState extends State<ProfileTabWidget> {
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ProfileBloc, ProfileState>(
+    return BlocListener<ProfileBloc, ProfileTabState>(
       listener: (context, state) async {
-        if (state is ProfileShowView) {
+        if (state is ProfileTabShowView) {
           switch (state.key) {
             case 'signIn':
               showMyModalBottomSheet(
                 context: context,
                 widget: SignInPage(),
                 then: (_) {
-                  context.read<ProfileBloc>().add(ProfileOnAppear());
+                  context.read<ProfileBloc>().add(ProfileTabOnAppear());
                 },
               );
             case 'logoutAlert':
@@ -44,7 +44,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   return LogoutAlert(
                     onYes: () {
                       context.read<ProfileBloc>().add(
-                        ProfileOnTapped(key: 'logout'),
+                        ProfileTabOnTapped(key: 'logout'),
                       );
                       Navigator.of(newContext).pop();
                     },
@@ -54,20 +54,22 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   );
                 },
               ).then((value) {
-                context.read<ProfileBloc>().add(ProfileOnAppear());
+                context.read<ProfileBloc>().add(ProfileTabOnAppear());
               });
             case 'editProfile':
               Navigator.of(context, rootNavigator: true)
-                  .push(MaterialPageRoute(builder: (context) => Container()))
+                  .push(
+                    MaterialPageRoute(builder: (context) => Container()),
+                  )
                   .then((value) {
-                    context.read<ProfileBloc>().add(ProfileOnReturned());
+                    context.read<ProfileBloc>().add(ProfileTabOnReturned());
                   });
           }
         }
       },
       child: Scaffold(
         body: SafeArea(
-          child: BlocBuilder<ProfileBloc, ProfileState>(
+          child: BlocBuilder<ProfileBloc, ProfileTabState>(
             builder: (context, state) {
               return LoadingIndicator(
                 initialLoading: state.loading == Loading.initialLoading,
@@ -97,7 +99,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   )!.authSignin,
                                   onPressed: () {
                                     context.read<ProfileBloc>().add(
-                                      ProfileOnTapped(key: 'signIn'),
+                                      ProfileTabOnTapped(key: 'signIn'),
                                     );
                                   },
                                 ),
@@ -128,7 +130,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     ),
                                     onTap: () {
                                       context.read<ProfileBloc>().add(
-                                        ProfileOnTapped(key: 'logoutAlert'),
+                                        ProfileTabOnTapped(key: 'logoutAlert'),
                                       );
                                     },
                                   ),
@@ -183,7 +185,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               GestureDetector(
                 onTap: () {
                   context.read<ProfileBloc>().add(
-                    ProfileOnTapped(key: 'editProfile'),
+                    ProfileTabOnTapped(key: 'editProfile'),
                   );
                 },
                 child: PlatformComponents.arrowRightIcon(),
