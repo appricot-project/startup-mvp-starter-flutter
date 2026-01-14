@@ -6,15 +6,13 @@ showErrorAlert({
   required String error,
   void Function()? then,
 }) {
-  Future.delayed(Duration.zero, () {
-    showDialog(
-      useRootNavigator: true,
-      context: context,
-      builder: (context) {
-        return ErrorAlert(content: error);
-      },
-    ).then((value) {
-      then?.call();
-    });
+  showDialog(
+    useRootNavigator: true,
+    context: context,
+    builder: (context) {
+      return ErrorAlert(content: error);
+    },
+  ).then((value) {
+    then?.call();
   });
 }

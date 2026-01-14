@@ -37,14 +37,10 @@ class _VerificationEmailWidgetState extends State<VerificationEmailWidget> {
     return BlocListener<VerificationEmailBloc, VerificationEmailState>(
       listener: (context, state) {
         if (state is VerificationEmailClose) {
-          Future.delayed(Duration.zero, () {
-            Navigator.of(context, rootNavigator: true).pop();
-          });
+          Navigator.of(context, rootNavigator: true).pop();
         }
         if (state is VerificationEmailBack) {
-          Future.delayed(Duration.zero, () {
-            Navigator.of(context).pop();
-          });
+          Navigator.of(context).pop();
         }
         if (state is VerificationEmailError) {
           _controller.text = '';
