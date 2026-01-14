@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:startup_mvp_starter_flutter/auth/sign_in/page/sign_in_page.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
@@ -14,14 +15,15 @@ import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart'
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_icon_button.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/text_fields/basic_text_field.dart';
 
-class UiTestingWidget extends StatefulWidget {
-  const UiTestingWidget();
+@RoutePage()
+class UiTestingPage extends StatefulWidget {
+  const UiTestingPage();
 
   @override
-  State<StatefulWidget> createState() => _UiTestingWidgetState();
+  State<StatefulWidget> createState() => _UiTestingPageState();
 }
 
-class _UiTestingWidgetState extends State<UiTestingWidget> {
+class _UiTestingPageState extends State<UiTestingPage> {
   int selectedItem = 0;
   List<MyOnboardingModel> onboardingModel = [
     MyOnboardingModel(
