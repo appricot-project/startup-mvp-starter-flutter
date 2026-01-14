@@ -126,16 +126,15 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
           return true;
         }
         if (value.length < 10) {
-          textFieldsErrors[key] = 'Неверный формат';
+          textFieldsErrors[key] = 'requiredField';
           return false;
         }
         if (DateFormat('dd.MM.yyyy').format(DateTime.now()) == value) {
-          textFieldsErrors[key] = 'Дата рождения не может быть текущей датой';
+          textFieldsErrors[key] = 'errorBirthdayCuttent';
           return false;
         }
         if (DateFormat('dd.MM.yyyy').parse(value).isAfter(DateTime.now())) {
-          textFieldsErrors[key] =
-              'Дата рождения не может быть больше текущей даты';
+          textFieldsErrors[key] = 'errorBirthdayGreater';
           return false;
         }
         textFieldsErrors[key] = '';

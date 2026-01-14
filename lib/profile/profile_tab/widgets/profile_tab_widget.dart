@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/auth/sign_in/page/sign_in_page.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
+import 'package:startup_mvp_starter_flutter/profile/edit_profile/page/edit_profile_page.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile_tab/bloc/profile_tab_bloc.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile_tab/models/profile_info.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile_tab/widgets/logout_alert.dart';
@@ -59,7 +60,7 @@ class _ProfileTabWidgetState extends State<ProfileTabWidget> {
             case 'editProfile':
               Navigator.of(context, rootNavigator: true)
                   .push(
-                    MaterialPageRoute(builder: (context) => Container()),
+                    MaterialPageRoute(builder: (context) => EditProfilePage()),
                   )
                   .then((value) {
                     context.read<ProfileBloc>().add(ProfileTabOnReturned());

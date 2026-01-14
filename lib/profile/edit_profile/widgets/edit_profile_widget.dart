@@ -197,4 +197,16 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
       ),
     );
   }
+
+  String? decodeError(String? errorCode) {
+    switch (errorCode) {
+      case 'requiredField':
+        return AppLocalizations.of(context)!.errorsRequiredField;
+      case 'errorBirthdayCuttent':
+        return AppLocalizations.of(context)!.errorBirthdayCuttent;
+      case 'errorBirthdayGreater':
+        return AppLocalizations.of(context)!.errorBirthdayGreater;
+    }
+    return null;
+  }
 }
