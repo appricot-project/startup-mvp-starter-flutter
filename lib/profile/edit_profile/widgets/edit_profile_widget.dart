@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/profile/edit_profile/bloc/edit_profile_bloc.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/platform_components.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
@@ -60,18 +59,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
       },
       child: Scaffold(
         appBar: AppBar(
-          leading: GestureDetector(
-            onTap: () {
-              context.read<EditProfileBloc>().add(
-                EditProfileOnBackButtonTapped(),
-              );
-            },
-            child: Padding(
-              padding: EdgeInsetsGeometry.only(left: 8),
-              child: PlatformComponents.lineArrowLeftIcon(),
-            ),
-          ),
-          leadingWidth: 0,
           title: Text(
             AppLocalizations.of(context)!.profilePersonalData,
             style: CustomTextStyle.mobileH1(),
@@ -87,7 +74,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   children: [
                     SingleChildScrollView(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 8, right: 8),
+                        padding: EdgeInsets.only(left: 16, right: 16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -153,33 +140,28 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 8, right: 8, bottom: 16),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          CustomButton(
-                            text: AppLocalizations.of(context)!.commonSave,
-                            onPressed: () {
-                              context.read<EditProfileBloc>().add(
-                                EditProfileOnButtonTapped(
-                                  fields: {
-                                    'name': nameController.text,
-                                    'date': dateController.text,
-                                    'phone': phoneController.text,
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),
             );
           },
+        ),
+        floatingActionButton: Padding(
+          padding: EdgeInsetsGeometry.only(left: 32),
+          child: CustomButton(
+            text: AppLocalizations.of(context)!.commonSave,
+            onPressed: () {
+              context.read<EditProfileBloc>().add(
+                EditProfileOnButtonTapped(
+                  fields: {
+                    'name': nameController.text,
+                    'date': dateController.text,
+                    'phone': phoneController.text,
+                  },
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
