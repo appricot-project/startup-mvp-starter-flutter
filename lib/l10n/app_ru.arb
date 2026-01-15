@@ -83,6 +83,8 @@
   "errorsRequiredField": "Обязательное поле",
   "errorsInvalidEmail": "Неверный формат почты",
   "errorsPasswordTooShort": "Пароль слишком короткий",
+  "errorBirthdayCuttent": "Дата рождения не может быть текущей датой",
+  "errorBirthdayGreater": "Дата рождения не может быть больше текущей даты",
 
   "errorsTryAgainLater": "Попробуйте позже",
 

@@ -497,6 +497,18 @@ abstract class AppLocalizations {
   /// **'Password is too short'**
   String get errorsPasswordTooShort;
 
+  /// No description provided for @errorBirthdayCuttent.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth cannot be the current date'**
+  String get errorBirthdayCuttent;
+
+  /// No description provided for @errorBirthdayGreater.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth cannot be greater than the current date.'**
+  String get errorBirthdayGreater;
+
   /// No description provided for @errorsTryAgainLater.
   ///
   /// In en, this message translates to:

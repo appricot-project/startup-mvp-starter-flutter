@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:startup_mvp_starter_flutter/profile/profile_tab/models/profile_info.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile/models/profile_info.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile_service/profile_service.dart';
 
 part 'edit_profile_event.dart';

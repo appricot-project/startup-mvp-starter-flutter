@@ -46,9 +46,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     return BlocListener<EditProfileBloc, EditProfileState>(
       listener: (context, state) {
         if (state is EditProfileBack) {
-          Future.delayed(Duration.zero, () {
-            Navigator.of(context, rootNavigator: true).pop();
-          });
+          Navigator.of(context).pop();
         }
         if (state is EditProfileUpdatedUserInfo) {
           nameController.text = state.profileInfo?.name ?? '';
