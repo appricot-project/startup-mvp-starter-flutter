@@ -73,7 +73,7 @@ class AppRouter extends RootStackRouter {
       children: [
         AutoRoute(path: '', page: SignInRoute.page, initial: true),
         AutoRoute(
-          path: 'verificationEEmail',
+          path: 'verificationEmail',
           page: VerificationEmailRoute.page,
         ),
       ],
