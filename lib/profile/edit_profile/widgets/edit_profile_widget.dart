@@ -60,32 +60,21 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
       },
       child: Scaffold(
         appBar: AppBar(
-          leading: Container(),
-          leadingWidth: 8,
-          title: BlocBuilder<EditProfileBloc, EditProfileState>(
-            builder: (context, state) {
-              return Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          context.read<EditProfileBloc>().add(
-                            EditProfileOnBackButtonTapped(),
-                          );
-                        },
-                        child: PlatformComponents.lineArrowLeftIcon(),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.profilePersonalData,
-                    style: CustomTextStyle.mobileH1(),
-                  ),
-                ],
+          leading: GestureDetector(
+            onTap: () {
+              context.read<EditProfileBloc>().add(
+                EditProfileOnBackButtonTapped(),
               );
             },
+            child: Padding(
+              padding: EdgeInsetsGeometry.only(left: 8),
+              child: PlatformComponents.lineArrowLeftIcon(),
+            ),
+          ),
+          leadingWidth: 0,
+          title: Text(
+            AppLocalizations.of(context)!.profilePersonalData,
+            style: CustomTextStyle.mobileH1(),
           ),
         ),
         body: BlocBuilder<EditProfileBloc, EditProfileState>(
