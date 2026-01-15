@@ -1,21 +1,22 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:startup_mvp_starter_flutter/profile/profile_tab/models/profile_info.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile/models/profile_info.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile_service/profile_service.dart';
 import 'package:startup_mvp_starter_flutter/utils/auth_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/service_locator.dart';
 
-part 'profile_tab_event.dart';
-part 'profile_tab_state.dart';
+part 'profile_event.dart';
+part 'profile_state.dart';
 
-class ProfileBloc extends Bloc<ProfileTabEvent, ProfileTabState> {
+class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileService profileService;
   Loading? loading;
   ProfileInfo? profile;
 
   ProfileBloc({required this.profileService})
-    : super(ProfileTabInitial(loading: null, profile: null)) {
-    on<ProfileTabOnAppear>((event, emit) async {
+    : super(ProfileInitial(loading: null, profile: null)) {
+    on<ProfileOnAppear>((event, emit) async {
+      _updating(emit);
       if (locator<AuthCubit>().state) {
         loading = Loading.initialLoading;
         _updating(emit);
@@ -24,7 +25,7 @@ class ProfileBloc extends Bloc<ProfileTabEvent, ProfileTabState> {
         response.fold(
           (l) {
             emit(
-              ProfileTabError(
+              ProfileError(
                 loading: loading,
                 error: l.message,
                 profile: profile,
@@ -40,43 +41,31 @@ class ProfileBloc extends Bloc<ProfileTabEvent, ProfileTabState> {
         );
       }
     });
-    on<ProfileTabOnReturned>((event, emit) {
+    on<ProfileOnReturned>((event, emit) {
       _updating(emit);
     });
-    on<ProfileTabOnTapped>((event, emit) async {
+    on<ProfileOnTapped>((event, emit) async {
       switch (event.key) {
         case 'signIn':
           emit(
-            ProfileTabShowView(
-              loading: loading,
-              key: event.key,
-              profile: profile,
-            ),
+            ProfileShowView(loading: loading, key: event.key, profile: profile),
           );
         case 'logoutAlert':
           emit(
-            ProfileTabShowView(
-              loading: loading,
-              key: event.key,
-              profile: profile,
-            ),
+            ProfileShowView(loading: loading, key: event.key, profile: profile),
           );
         case 'logout':
           await locator<AuthCubit>().logout();
-          add(ProfileTabOnAppear());
+          add(ProfileOnAppear());
         case 'editProfile':
           emit(
-            ProfileTabShowView(
-              loading: loading,
-              key: event.key,
-              profile: profile,
-            ),
+            ProfileShowView(loading: loading, key: event.key, profile: profile),
           );
       }
     });
   }
 
-  _updating(Emitter<ProfileTabState> emit) {
-    emit(ProfileTabUpdated(loading: loading, profile: profile));
+  _updating(Emitter<ProfileState> emit) {
+    emit(ProfileUpdated(loading: loading, profile: profile));
   }
 }

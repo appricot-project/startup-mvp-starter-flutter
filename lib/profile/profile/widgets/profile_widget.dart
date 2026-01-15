@@ -1,43 +1,38 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:startup_mvp_starter_flutter/auth/sign_in/page/sign_in_page.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
-import 'package:startup_mvp_starter_flutter/profile/edit_profile/page/edit_profile_page.dart';
-import 'package:startup_mvp_starter_flutter/profile/profile_tab/bloc/profile_tab_bloc.dart';
-import 'package:startup_mvp_starter_flutter/profile/profile_tab/models/profile_info.dart';
-import 'package:startup_mvp_starter_flutter/profile/profile_tab/widgets/logout_alert.dart';
+import 'package:startup_mvp_starter_flutter/navigation/app_router.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile/bloc/profile_bloc.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile/models/profile_info.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile/widgets/logout_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/auth_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/platform_components.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
-import 'package:startup_mvp_starter_flutter/utils/funcs/custom_modal_bottom_sheet.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/text_fields/basic_text_field.dart';
 
-class ProfileTabWidget extends StatefulWidget {
-  const ProfileTabWidget({super.key});
+class ProfileWidget extends StatefulWidget {
+  const ProfileWidget({super.key});
 
   @override
-  State<ProfileTabWidget> createState() => _ProfileTabWidgetState();
+  State<ProfileWidget> createState() => _ProfileWidgetState();
 }
 
-class _ProfileTabWidgetState extends State<ProfileTabWidget> {
+class _ProfileWidgetState extends State<ProfileWidget> {
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ProfileBloc, ProfileTabState>(
+    return BlocListener<ProfileBloc, ProfileState>(
       listener: (context, state) async {
-        if (state is ProfileTabShowView) {
+        if (state is ProfileShowView) {
           switch (state.key) {
             case 'signIn':
-              showMyModalBottomSheet(
-                context: context,
-                widget: SignInPage(),
-                then: (_) {
-                  context.read<ProfileBloc>().add(ProfileTabOnAppear());
-                },
-              );
+              context.pushRoute(ModalAuth()).then((_) {
+                context.read<ProfileBloc>().add(ProfileOnAppear());
+              });
             case 'logoutAlert':
               showDialog(
                 context: context,
@@ -45,7 +40,7 @@ class _ProfileTabWidgetState extends State<ProfileTabWidget> {
                   return LogoutAlert(
                     onYes: () {
                       context.read<ProfileBloc>().add(
-                        ProfileTabOnTapped(key: 'logout'),
+                        ProfileOnTapped(key: 'logout'),
                       );
                       Navigator.of(newContext).pop();
                     },
@@ -55,22 +50,15 @@ class _ProfileTabWidgetState extends State<ProfileTabWidget> {
                   );
                 },
               ).then((value) {
-                context.read<ProfileBloc>().add(ProfileTabOnAppear());
+                context.read<ProfileBloc>().add(ProfileOnAppear());
               });
             case 'editProfile':
-              Navigator.of(context, rootNavigator: true)
-                  .push(
-                    MaterialPageRoute(builder: (context) => EditProfilePage()),
-                  )
-                  .then((value) {
-                    context.read<ProfileBloc>().add(ProfileTabOnReturned());
-                  });
           }
         }
       },
       child: Scaffold(
         body: SafeArea(
-          child: BlocBuilder<ProfileBloc, ProfileTabState>(
+          child: BlocBuilder<ProfileBloc, ProfileState>(
             builder: (context, state) {
               return LoadingIndicator(
                 initialLoading: state.loading == Loading.initialLoading,
@@ -100,7 +88,7 @@ class _ProfileTabWidgetState extends State<ProfileTabWidget> {
                                   )!.authSignin,
                                   onPressed: () {
                                     context.read<ProfileBloc>().add(
-                                      ProfileTabOnTapped(key: 'signIn'),
+                                      ProfileOnTapped(key: 'signIn'),
                                     );
                                   },
                                 ),
@@ -131,7 +119,7 @@ class _ProfileTabWidgetState extends State<ProfileTabWidget> {
                                     ),
                                     onTap: () {
                                       context.read<ProfileBloc>().add(
-                                        ProfileTabOnTapped(key: 'logoutAlert'),
+                                        ProfileOnTapped(key: 'logoutAlert'),
                                       );
                                     },
                                   ),
@@ -186,7 +174,7 @@ class _ProfileTabWidgetState extends State<ProfileTabWidget> {
               GestureDetector(
                 onTap: () {
                   context.read<ProfileBloc>().add(
-                    ProfileTabOnTapped(key: 'editProfile'),
+                    ProfileOnTapped(key: 'editProfile'),
                   );
                 },
                 child: PlatformComponents.arrowRightIcon(),
