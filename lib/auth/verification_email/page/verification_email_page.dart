@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/auth/verification_email/bloc/verification_email_bloc.dart';
 import 'package:startup_mvp_starter_flutter/auth/verification_email/widgets/verification_email_widget.dart';
 
+@RoutePage()
 class VerificationEmailPage extends StatelessWidget {
   final String gmail;
   final Duration expireIn;

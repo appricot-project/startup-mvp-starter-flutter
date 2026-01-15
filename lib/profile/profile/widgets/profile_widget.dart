@@ -1,7 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:startup_mvp_starter_flutter/auth/sign_in/page/sign_in_page.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
+import 'package:startup_mvp_starter_flutter/navigation/app_router.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile/bloc/profile_bloc.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile/models/profile_info.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile/widgets/logout_alert.dart';
@@ -10,7 +11,6 @@ import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart
 import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/platform_components.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
-import 'package:startup_mvp_starter_flutter/utils/funcs/custom_modal_bottom_sheet.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/text_fields/basic_text_field.dart';
@@ -30,13 +30,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         if (state is ProfileShowView) {
           switch (state.key) {
             case 'signIn':
-              showMyModalBottomSheet(
-                context: context,
-                widget: SignInPage(),
-                then: (_) {
-                  context.read<ProfileBloc>().add(ProfileOnAppear());
-                },
-              );
+              context.pushRoute(ModalAuth()).then((_) {
+                context.read<ProfileBloc>().add(ProfileOnAppear());
+              });
             case 'logoutAlert':
               showDialog(
                 context: context,
@@ -57,13 +53,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 context.read<ProfileBloc>().add(ProfileOnAppear());
               });
             case 'editProfile':
-              Navigator.of(context, rootNavigator: true)
-                  .push(
-                    MaterialPageRoute(builder: (context) => Container()),
-                  )
-                  .then((value) {
-                    context.read<ProfileBloc>().add(ProfileOnReturned());
-                  });
           }
         }
       },

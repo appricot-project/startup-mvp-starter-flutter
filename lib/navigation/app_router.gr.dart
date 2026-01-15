@@ -59,6 +59,22 @@ class MainTabRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ProfilePage]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
+    : super(ProfileRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfilePage();
+    },
+  );
+}
+
+/// generated route for
 /// [ProfileTabPage]
 class ProfileTabRoute extends PageRouteInfo<void> {
   const ProfileTabRoute({List<PageRouteInfo>? children})
@@ -91,6 +107,22 @@ class SettingsTabRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SignInPage]
+class SignInRoute extends PageRouteInfo<void> {
+  const SignInRoute({List<PageRouteInfo>? children})
+    : super(SignInRoute.name, initialChildren: children);
+
+  static const String name = 'SignInRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return SignInPage();
+    },
+  );
+}
+
+/// generated route for
 /// [UiTestingPage]
 class UiTestingRoute extends PageRouteInfo<void> {
   const UiTestingRoute({List<PageRouteInfo>? children})
@@ -104,4 +136,54 @@ class UiTestingRoute extends PageRouteInfo<void> {
       return UiTestingPage();
     },
   );
+}
+
+/// generated route for
+/// [VerificationEmailPage]
+class VerificationEmailRoute extends PageRouteInfo<VerificationEmailRouteArgs> {
+  VerificationEmailRoute({
+    required String gmail,
+    required Duration expireIn,
+    List<PageRouteInfo>? children,
+  }) : super(
+         VerificationEmailRoute.name,
+         args: VerificationEmailRouteArgs(gmail: gmail, expireIn: expireIn),
+         initialChildren: children,
+       );
+
+  static const String name = 'VerificationEmailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<VerificationEmailRouteArgs>();
+      return VerificationEmailPage(gmail: args.gmail, expireIn: args.expireIn);
+    },
+  );
+}
+
+class VerificationEmailRouteArgs {
+  const VerificationEmailRouteArgs({
+    required this.gmail,
+    required this.expireIn,
+  });
+
+  final String gmail;
+
+  final Duration expireIn;
+
+  @override
+  String toString() {
+    return 'VerificationEmailRouteArgs{gmail: $gmail, expireIn: $expireIn}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! VerificationEmailRouteArgs) return false;
+    return gmail == other.gmail && expireIn == other.expireIn;
+  }
+
+  @override
+  int get hashCode => gmail.hashCode ^ expireIn.hashCode;
 }

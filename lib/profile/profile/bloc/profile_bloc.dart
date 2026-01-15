@@ -16,6 +16,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc({required this.profileService})
     : super(ProfileInitial(loading: null, profile: null)) {
     on<ProfileOnAppear>((event, emit) async {
+      _updating(emit);
       if (locator<AuthCubit>().state) {
         loading = Loading.initialLoading;
         _updating(emit);
@@ -47,30 +48,18 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       switch (event.key) {
         case 'signIn':
           emit(
-            ProfileShowView(
-              loading: loading,
-              key: event.key,
-              profile: profile,
-            ),
+            ProfileShowView(loading: loading, key: event.key, profile: profile),
           );
         case 'logoutAlert':
           emit(
-            ProfileShowView(
-              loading: loading,
-              key: event.key,
-              profile: profile,
-            ),
+            ProfileShowView(loading: loading, key: event.key, profile: profile),
           );
         case 'logout':
           await locator<AuthCubit>().logout();
           add(ProfileOnAppear());
         case 'editProfile':
           emit(
-            ProfileShowView(
-              loading: loading,
-              key: event.key,
-              profile: profile,
-            ),
+            ProfileShowView(loading: loading, key: event.key, profile: profile),
           );
       }
     });
