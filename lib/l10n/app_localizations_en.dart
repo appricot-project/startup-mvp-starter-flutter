@@ -210,6 +210,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorsPasswordTooShort => 'Password is too short';
 
   @override
+  String get errorBirthdayCuttent => 'Date of birth cannot be the current date';
+
+  @override
+  String get errorBirthdayGreater => 'Date of birth cannot be greater than the current date.';
+
+  @override
   String get errorsTryAgainLater => 'Please try again later';
 
   @override

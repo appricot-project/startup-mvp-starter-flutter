@@ -83,6 +83,8 @@
   "errorsRequiredField": "Required field",
   "errorsInvalidEmail": "Invalid mail format",
   "errorsPasswordTooShort": "Password is too short",
+  "errorBirthdayCuttent": "Date of birth cannot be the current date",
+  "errorBirthdayGreater": "Date of birth cannot be greater than the current date.",
 
   "errorsTryAgainLater": "Please try again later",
 

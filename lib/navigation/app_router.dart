@@ -7,6 +7,7 @@ import 'package:startup_mvp_starter_flutter/navigation/wrappers/favourites_tab_p
 import 'package:startup_mvp_starter_flutter/navigation/wrappers/main_tab_page.dart';
 import 'package:startup_mvp_starter_flutter/navigation/wrappers/profile_tab_page.dart';
 import 'package:startup_mvp_starter_flutter/navigation/wrappers/settings_tab_page.dart';
+import 'package:startup_mvp_starter_flutter/profile/edit_profile/page/edit_profile_page.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile/page/profile_page.dart';
 import 'package:startup_mvp_starter_flutter/ui_testing_widget.dart';
 
@@ -51,6 +52,7 @@ class AppRouter extends RootStackRouter {
           page: ProfileTabRoute.page,
           children: [
             AutoRoute(path: '', page: ProfileRoute.page, initial: true),
+            AutoRoute(path: '', page: EditProfileRoute.page),
             // ..._commonTabChildren,
           ],
         ),
@@ -66,16 +68,12 @@ class AppRouter extends RootStackRouter {
     ),
 
     // ModalBottomSheetAutoRoute(page: SignInRoute.page, enableDrag: false),
-
     ModalBottomSheetAutoRoute(
       path: '/modal/auth',
       page: ModalAuth.page,
       children: [
         AutoRoute(path: '', page: SignInRoute.page, initial: true),
-        AutoRoute(
-          path: 'verificationEmail',
-          page: VerificationEmailRoute.page,
-        ),
+        AutoRoute(path: 'verificationEmail', page: VerificationEmailRoute.page),
       ],
     ),
     // * MARK: Modals

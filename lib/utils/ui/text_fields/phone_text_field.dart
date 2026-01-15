@@ -49,9 +49,6 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
 
   @override
   void initState() {
-    if (widget.controller.text == '') {
-      widget.controller.text = '+7 (';
-    }
     myFocusNode = FocusNode();
     myFocusNode.addListener(_handleFocusChanged);
     super.initState();
@@ -77,9 +74,6 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
       label: widget.label,
       hintText: widget.hintText,
       onChanged: (value) {
-        if (value == '') {
-          widget.controller.text = '+7 (';
-        }
         widget.onChanged.call(phoneMaskFormatter.unmaskText(value));
       },
       errorHintText: widget.errorHintText,

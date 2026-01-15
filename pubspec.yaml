@@ -36,6 +36,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   video_player: ^2.10.1
   auto_route: ^11.1.0
+  syncfusion_flutter_datepicker: ^32.1.22
 
 dev_dependencies:
   flutter_test:

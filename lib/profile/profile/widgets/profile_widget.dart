@@ -53,6 +53,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 context.read<ProfileBloc>().add(ProfileOnAppear());
               });
             case 'editProfile':
+              context.pushRoute(EditProfileRoute()).then((_) {
+                context.read<ProfileBloc>().add(ProfileOnReturned());
+              });
           }
         }
       },

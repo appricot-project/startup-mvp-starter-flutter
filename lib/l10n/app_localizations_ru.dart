@@ -210,6 +210,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get errorsPasswordTooShort => 'Пароль слишком короткий';
 
   @override
+  String get errorBirthdayCuttent => 'Дата рождения не может быть текущей датой';
+
+  @override
+  String get errorBirthdayGreater => 'Дата рождения не может быть больше текущей даты';
+
+  @override
   String get errorsTryAgainLater => 'Попробуйте позже';
 
   @override
