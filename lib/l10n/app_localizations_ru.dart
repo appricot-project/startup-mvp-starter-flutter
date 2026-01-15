@@ -15,16 +15,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get authLogout => 'Выйти';
 
   @override
-  String get authLoginSuccess => 'Вы успешно вошли';
-
-  @override
-  String get authLogoutConfirm => 'Вы действительно хотите выйти?';
-
-  @override
   String get authUsername => 'Имя пользователя';
 
   @override
-  String get authEnterEmail => 'Введите почту почта';
+  String get authEnterEmail => 'Введите почту';
 
   @override
   String get authPassword => 'Пароль';
@@ -52,6 +46,30 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get authVerificationTitle => 'Введите код из почты';
+
+  @override
+  String get profileSignIn => 'Войдите в профиль';
+
+  @override
+  String get profileLoginSuccess => 'Вы успешно вошли';
+
+  @override
+  String get profileLogoutConfirm => 'Вы действительно хотите выйти?';
+
+  @override
+  String get profileEmailLabel => 'Почта';
+
+  @override
+  String get profileNameLabel => 'Имя';
+
+  @override
+  String get profilePersonalData => 'Личные данные';
+
+  @override
+  String get profilePhoneNumber => 'Номер телефона';
+
+  @override
+  String get profileBirthdayLabel => 'Дата рождения';
 
   @override
   String get commonOk => 'Ок';
@@ -186,7 +204,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get errorsRequiredField => 'Обязательное поле';
 
   @override
-  String get errorsInvalidEmail => 'Некорректный email';
+  String get errorsInvalidEmail => 'Неверный формат почты';
 
   @override
   String get errorsPasswordTooShort => 'Пароль слишком короткий';

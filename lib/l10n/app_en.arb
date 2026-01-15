@@ -3,8 +3,6 @@
 
   "authSignin": "Sign in",
   "authLogout": "Log out",
-  "authLoginSuccess": "You have successfully logged in",
-  "authLogoutConfirm": "Are you sure you want to log out?",
 
   "authUsername": "Username",
   "authEnterEmail": "Enter email",
@@ -16,8 +14,16 @@
   "authGetNewCode": "Get new code",
   "authAfterThrough": "through",
   "authCodeError": "Error code",
-
   "authVerificationTitle": "Enter code from mail",
+
+  "profileSignIn": "Login to your profile",
+  "profileLoginSuccess": "You have successfully logged in",
+  "profileLogoutConfirm": "Are you sure you want to log out?",
+  "profileEmailLabel": "Email",
+  "profileNameLabel": "Name",
+  "profilePersonalData": "Personal data",
+  "profilePhoneNumber": "Phone number",
+  "profileBirthdayLabel": "Date of birth",
 
   "commonOk": "OK",
   "commonYes": "Yes",
@@ -75,7 +81,7 @@
   "errorsNoInternet": "No internet connection",
 
   "errorsRequiredField": "Required field",
-  "errorsInvalidEmail": "Invalid email",
+  "errorsInvalidEmail": "Invalid mail format",
   "errorsPasswordTooShort": "Password is too short",
 
   "errorsTryAgainLater": "Please try again later",

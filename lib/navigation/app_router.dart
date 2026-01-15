@@ -1,9 +1,13 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:startup_mvp_starter_flutter/auth/sign_in/page/sign_in_page.dart';
+import 'package:startup_mvp_starter_flutter/auth/verification_email/page/verification_email_page.dart';
 import 'package:startup_mvp_starter_flutter/navigation/home_shell_page.dart';
+import 'package:startup_mvp_starter_flutter/navigation/modal_bottom_sheet_autoroute.dart';
 import 'package:startup_mvp_starter_flutter/navigation/wrappers/favourites_tab_page.dart';
 import 'package:startup_mvp_starter_flutter/navigation/wrappers/main_tab_page.dart';
 import 'package:startup_mvp_starter_flutter/navigation/wrappers/profile_tab_page.dart';
 import 'package:startup_mvp_starter_flutter/navigation/wrappers/settings_tab_page.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile/page/profile_page.dart';
 import 'package:startup_mvp_starter_flutter/ui_testing_widget.dart';
 
 part 'app_router.gr.dart';
@@ -46,7 +50,7 @@ class AppRouter extends RootStackRouter {
           path: 'profile',
           page: ProfileTabRoute.page,
           children: [
-            AutoRoute(path: '', page: UiTestingRoute.page, initial: true),
+            AutoRoute(path: '', page: ProfileRoute.page, initial: true),
             // ..._commonTabChildren,
           ],
         ),
@@ -61,6 +65,19 @@ class AppRouter extends RootStackRouter {
       ],
     ),
 
+    // ModalBottomSheetAutoRoute(page: SignInRoute.page, enableDrag: false),
+
+    ModalBottomSheetAutoRoute(
+      path: '/modal/auth',
+      page: ModalAuth.page,
+      children: [
+        AutoRoute(path: '', page: SignInRoute.page, initial: true),
+        AutoRoute(
+          path: 'verificationEmail',
+          page: VerificationEmailRoute.page,
+        ),
+      ],
+    ),
     // * MARK: Modals
     // ModalBottomSheetAutoRoute(page: SelectCityRoute.page, enableDrag: false),
 

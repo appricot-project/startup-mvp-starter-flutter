@@ -15,12 +15,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authLogout => 'Log out';
 
   @override
-  String get authLoginSuccess => 'You have successfully logged in';
-
-  @override
-  String get authLogoutConfirm => 'Are you sure you want to log out?';
-
-  @override
   String get authUsername => 'Username';
 
   @override
@@ -52,6 +46,30 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authVerificationTitle => 'Enter code from mail';
+
+  @override
+  String get profileSignIn => 'Login to your profile';
+
+  @override
+  String get profileLoginSuccess => 'You have successfully logged in';
+
+  @override
+  String get profileLogoutConfirm => 'Are you sure you want to log out?';
+
+  @override
+  String get profileEmailLabel => 'Email';
+
+  @override
+  String get profileNameLabel => 'Name';
+
+  @override
+  String get profilePersonalData => 'Personal data';
+
+  @override
+  String get profilePhoneNumber => 'Phone number';
+
+  @override
+  String get profileBirthdayLabel => 'Date of birth';
 
   @override
   String get commonOk => 'OK';
@@ -186,7 +204,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorsRequiredField => 'Required field';
 
   @override
-  String get errorsInvalidEmail => 'Invalid email';
+  String get errorsInvalidEmail => 'Invalid mail format';
 
   @override
   String get errorsPasswordTooShort => 'Password is too short';

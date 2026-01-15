@@ -1,8 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/auth/sign_in/bloc/sign_in_bloc.dart';
-import 'package:startup_mvp_starter_flutter/auth/verification_email/page/verification_email_page.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
+import 'package:startup_mvp_starter_flutter/navigation/app_router.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
@@ -41,15 +42,11 @@ class _SignInWidgetState extends State<SignInWidget> {
           showErrorAlert(context: context, error: state.error);
         }
         if (state is SignInShowVerification) {
-          Navigator.of(context)
-              .push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return VerificationEmailPage(
-                      gmail: state.gmail,
-                      expireIn: Duration(minutes: 1),
-                    );
-                  },
+          context
+              .pushRoute(
+                VerificationEmailRoute(
+                  gmail: state.gmail,
+                  expireIn: Duration(minutes: 1),
                 ),
               )
               .then((_) {
@@ -97,7 +94,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                             );
                           },
                           keyboardType: TextInputType.emailAddress,
-                          error: state.textFieldsErrors['email'],
+                          error: decodeError(state.textFieldsErrors['email']),
                           label: AppLocalizations.of(context)!.authEnterEmail,
                         ),
                         SizedBox(height: 16),
@@ -122,5 +119,15 @@ class _SignInWidgetState extends State<SignInWidget> {
         ),
       ),
     );
+  }
+
+  String? decodeError(String? errorCode) {
+    switch (errorCode) {
+      case 'requiredField':
+        return AppLocalizations.of(context)!.errorsRequiredField;
+      case 'invalidEmail':
+        return AppLocalizations.of(context)!.errorsInvalidEmail;
+    }
+    return null;
   }
 }

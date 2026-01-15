@@ -3,11 +3,9 @@
 
   "authSignin": "Войти",
   "authLogout": "Выйти",
-  "authLoginSuccess": "Вы успешно вошли",
-  "authLogoutConfirm": "Вы действительно хотите выйти?",
 
   "authUsername": "Имя пользователя",
-  "authEnterEmail": "Введите почту почта",
+  "authEnterEmail": "Введите почту",
   "authPassword": "Пароль",
   "authRepeatPassword": "Повторите пароль",
   "authForgotPassword": "Забыли пароль?",
@@ -16,8 +14,16 @@
   "authGetNewCode": "Получить новый код",
   "authAfterThrough": "через",
   "authCodeError": "Неверный код",
-
   "authVerificationTitle": "Введите код из почты",
+
+  "profileSignIn": "Войдите в профиль",
+  "profileLoginSuccess": "Вы успешно вошли",
+  "profileLogoutConfirm": "Вы действительно хотите выйти?",
+  "profileEmailLabel": "Почта",
+  "profileNameLabel": "Имя",
+  "profilePersonalData": "Личные данные",
+  "profilePhoneNumber": "Номер телефона",
+  "profileBirthdayLabel": "Дата рождения",
 
   "commonOk": "Ок",
   "commonYes": "Да",
@@ -75,7 +81,7 @@
   "errorsNoInternet": "Нет подключения к интернету",
 
   "errorsRequiredField": "Обязательное поле",
-  "errorsInvalidEmail": "Некорректный email",
+  "errorsInvalidEmail": "Неверный формат почты",
   "errorsPasswordTooShort": "Пароль слишком короткий",
 
   "errorsTryAgainLater": "Попробуйте позже",

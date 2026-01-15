@@ -107,18 +107,6 @@ abstract class AppLocalizations {
   /// **'Log out'**
   String get authLogout;
 
-  /// No description provided for @authLoginSuccess.
-  ///
-  /// In en, this message translates to:
-  /// **'You have successfully logged in'**
-  String get authLoginSuccess;
-
-  /// No description provided for @authLogoutConfirm.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to log out?'**
-  String get authLogoutConfirm;
-
   /// No description provided for @authUsername.
   ///
   /// In en, this message translates to:
@@ -184,6 +172,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter code from mail'**
   String get authVerificationTitle;
+
+  /// No description provided for @profileSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Login to your profile'**
+  String get profileSignIn;
+
+  /// No description provided for @profileLoginSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You have successfully logged in'**
+  String get profileLoginSuccess;
+
+  /// No description provided for @profileLogoutConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get profileLogoutConfirm;
+
+  /// No description provided for @profileEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get profileEmailLabel;
+
+  /// No description provided for @profileNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get profileNameLabel;
+
+  /// No description provided for @profilePersonalData.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal data'**
+  String get profilePersonalData;
+
+  /// No description provided for @profilePhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get profilePhoneNumber;
+
+  /// No description provided for @profileBirthdayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth'**
+  String get profileBirthdayLabel;
 
   /// No description provided for @commonOk.
   ///
@@ -452,7 +488,7 @@ abstract class AppLocalizations {
   /// No description provided for @errorsInvalidEmail.
   ///
   /// In en, this message translates to:
-  /// **'Invalid email'**
+  /// **'Invalid mail format'**
   String get errorsInvalidEmail;
 
   /// No description provided for @errorsPasswordTooShort.
