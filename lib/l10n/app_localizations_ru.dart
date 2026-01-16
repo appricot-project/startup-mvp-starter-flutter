@@ -153,6 +153,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get navigationSettings => 'Настройки';
 
   @override
+  String get navigationFavorite => 'Избранное';
+
+  @override
   String get settingsLanguage => 'Язык';
 
   @override
