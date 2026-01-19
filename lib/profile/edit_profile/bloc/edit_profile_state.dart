@@ -2,7 +2,7 @@ part of 'edit_profile_bloc.dart';
 
 sealed class EditProfileState extends Equatable {
   final Loading? loading;
-  final Map<String, String> textFieldsErrors;
+  final Map<TextFieldKey, String> textFieldsErrors;
   final ProfileInfo? profileInfo;
 
   const EditProfileState({
@@ -18,6 +18,8 @@ sealed class EditProfileState extends Equatable {
     profileInfo,
   ];
 }
+
+enum TextFieldKey { name, phone, date }
 
 enum Loading { initialLoading, actionLoading }
 

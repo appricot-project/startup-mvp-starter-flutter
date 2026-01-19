@@ -46,20 +46,32 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     });
     on<ProfileOnTapped>((event, emit) async {
       switch (event.key) {
-        case 'signIn':
+        case ActionKey.signIn:
           emit(
-            ProfileShowView(loading: loading, key: event.key, profile: profile),
+            ProfileShowView(
+              loading: loading,
+              key: ViewKey.signIn,
+              profile: profile,
+            ),
           );
-        case 'logoutAlert':
+        case ActionKey.logoutAlert:
           emit(
-            ProfileShowView(loading: loading, key: event.key, profile: profile),
+            ProfileShowView(
+              loading: loading,
+              key: ViewKey.logoutAlert,
+              profile: profile,
+            ),
           );
-        case 'logout':
+        case ActionKey.logout:
           await locator<AuthCubit>().logout();
           add(ProfileOnAppear());
-        case 'editProfile':
+        case ActionKey.editProfile:
           emit(
-            ProfileShowView(loading: loading, key: event.key, profile: profile),
+            ProfileShowView(
+              loading: loading,
+              key: ViewKey.editProfile,
+              profile: profile,
+            ),
           );
       }
     });

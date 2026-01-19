@@ -7,13 +7,13 @@ abstract class SettingsEvent extends Equatable {
 
 class SettingsOnReturned extends SettingsEvent {}
 
-enum TapItem { language, them, notifications }
+enum ActionKey { language, them, notifications }
 
 class SettingsOnTapItem extends SettingsEvent {
-  final TapItem tap;
+  final ActionKey key;
 
-  SettingsOnTapItem({required this.tap});
+  SettingsOnTapItem({required this.key});
 
   @override
-  List<Object?> get props => [super.props, tap];
+  List<Object?> get props => [super.props, key];
 }

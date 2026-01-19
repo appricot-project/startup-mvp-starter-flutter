@@ -86,7 +86,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               onChanged: (value) {
                                 context.read<EditProfileBloc>().add(
                                   EditProfileOnTextChanged(
-                                    key: 'name',
+                                    key: TextFieldKey.name,
                                     newValue: value,
                                   ),
                                 );
@@ -103,7 +103,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               onChanged: (value) {
                                 context.read<EditProfileBloc>().add(
                                   EditProfileOnTextChanged(
-                                    key: 'phone',
+                                    key: TextFieldKey.phone,
                                     newValue: value,
                                   ),
                                 );
@@ -129,7 +129,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               onChanged: (value) {
                                 context.read<EditProfileBloc>().add(
                                   EditProfileOnTextChanged(
-                                    key: 'date',
+                                    key: TextFieldKey.date,
                                     newValue: value,
                                   ),
                                 );

@@ -9,8 +9,10 @@ class ProfileOnAppear extends ProfileEvent {}
 
 class ProfileOnReturned extends ProfileEvent {}
 
+enum ActionKey { logout, signIn, logoutAlert, editProfile }
+
 class ProfileOnTapped extends ProfileEvent {
-  final String key;
+  final ActionKey key;
 
   ProfileOnTapped({required this.key});
 

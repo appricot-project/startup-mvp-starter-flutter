@@ -17,10 +17,10 @@ class _SettingsWidgetState extends State<SettingsWidgets> {
     return BlocListener<SettingsBloc, SettingsState>(
       listener: (context, state) {
         if (state is SettingsShowView) {
-          switch (state.show) {
-            case ShowView.language:
-            case ShowView.them:
-            case ShowView.notifications:
+          switch (state.key) {
+            case ViewKey.language:
+            case ViewKey.them:
+            case ViewKey.notifications:
           }
         }
       },
@@ -42,7 +42,7 @@ class _SettingsWidgetState extends State<SettingsWidgets> {
                       title: AppLocalizations.of(context)!.settingsLanguage,
                       onPressed: () {
                         context.read<SettingsBloc>().add(
-                          SettingsOnTapItem(tap: TapItem.language),
+                          SettingsOnTapItem(key: ActionKey.language),
                         );
                       },
                     ),
@@ -51,7 +51,7 @@ class _SettingsWidgetState extends State<SettingsWidgets> {
                       title: AppLocalizations.of(context)!.settingsTheme,
                       onPressed: () {
                         context.read<SettingsBloc>().add(
-                          SettingsOnTapItem(tap: TapItem.them),
+                          SettingsOnTapItem(key: ActionKey.them),
                         );
                       },
                     ),
@@ -62,7 +62,7 @@ class _SettingsWidgetState extends State<SettingsWidgets> {
                       )!.settingsNotifications,
                       onPressed: () {
                         context.read<SettingsBloc>().add(
-                          SettingsOnTapItem(tap: TapItem.notifications),
+                          SettingsOnTapItem(key: ActionKey.notifications),
                         );
                       },
                     ),

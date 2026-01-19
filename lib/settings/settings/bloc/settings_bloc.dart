@@ -10,13 +10,13 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       emit(SettingsUpdated());
     });
     on<SettingsOnTapItem>((event, emit) {
-      switch (event.tap) {
-        case TapItem.language:
-          emit(SettingsShowView(show: ShowView.language));
-        case TapItem.notifications:
-          emit(SettingsShowView(show: ShowView.notifications));
-        case TapItem.them:
-          emit(SettingsShowView(show: ShowView.them));
+      switch (event.key) {
+        case ActionKey.language:
+          emit(SettingsShowView(key: ViewKey.language));
+        case ActionKey.notifications:
+          emit(SettingsShowView(key: ViewKey.notifications));
+        case ActionKey.them:
+          emit(SettingsShowView(key: ViewKey.them));
       }
     });
   }

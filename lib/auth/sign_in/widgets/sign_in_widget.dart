@@ -90,7 +90,10 @@ class _SignInWidgetState extends State<SignInWidget> {
                           controller: _controller,
                           onChanged: (value) {
                             context.read<SignInBloc>().add(
-                              SignInOnTextChanged(key: 'email', value: value),
+                              SignInOnTextChanged(
+                                key: TextFieldKey.email,
+                                value: value,
+                              ),
                             );
                           },
                           keyboardType: TextInputType.emailAddress,

@@ -9,7 +9,7 @@ part 'edit_profile_state.dart';
 
 class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   final ProfileService profileService;
-  Map<String, String> textFieldsErrors = {};
+  Map<TextFieldKey, String> textFieldsErrors = {};
   Loading? loading = Loading.initialLoading;
   ProfileInfo? profileInfo;
 
@@ -30,7 +30,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
             EditProfileError(
               loading: loading,
               error: l.message,
-              textFieldsErrors: Map<String, String>.from(textFieldsErrors),
+              textFieldsErrors: Map<TextFieldKey, String>.from(textFieldsErrors),
               profileInfo: profileInfo,
             ),
           );
@@ -53,14 +53,14 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
       emit(
         EditProfileBack(
           loading: loading,
-          textFieldsErrors: Map<String, String>.from(textFieldsErrors),
+          textFieldsErrors: Map<TextFieldKey, String>.from(textFieldsErrors),
           profileInfo: profileInfo,
         ),
       );
     });
     on<EditProfileOnButtonTapped>((event, emit) async {
       var date = event.fields['date'];
-      var dateValid = validate('date', date ?? '');
+      var dateValid = validate(TextFieldKey.date, date ?? '');
       updating(emit);
       if (dateValid) {
         loading = Loading.actionLoading;
@@ -81,7 +81,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
               EditProfileError(
                 loading: loading,
                 error: l.message,
-                textFieldsErrors: Map<String, String>.from(textFieldsErrors),
+                textFieldsErrors: Map<TextFieldKey, String>.from(textFieldsErrors),
                 profileInfo: profileInfo,
               ),
             );
@@ -90,7 +90,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
             emit(
               EditProfileBack(
                 loading: loading,
-                textFieldsErrors: Map<String, String>.from(textFieldsErrors),
+                textFieldsErrors: Map<TextFieldKey, String>.from(textFieldsErrors),
                 profileInfo: profileInfo,
               ),
             );
@@ -112,15 +112,15 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     emit(
       EditProfileUpdated(
         loading: loading,
-        textFieldsErrors: Map<String, String>.from(textFieldsErrors),
+        textFieldsErrors: Map<TextFieldKey, String>.from(textFieldsErrors),
         profileInfo: profileInfo,
       ),
     );
   }
 
-  bool validate(String key, String value) {
+  bool validate(TextFieldKey key, String value) {
     switch (key) {
-      case 'date':
+      case TextFieldKey.date:
         if (value == '') {
           textFieldsErrors[key] = '';
           return true;
