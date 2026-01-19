@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
+import 'package:startup_mvp_starter_flutter/navigation/app_router.dart';
 import 'package:startup_mvp_starter_flutter/settings/settings/bloc/settings_bloc.dart';
 import 'package:startup_mvp_starter_flutter/settings/settings/widgets/settings_item_widget.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
@@ -19,6 +21,9 @@ class _SettingsWidgetState extends State<SettingsWidgets> {
         if (state is SettingsShowView) {
           switch (state.key) {
             case ViewKey.language:
+              context.pushRoute(LanguageSettingsRoute()).then((_) {
+                context.read<SettingsBloc>().add(SettingsOnReturned());
+              });
             case ViewKey.them:
             case ViewKey.notifications:
           }

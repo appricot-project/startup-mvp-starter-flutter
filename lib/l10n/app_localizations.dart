@@ -431,6 +431,18 @@ abstract class AppLocalizations {
   /// **'System theme'**
   String get settingsSystemTheme;
 
+  /// No description provided for @settingsRuLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Russion'**
+  String get settingsRuLanguage;
+
+  /// No description provided for @settingsEnLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get settingsEnLanguage;
+
   /// No description provided for @settingsNotifications.
   ///
   /// In en, this message translates to:
