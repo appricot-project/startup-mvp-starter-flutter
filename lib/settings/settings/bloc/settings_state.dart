@@ -9,11 +9,13 @@ class SettingsInitial extends SettingsState {}
 
 class SettingsUpdated extends SettingsState {}
 
-class SettingsShowView extends SettingsState {
-  final String key;
+enum ShowView { notifications, them, language }
 
-  SettingsShowView({required this.key});
+class SettingsShowView extends SettingsState {
+  final ShowView show;
+
+  SettingsShowView({required this.show});
 
   @override
-  List<Object?> get props => [super.props, key];
+  List<Object?> get props => [super.props, show];
 }
