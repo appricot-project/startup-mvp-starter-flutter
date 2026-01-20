@@ -36,25 +36,31 @@ class _LanguageSettingsWidgetState extends State<LanguageSettingsWidget> {
                         LanguageSettingsOnChangedLanguage(newLanguage: value!),
                       );
                     },
-                    child: Row(
-                      children: [
-                        Radio<Language>(
-                          value: Language.ru,
-                          fillColor: WidgetStateProperty.resolveWith<Color>((
-                            Set<WidgetState> states,
-                          ) {
-                            if (states.contains(WidgetState.selected)) {
-                              return Colors.green;
-                            }
-                            return ColorConstants.primary;
-                          }),
-                        ),
-                        6.w,
-                        Text(
-                          AppLocalizations.of(context)!.settingsRuLanguage,
-                          style: CustomTextStyle.body1(),
-                        ),
-                      ],
+                    child: InkWell(
+                      onTap: () {
+                        context.read<LanguageSettingsBloc>().add(
+                          LanguageSettingsOnChangedLanguage(
+                            newLanguage: Language.ru,
+                          ),
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Radio<Language>(
+                            value: Language.ru,
+                            fillColor: WidgetStateProperty.resolveWith<Color>((
+                              Set<WidgetState> states,
+                            ) {
+                              if (states.contains(WidgetState.selected)) {
+                                return Colors.green;
+                              }
+                              return ColorConstants.primary;
+                            }),
+                          ),
+                          6.w,
+                          Text('Русский', style: CustomTextStyle.body1()),
+                        ],
+                      ),
                     ),
                   ),
                   RadioGroup<Language>(
@@ -64,25 +70,31 @@ class _LanguageSettingsWidgetState extends State<LanguageSettingsWidget> {
                         LanguageSettingsOnChangedLanguage(newLanguage: value!),
                       );
                     },
-                    child: Row(
-                      children: [
-                        Radio<Language>(
-                          value: Language.en,
-                          fillColor: WidgetStateProperty.resolveWith<Color>((
-                            Set<WidgetState> states,
-                          ) {
-                            if (states.contains(WidgetState.selected)) {
-                              return Colors.green;
-                            }
-                            return ColorConstants.primary;
-                          }),
-                        ),
-                        6.w,
-                        Text(
-                          AppLocalizations.of(context)!.settingsEnLanguage,
-                          style: CustomTextStyle.body1(),
-                        ),
-                      ],
+                    child: InkWell(
+                      onTap: () {
+                        context.read<LanguageSettingsBloc>().add(
+                          LanguageSettingsOnChangedLanguage(
+                            newLanguage: Language.en,
+                          ),
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Radio<Language>(
+                            value: Language.en,
+                            fillColor: WidgetStateProperty.resolveWith<Color>((
+                              Set<WidgetState> states,
+                            ) {
+                              if (states.contains(WidgetState.selected)) {
+                                return Colors.green;
+                              }
+                              return ColorConstants.primary;
+                            }),
+                          ),
+                          6.w,
+                          Text('English', style: CustomTextStyle.body1()),
+                        ],
+                      ),
                     ),
                   ),
                 ],
