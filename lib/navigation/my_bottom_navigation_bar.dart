@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 
 class MyBottomNavigationBar extends StatelessWidget {
@@ -35,22 +36,22 @@ class MyBottomNavigationBar extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             activeIcon: Icon(Icons.home),
-            label: 'Главная',
+            label: AppLocalizations.of(context)!.navigationHome,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_outline),
             activeIcon: Icon(Icons.favorite),
-            label: 'Избранное',
+            label: AppLocalizations.of(context)!.navigationFavorite,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             activeIcon: Icon(Icons.person),
-            label: 'Профиль',
+            label: AppLocalizations.of(context)!.navigationProfile,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_outlined),
             activeIcon: Icon(Icons.settings),
-            label: 'Настройки',
+            label: AppLocalizations.of(context)!.navigationSettings,
           ),
         ],
       ),

@@ -1,7 +1,7 @@
 part of 'sign_in_bloc.dart';
 
 sealed class SignInState extends Equatable {
-  final Map<String, String> textFieldsErrors;
+  final Map<TextFieldKey, String> textFieldsErrors;
   final Loading? loading;
 
   const SignInState({required this.textFieldsErrors, required this.loading});
@@ -11,6 +11,8 @@ sealed class SignInState extends Equatable {
 }
 
 enum Loading { actionLoading }
+
+enum TextFieldKey { email }
 
 final class SignInInitial extends SignInState {
   const SignInInitial({

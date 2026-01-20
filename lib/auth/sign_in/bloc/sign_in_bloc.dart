@@ -5,7 +5,7 @@ part 'sign_in_event.dart';
 part 'sign_in_state.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
-  Map<String, String> textFieldsErrors = {};
+  Map<TextFieldKey, String> textFieldsErrors = {};
   Loading? loading;
 
   SignInBloc() : super(SignInInitial(textFieldsErrors: {}, loading: null)) {
@@ -13,18 +13,21 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<SignInOnCloseButtonTapped>((event, emit) {
       emit(
         SignInClose(
-          textFieldsErrors: Map<String, String>.from(textFieldsErrors),
+          textFieldsErrors: Map<TextFieldKey, String>.from(textFieldsErrors),
           loading: loading,
         ),
       );
     });
     on<SignInOnGetCodeButtonTapped>((event, emit) async {
-      bool isValid = validate('email', event.textFields['email'] ?? '');
+      bool isValid = validate(
+        TextFieldKey.email,
+        event.textFields['email'] ?? '',
+      );
       if (isValid) {
         emit(
           SignInShowVerification(
             gmail: event.textFields['email'] ?? '',
-            textFieldsErrors: Map<String, String>.from(textFieldsErrors),
+            textFieldsErrors: Map<TextFieldKey, String>.from(textFieldsErrors),
             loading: loading,
           ),
         );
@@ -41,10 +44,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     });
   }
 
-  bool validate(String key, String value) {
+  bool validate(TextFieldKey key, String value) {
     bool isValid = true;
     switch (key) {
-      case 'email':
+      case TextFieldKey.email:
         if (value.isEmpty) {
           isValid = false;
           textFieldsErrors[key] = 'requiredField';
@@ -55,7 +58,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           textFieldsErrors[key] = '';
         }
         break;
-      default:
     }
     return isValid;
   }
@@ -70,7 +72,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   _updating(Emitter<SignInState> emit) {
     emit(
       SignInUpdated(
-        textFieldsErrors: Map<String, String>.from(textFieldsErrors),
+        textFieldsErrors: Map<TextFieldKey, String>.from(textFieldsErrors),
         loading: loading,
       ),
     );

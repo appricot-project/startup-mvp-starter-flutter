@@ -8,7 +8,7 @@ abstract class SignInEvent extends Equatable {
 }
 
 class SignInOnTextChanged extends SignInEvent {
-  final String key;
+  final TextFieldKey key;
   final String value;
   const SignInOnTextChanged({required this.key, required this.value});
 

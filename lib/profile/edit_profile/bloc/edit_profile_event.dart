@@ -14,13 +14,10 @@ class EditProfileOnBackButtonTapped extends EditProfileEvent {}
 class EditProfileOnBagButtonTapped extends EditProfileEvent {}
 
 class EditProfileOnTextChanged extends EditProfileEvent {
-  final String key;
+  final TextFieldKey key;
   final dynamic newValue;
 
-  EditProfileOnTextChanged({
-    required this.key,
-    required this.newValue,
-  });
+  EditProfileOnTextChanged({required this.key, required this.newValue});
 
   @override
   List<Object?> get props => [super.props, key, newValue];
@@ -29,9 +26,7 @@ class EditProfileOnTextChanged extends EditProfileEvent {
 class EditProfileOnButtonTapped extends EditProfileEvent {
   final Map<String, String> fields;
 
-  EditProfileOnButtonTapped({
-    required this.fields,
-  });
+  EditProfileOnButtonTapped({required this.fields});
 
   @override
   List<Object?> get props => [super.props, fields];
