@@ -177,12 +177,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsSystemTheme => 'System theme';
 
   @override
-  String get settingsRuLanguage => 'Russion';
-
-  @override
-  String get settingsEnLanguage => 'English';
-
-  @override
   String get settingsNotifications => 'Notifications';
 
   @override
