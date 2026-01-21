@@ -98,7 +98,7 @@
   "emptyEmptyList": "Список пуст",
   "emptyNoResults": "Ничего не найдено",
 
-  "sortTypeNewest": "By Newest",
-  "sortTypeFavorites": "Favorites First",
-  "sortTypeRecentViewed": "Recently Viewed First"
+  "sortTypeNewest": "По новизне",
+  "sortTypeFavorites": "Сначала избранные",
+  "sortTypeRecentViewed": "Сначала просмотренные"
 }

@@ -560,19 +560,19 @@ abstract class AppLocalizations {
   /// No description provided for @sortTypeNewest.
   ///
   /// In en, this message translates to:
-  /// **'По новизне'**
+  /// **'By Newest'**
   String get sortTypeNewest;
 
   /// No description provided for @sortTypeFavorites.
   ///
   /// In en, this message translates to:
-  /// **'Сначала избранные'**
+  /// **'Favorites First'**
   String get sortTypeFavorites;
 
   /// No description provided for @sortTypeRecentViewed.
   ///
   /// In en, this message translates to:
-  /// **'Сначала просмотренные'**
+  /// **'Recently Viewed First'**
   String get sortTypeRecentViewed;
 }
 

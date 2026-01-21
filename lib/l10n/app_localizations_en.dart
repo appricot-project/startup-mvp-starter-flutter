@@ -240,11 +240,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emptyNoResults => 'No results found';
 
   @override
-  String get sortTypeNewest => 'По новизне';
+  String get sortTypeNewest => 'By Newest';
 
   @override
-  String get sortTypeFavorites => 'Сначала избранные';
+  String get sortTypeFavorites => 'Favorites First';
 
   @override
-  String get sortTypeRecentViewed => 'Сначала просмотренные';
+  String get sortTypeRecentViewed => 'Recently Viewed First';
 }
