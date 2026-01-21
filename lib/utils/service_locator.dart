@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:startup_mvp_starter_flutter/main/service/main_service.dart';
+import 'package:startup_mvp_starter_flutter/main/service/mock_main_service.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile_service/profile_service.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile_service/profile_service_mock.dart';
 import 'package:startup_mvp_starter_flutter/utils/app_config.dart';
@@ -33,4 +35,5 @@ Future<void> setupLocator({required Flavor flavor}) async {
   await locator<AuthCubit>().checkAuthStatus();
   await locator<LocalizationCubit>().checkLocalizeStatus();
   await locator<ThemeCubit>().checkThemeStatus();
+  locator.registerLazySingleton<MainService>(() => MockMainService());
 }

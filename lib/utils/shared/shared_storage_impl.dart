@@ -106,4 +106,50 @@ class SharedStorageImpl implements SharedStorage {
     final prefs = await _getPrefs();
     return prefs.getBool('onboarding') ?? false;
   }
+
+  // * MARK: Favourites
+
+  Future<List<String>> getFavoriteIds() async {
+    final prefs = await _getPrefs();
+    return prefs.getStringList('favorite_ids') ?? [];
+  }
+
+  Future<bool> addFavoriteId(String id) async {
+    final prefs = await _getPrefs();
+    final favoriteIds = prefs.getStringList('favorite_ids') ?? [];
+    if (!favoriteIds.contains(id)) {
+      favoriteIds.add(id);
+    }
+    return prefs.setStringList('favorite_ids', favoriteIds);
+  }
+
+  Future<bool> removeFavoriteId(String id) async {
+    final prefs = await _getPrefs();
+    final favoriteIds = prefs.getStringList('favorite_ids') ?? [];
+    favoriteIds.remove(id);
+    return prefs.setStringList('favorite_ids', favoriteIds);
+  }
+
+  // * MARK: Viewed
+
+  Future<List<String>> getViewedIds() async {
+    final prefs = await _getPrefs();
+    return prefs.getStringList('viewed_ids') ?? [];
+  }
+
+  Future<bool> addViewedId(String id) async {
+    final prefs = await _getPrefs();
+    final viewedIds = prefs.getStringList('viewed_ids') ?? [];
+    if (!viewedIds.contains(id)) {
+      viewedIds.add(id);
+    }
+    return prefs.setStringList('viewed_ids', viewedIds);
+  }
+
+  Future<bool> removeViewedId(String id) async {
+    final prefs = await _getPrefs();
+    final viewedIds = prefs.getStringList('viewed_ids') ?? [];
+    viewedIds.remove(id);
+    return prefs.setStringList('viewed_ids', viewedIds);
+  }
 }

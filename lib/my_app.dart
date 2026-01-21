@@ -60,7 +60,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 appBarTheme: AppBarTheme(
                   iconTheme: IconThemeData(color: ColorConstants.primary),
                   elevation: 0,
-                  backgroundColor: ColorConstants.background, 
+                  backgroundColor: ColorConstants.background,
+                  surfaceTintColor: ColorConstants.background,
                 ),
                 scaffoldBackgroundColor: ColorConstants.background,
               ),

@@ -75,6 +75,22 @@ class LanguageSettingsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MainPage]
+class MainRoute extends PageRouteInfo<void> {
+  const MainRoute({List<PageRouteInfo>? children})
+    : super(MainRoute.name, initialChildren: children);
+
+  static const String name = 'MainRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return MainPage();
+    },
+  );
+}
+
+/// generated route for
 /// [MainTabPage]
 class MainTabRoute extends PageRouteInfo<void> {
   const MainTabRoute({List<PageRouteInfo>? children})

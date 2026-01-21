@@ -96,5 +96,9 @@
 
   "emptyNoData": "Нет данных",
   "emptyEmptyList": "Список пуст",
-  "emptyNoResults": "Ничего не найдено"
+  "emptyNoResults": "Ничего не найдено",
+
+  "sortTypeNewest": "По новизне",
+  "sortTypeFavorites": "Сначала избранные",
+  "sortTypeRecentViewed": "Сначала просмотренные"
 }

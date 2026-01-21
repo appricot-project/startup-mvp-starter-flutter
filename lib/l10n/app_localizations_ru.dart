@@ -238,4 +238,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get emptyNoResults => 'Ничего не найдено';
+
+  @override
+  String get sortTypeNewest => 'По новизне';
+
+  @override
+  String get sortTypeFavorites => 'Сначала избранные';
+
+  @override
+  String get sortTypeRecentViewed => 'Сначала просмотренные';
 }
