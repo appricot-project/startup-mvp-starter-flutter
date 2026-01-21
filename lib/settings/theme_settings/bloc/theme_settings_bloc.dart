@@ -7,16 +7,16 @@ part 'theme_settings_event.dart';
 part 'theme_settings_state.dart';
 
 class ThemeSettingsBloc extends Bloc<ThemeSettingsEvent, ThemeSettingsState> {
-  CustomTheme theme = locator<ThemeCubit>().state;
+  CustomTheme theme = locator<ThemeCubit>().state.theme;
 
   ThemeSettingsBloc()
-    : super(ThemeSettingsInitial(theme: locator<ThemeCubit>().state)) {
+    : super(ThemeSettingsInitial(theme: locator<ThemeCubit>().state.theme)) {
     on<ThemeSettingsOnChangedTheme>((event, emit) {
       theme = event.newTheme;
       emit(ThemeSettingsUpdated(theme: theme));
     });
     on<ThemeSettingsOnApply>((event, emit) {
-      locator<ThemeCubit>().changeTheme(theme);
+      locator<ThemeCubit>().changeTheme(newTheme: theme);
     });
   }
 }

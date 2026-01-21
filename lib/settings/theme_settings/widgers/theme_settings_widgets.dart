@@ -26,7 +26,7 @@ class _ThemeSettingsWidgetState extends State<ThemeSettingsWidgets> {
       body: SafeArea(
         child: BlocBuilder<ThemeSettingsBloc, ThemeSettingsState>(
           builder: (context, state) {
-            return BlocBuilder<ThemeCubit, CustomTheme>(
+            return BlocBuilder<ThemeCubit, ThemeState>(
               builder: (context, theme) {
                 return Padding(
                   padding: EdgeInsetsGeometry.only(left: 8, right: 8, top: 8),

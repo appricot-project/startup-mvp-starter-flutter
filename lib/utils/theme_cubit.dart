@@ -1,46 +1,57 @@
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage.dart';
 
 enum CustomTheme { light, dark, system }
 
-class ThemeCubit extends Cubit<CustomTheme> {
+class ThemeState extends Equatable {
+  final Brightness brightness;
+  final CustomTheme theme;
+
+  ThemeState({required this.brightness, required this.theme});
+
+  @override
+  List<Object?> get props => [brightness, theme];
+}
+
+class ThemeCubit extends Cubit<ThemeState> {
   final SharedStorage sharedStorage;
 
-  ThemeCubit({required this.sharedStorage}) : super(CustomTheme.light);
+  ThemeCubit({required this.sharedStorage})
+    : super(ThemeState(brightness: Brightness.light, theme: CustomTheme.light));
 
-  Future<void> changeTheme(CustomTheme newTheme) async {
-    switch (newTheme) {
-      case CustomTheme.light:
-        await sharedStorage.setThemeIsDark(false);
-      case CustomTheme.dark:
-        await sharedStorage.setThemeIsDark(true);
-      case CustomTheme.system:
-        await sharedStorage.setThemeIsDark(null);
+  Future<void> changeTheme({
+    CustomTheme? newTheme,
+    Brightness? brightness,
+  }) async {
+    if (newTheme != null) {
+      await sharedStorage.setTheme(newTheme);
+      emit(_setupState(newTheme, brightness: brightness));
+    } else {
+      emit(_setupState(state.theme, brightness: brightness));
     }
-    await checkThemeStatus();
   }
 
   Future<void> checkThemeStatus() async {
-    var theme = await sharedStorage.getThemeIsDark();
-    if (theme == null) {
-      emit(CustomTheme.system);
-    } else if (theme == true) {
-      emit(CustomTheme.dark);
-    } else {
-      emit(CustomTheme.light);
-    }
+    var theme = await sharedStorage.getTheme();
+    emit(_setupState(theme));
   }
 
-  Brightness brightness() {
-    switch (state) {
-      case CustomTheme.dark:
-        return Brightness.dark;
+  ThemeState _setupState(CustomTheme theme, {Brightness? brightness}) {
+    switch (theme) {
       case CustomTheme.light:
-        return Brightness.light;
+        return ThemeState(brightness: Brightness.light, theme: theme);
+      case CustomTheme.dark:
+        return ThemeState(brightness: Brightness.dark, theme: theme);
       case CustomTheme.system:
-        return SchedulerBinding.instance.platformDispatcher.platformBrightness;
+        return ThemeState(
+          brightness:
+              brightness ??
+              SchedulerBinding.instance.platformDispatcher.platformBrightness,
+          theme: theme,
+        );
     }
   }
 }

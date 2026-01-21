@@ -34,12 +34,14 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void didChangePlatformBrightness() {
     super.didChangePlatformBrightness();
-    locator<ThemeCubit>().checkThemeStatus();
+    final brightness =
+        WidgetsBinding.instance.platformDispatcher.platformBrightness;
+    locator<ThemeCubit>().changeTheme(brightness: brightness);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, CustomTheme>(
+    return BlocBuilder<ThemeCubit, ThemeState>(
       builder: (context, them) {
         return BlocBuilder<LocalizationCubit, String>(
           builder: (context, localeState) {

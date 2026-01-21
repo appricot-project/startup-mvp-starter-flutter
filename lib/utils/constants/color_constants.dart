@@ -4,7 +4,7 @@ import 'package:startup_mvp_starter_flutter/utils/theme_cubit.dart';
 
 class ColorConstants {
   static bool get _isLight {
-    return locator<ThemeCubit>().brightness() == Brightness.light;
+    return locator<ThemeCubit>().state.brightness == Brightness.light;
   }
 
   static Color get background => _isLight

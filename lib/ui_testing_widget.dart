@@ -69,7 +69,9 @@ class _UiTestingPageState extends State<UiTestingPage> {
                   CustomButton(
                     text: AppLocalizations.of(context)!.settingsLightTheme,
                     onPressed: () {
-                      locator<ThemeCubit>().changeTheme(CustomTheme.light);
+                      locator<ThemeCubit>().changeTheme(
+                        newTheme: CustomTheme.light,
+                      );
                     },
                     color: ButtonColor.secondary,
                   ),
@@ -77,7 +79,9 @@ class _UiTestingPageState extends State<UiTestingPage> {
                   CustomButton(
                     text: AppLocalizations.of(context)!.settingsDarkTheme,
                     onPressed: () {
-                      locator<ThemeCubit>().changeTheme(CustomTheme.dark);
+                      locator<ThemeCubit>().changeTheme(
+                        newTheme: CustomTheme.dark,
+                      );
                     },
                     color: ButtonColor.secondary,
                   ),
@@ -85,7 +89,9 @@ class _UiTestingPageState extends State<UiTestingPage> {
                   CustomButton(
                     text: AppLocalizations.of(context)!.settingsSystemTheme,
                     onPressed: () {
-                      locator<ThemeCubit>().changeTheme(CustomTheme.system);
+                      locator<ThemeCubit>().changeTheme(
+                        newTheme: CustomTheme.system,
+                      );
                     },
                     color: ButtonColor.secondary,
                   ),

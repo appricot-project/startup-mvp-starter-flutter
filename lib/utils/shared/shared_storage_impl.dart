@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage.dart';
+import 'package:startup_mvp_starter_flutter/utils/theme_cubit.dart';
 
 class SharedStorageImpl implements SharedStorage {
   Future<SharedPreferences> _getPrefs() async {
@@ -81,18 +82,19 @@ class SharedStorageImpl implements SharedStorage {
 
   // * MARK: Them
 
-  Future<bool?> setThemeIsDark(bool? value) async {
+  Future<void> setTheme(CustomTheme value) async {
     final prefs = await _getPrefs();
-    if (value == null) {
-      prefs.remove("them");
-      return null;
-    }
-    return prefs.setBool('them', value);
+    await prefs.setString('theme', value.name);
   }
 
-  Future<bool?> getThemeIsDark() async {
+  Future<CustomTheme> getTheme() async {
     final prefs = await _getPrefs();
-    return prefs.getBool("them");
+    final themeString = prefs.getString('theme');
+
+    return CustomTheme.values.firstWhere(
+      (e) => e.name == themeString,
+      orElse: () => CustomTheme.system,
+    );
   }
 
   // * MARK: Onboarding
