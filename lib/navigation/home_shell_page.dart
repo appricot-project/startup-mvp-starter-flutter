@@ -42,7 +42,7 @@ class _HomeShellPageState extends State<HomeShellPage> {
       ],
       builder: (context, child) {
         final router = AutoTabsRouter.of(context);
-        return BlocBuilder<ThemeCubit, Brightness>(
+        return BlocBuilder<ThemeCubit, CustomTheme>(
           builder: (context, state) {
             return Scaffold(
               body: child,

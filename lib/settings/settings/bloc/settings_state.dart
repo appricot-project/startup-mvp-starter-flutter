@@ -9,7 +9,7 @@ class SettingsInitial extends SettingsState {}
 
 class SettingsUpdated extends SettingsState {}
 
-enum ViewKey { notifications, them, language }
+enum ViewKey { notifications, theme, language }
 
 class SettingsShowView extends SettingsState {
   final ViewKey key;

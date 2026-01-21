@@ -24,7 +24,10 @@ class _SettingsWidgetState extends State<SettingsWidgets> {
               context.pushRoute(LanguageSettingsRoute()).then((_) {
                 context.read<SettingsBloc>().add(SettingsOnReturned());
               });
-            case ViewKey.them:
+            case ViewKey.theme:
+              context.pushRoute(ThemeSettingsRoute()).then((_) {
+                context.read<SettingsBloc>().add(SettingsOnReturned());
+              });
             case ViewKey.notifications:
           }
         }
@@ -56,7 +59,7 @@ class _SettingsWidgetState extends State<SettingsWidgets> {
                       title: AppLocalizations.of(context)!.settingsTheme,
                       onPressed: () {
                         context.read<SettingsBloc>().add(
-                          SettingsOnTapItem(key: ActionKey.them),
+                          SettingsOnTapItem(key: ActionKey.theme),
                         );
                       },
                     ),

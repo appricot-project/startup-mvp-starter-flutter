@@ -171,6 +171,22 @@ class SignInRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ThemeSettingsPage]
+class ThemeSettingsRoute extends PageRouteInfo<void> {
+  const ThemeSettingsRoute({List<PageRouteInfo>? children})
+    : super(ThemeSettingsRoute.name, initialChildren: children);
+
+  static const String name = 'ThemeSettingsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return ThemeSettingsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [UiTestingPage]
 class UiTestingRoute extends PageRouteInfo<void> {
   const UiTestingRoute({List<PageRouteInfo>? children})

@@ -5,10 +5,10 @@ import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage.dart';
 
 enum CustomTheme { light, dark, system }
 
-class ThemeCubit extends Cubit<Brightness> {
+class ThemeCubit extends Cubit<CustomTheme> {
   final SharedStorage sharedStorage;
 
-  ThemeCubit({required this.sharedStorage}) : super(Brightness.light);
+  ThemeCubit({required this.sharedStorage}) : super(CustomTheme.light);
 
   Future<void> changeTheme(CustomTheme newTheme) async {
     switch (newTheme) {
@@ -25,11 +25,22 @@ class ThemeCubit extends Cubit<Brightness> {
   Future<void> checkThemeStatus() async {
     var theme = await sharedStorage.getThemeIsDark();
     if (theme == null) {
-      emit(SchedulerBinding.instance.platformDispatcher.platformBrightness);
+      emit(CustomTheme.system);
     } else if (theme == true) {
-      emit(Brightness.dark);
+      emit(CustomTheme.dark);
     } else {
-      emit(Brightness.light);
+      emit(CustomTheme.light);
+    }
+  }
+
+  Brightness brightness() {
+    switch (state) {
+      case CustomTheme.dark:
+        return Brightness.dark;
+      case CustomTheme.light:
+        return Brightness.light;
+      case CustomTheme.system:
+        return SchedulerBinding.instance.platformDispatcher.platformBrightness;
     }
   }
 }

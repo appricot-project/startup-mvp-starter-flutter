@@ -15,8 +15,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
           emit(SettingsShowView(key: ViewKey.language));
         case ActionKey.notifications:
           emit(SettingsShowView(key: ViewKey.notifications));
-        case ActionKey.them:
-          emit(SettingsShowView(key: ViewKey.them));
+        case ActionKey.theme:
+          emit(SettingsShowView(key: ViewKey.theme));
       }
     });
   }

@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, Brightness>(
+    return BlocBuilder<ThemeCubit, CustomTheme>(
       builder: (context, them) {
         return BlocBuilder<LocalizationCubit, String>(
           builder: (context, localeState) {
@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 appBarTheme: AppBarTheme(
                   iconTheme: IconThemeData(color: ColorConstants.primary),
                   elevation: 0,
-                  backgroundColor: ColorConstants.background, 
+                  backgroundColor: ColorConstants.background,
                 ),
                 scaffoldBackgroundColor: ColorConstants.background,
               ),
