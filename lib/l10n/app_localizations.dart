@@ -550,6 +550,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No results found'**
   String get emptyNoResults;
+
+  /// No description provided for @sortTypeNewest.
+  ///
+  /// In en, this message translates to:
+  /// **'По новизне'**
+  String get sortTypeNewest;
+
+  /// No description provided for @sortTypeFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Сначала избранные'**
+  String get sortTypeFavorites;
+
+  /// No description provided for @sortTypeRecentViewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Сначала просмотренные'**
+  String get sortTypeRecentViewed;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
