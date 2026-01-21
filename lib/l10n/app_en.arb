@@ -96,5 +96,9 @@
 
   "emptyNoData": "No data",
   "emptyEmptyList": "Empty list",
-  "emptyNoResults": "No results found"
+  "emptyNoResults": "No results found",
+
+  "sortTypeNewest": "By Newest",
+  "sortTypeFavorites": "Favorites First",
+  "sortTypeRecentViewed": "Recently Viewed First"
 }

@@ -31,4 +31,16 @@ abstract class SharedStorage {
 
   Future<bool> setShowOnboarding();
   Future<bool> isShowOnboarding();
+
+  // * MARK: Favourites
+
+  Future<List<String>> getFavoriteIds();
+  Future<bool> addFavoriteId(String id);
+  Future<bool> removeFavoriteId(String id);
+
+  // * MARK: Viewed
+
+  Future<List<String>> getViewedIds();
+  Future<bool> addViewedId(String id);
+  Future<bool> removeViewedId(String id);
 }

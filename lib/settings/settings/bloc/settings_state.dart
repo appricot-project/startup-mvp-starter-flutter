@@ -17,5 +17,5 @@ class SettingsShowView extends SettingsState {
   SettingsShowView({required this.key});
 
   @override
-  List<Object?> get props => [super.props, ViewKey];
+  List<Object?> get props => [super.props, key];
 }
