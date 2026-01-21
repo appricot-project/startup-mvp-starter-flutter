@@ -383,6 +383,12 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get navigationSettings;
 
+  /// No description provided for @navigationFavorite.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get navigationFavorite;
+
   /// No description provided for @settingsLanguage.
   ///
   /// In en, this message translates to:

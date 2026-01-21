@@ -33,8 +33,10 @@ class ProfileUpdated extends ProfileState {
   ProfileUpdated({required super.loading, required super.profile});
 }
 
+enum ViewKey { signIn, logoutAlert, editProfile }
+
 class ProfileShowView extends ProfileState {
-  final String key;
+  final ViewKey key;
 
   ProfileShowView({
     required super.loading,

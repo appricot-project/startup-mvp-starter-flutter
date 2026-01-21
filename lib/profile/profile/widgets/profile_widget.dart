@@ -29,18 +29,18 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       listener: (context, state) async {
         if (state is ProfileShowView) {
           switch (state.key) {
-            case 'signIn':
+            case ViewKey.signIn:
               context.pushRoute(ModalAuth()).then((_) {
                 context.read<ProfileBloc>().add(ProfileOnAppear());
               });
-            case 'logoutAlert':
+            case ViewKey.logoutAlert:
               showDialog(
                 context: context,
                 builder: (newContext) {
                   return LogoutAlert(
                     onYes: () {
                       context.read<ProfileBloc>().add(
-                        ProfileOnTapped(key: 'logout'),
+                        ProfileOnTapped(key: ActionKey.logout),
                       );
                       Navigator.of(newContext).pop();
                     },
@@ -52,7 +52,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               ).then((value) {
                 context.read<ProfileBloc>().add(ProfileOnAppear());
               });
-            case 'editProfile':
+            case ViewKey.editProfile:
               context.pushRoute(EditProfileRoute()).then((_) {
                 context.read<ProfileBloc>().add(ProfileOnReturned());
               });
@@ -91,7 +91,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   )!.authSignin,
                                   onPressed: () {
                                     context.read<ProfileBloc>().add(
-                                      ProfileOnTapped(key: 'signIn'),
+                                      ProfileOnTapped(key: ActionKey.signIn),
                                     );
                                   },
                                 ),
@@ -122,7 +122,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     ),
                                     onTap: () {
                                       context.read<ProfileBloc>().add(
-                                        ProfileOnTapped(key: 'logoutAlert'),
+                                        ProfileOnTapped(
+                                          key: ActionKey.logoutAlert,
+                                        ),
                                       );
                                     },
                                   ),
@@ -177,7 +179,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               GestureDetector(
                 onTap: () {
                   context.read<ProfileBloc>().add(
-                    ProfileOnTapped(key: 'editProfile'),
+                    ProfileOnTapped(key: ActionKey.editProfile),
                   );
                 },
                 child: PlatformComponents.arrowRightIcon(),

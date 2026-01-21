@@ -153,6 +153,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navigationSettings => 'Settings';
 
   @override
+  String get navigationFavorite => 'Favorites';
+
+  @override
   String get settingsLanguage => 'Language';
 
   @override

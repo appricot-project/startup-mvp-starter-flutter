@@ -59,6 +59,22 @@ class HomeShellRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [LanguageSettingsPage]
+class LanguageSettingsRoute extends PageRouteInfo<void> {
+  const LanguageSettingsRoute({List<PageRouteInfo>? children})
+    : super(LanguageSettingsRoute.name, initialChildren: children);
+
+  static const String name = 'LanguageSettingsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return LanguageSettingsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [MainPage]
 class MainRoute extends PageRouteInfo<void> {
   const MainRoute({List<PageRouteInfo>? children})
@@ -118,6 +134,22 @@ class ProfileTabRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const ProfileTabPage();
+    },
+  );
+}
+
+/// generated route for
+/// [SettingsPage]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute({List<PageRouteInfo>? children})
+    : super(SettingsRoute.name, initialChildren: children);
+
+  static const String name = 'SettingsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return SettingsPage();
     },
   );
 }
