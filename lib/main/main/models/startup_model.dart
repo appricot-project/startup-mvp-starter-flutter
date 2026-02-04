@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:startup_mvp_starter_flutter/main/service/models/startup_dto.dart';
 
-class StartupModel {
+class StartupModel extends Equatable {
   final String id;
   final String name;
   final String description;
@@ -24,4 +25,7 @@ class StartupModel {
       createdAt: dto.createdAt,
     );
   }
+
+  @override
+  List<Object?> get props => [id, name, description, imageUrl, createdAt];
 }

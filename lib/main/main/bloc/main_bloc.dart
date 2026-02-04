@@ -31,11 +31,24 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       loading = Loading.initial;
       _emitUpdatedState(emit);
       final response = await mainService.getStartups();
-      response.fold((l) {}, (r) {
-        startups = r.map((e) => StartupModel.fromDto(e)).toList();
-        sortStartups();
-      });
-      favoriteIds = await sharedStorage.getFavoriteIds();
+      response.fold(
+        (l) {
+          _emitErrorState(emit, l.message);
+        },
+        (r) {
+          startups = r.map((e) => StartupModel.fromDto(e)).toList();
+          sortStartups();
+        },
+      );
+      var getFavoriteIdsResponse = await mainService.getFavoriteIds();
+      getFavoriteIdsResponse.fold(
+        (l) {
+          _emitErrorState(emit, l.message);
+        },
+        (r) {
+          favoriteIds = r ?? [];
+        },
+      );
       viewedIds = await sharedStorage.getViewedIds();
       loading = null;
       _emitUpdatedState(emit);
@@ -53,8 +66,27 @@ class MainBloc extends Bloc<MainEvent, MainState> {
           _emitUpdatedState(emit);
           break;
         case ActionType.details:
+          if (event.value is String) {
+            emit(
+              MainShowView(
+                key: ViewKey.details,
+                data: event.value,
+                loading: loading,
+                startups: List.from(startups),
+                favoriteIds: List.from(favoriteIds),
+                viewedIds: List.from(viewedIds),
+                currentSortType: currentSortType,
+              ),
+            );
+          }
           break;
       }
+    });
+    on<MainOnReturned>((event, emit) async {
+      _emitUpdatedState(emit);
+      favoriteIds = await sharedStorage.getFavoriteIds();
+      viewedIds = await sharedStorage.getViewedIds();
+      _emitUpdatedState(emit);
     });
     on<MainOnSortSelected>((event, emit) {
       currentSortType = event.sortType;
@@ -88,6 +120,19 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   _emitUpdatedState(Emitter<MainState> emit) {
     emit(
       MainUpdated(
+        loading: loading,
+        startups: List.from(startups),
+        favoriteIds: List.from(favoriteIds),
+        viewedIds: List.from(viewedIds),
+        currentSortType: currentSortType,
+      ),
+    );
+  }
+
+  _emitErrorState(Emitter<MainState> emit, String error) {
+    emit(
+      MainError(
+        error: error,
         loading: loading,
         startups: List.from(startups),
         favoriteIds: List.from(favoriteIds),

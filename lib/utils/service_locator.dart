@@ -35,5 +35,7 @@ Future<void> setupLocator({required Flavor flavor}) async {
   await locator<AuthCubit>().checkAuthStatus();
   await locator<LocalizationCubit>().checkLocalizeStatus();
   await locator<ThemeCubit>().checkThemeStatus();
-  locator.registerLazySingleton<MainService>(() => MockMainService());
+  locator.registerLazySingleton<MainService>(
+    () => MockMainService(sharedStorage: locator<SharedStorage>()),
+  );
 }

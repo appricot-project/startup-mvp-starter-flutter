@@ -75,6 +75,48 @@ class LanguageSettingsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MainDetailsPage]
+class MainDetailsRoute extends PageRouteInfo<MainDetailsRouteArgs> {
+  MainDetailsRoute({required String startupId, List<PageRouteInfo>? children})
+    : super(
+        MainDetailsRoute.name,
+        args: MainDetailsRouteArgs(startupId: startupId),
+        initialChildren: children,
+      );
+
+  static const String name = 'MainDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<MainDetailsRouteArgs>();
+      return MainDetailsPage(startupId: args.startupId);
+    },
+  );
+}
+
+class MainDetailsRouteArgs {
+  const MainDetailsRouteArgs({required this.startupId});
+
+  final String startupId;
+
+  @override
+  String toString() {
+    return 'MainDetailsRouteArgs{startupId: $startupId}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! MainDetailsRouteArgs) return false;
+    return startupId == other.startupId;
+  }
+
+  @override
+  int get hashCode => startupId.hashCode;
+}
+
+/// generated route for
 /// [MainPage]
 class MainRoute extends PageRouteInfo<void> {
   const MainRoute({List<PageRouteInfo>? children})

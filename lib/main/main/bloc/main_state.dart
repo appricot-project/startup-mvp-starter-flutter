@@ -62,3 +62,22 @@ final class MainError extends MainState {
   @override
   List<Object?> get props => [super.props, error];
 }
+
+enum ViewKey { details }
+
+final class MainShowView extends MainState {
+  final ViewKey key;
+  final dynamic data;
+  MainShowView({
+    required this.key,
+    this.data,
+    required super.loading,
+    required super.startups,
+    required super.favoriteIds,
+    required super.viewedIds,
+    required super.currentSortType,
+  });
+
+  @override
+  List<Object?> get props => [super.props, key, data];
+}

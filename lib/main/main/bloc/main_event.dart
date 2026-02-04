@@ -9,6 +9,8 @@ sealed class MainEvent extends Equatable {
 
 class MainOnAppear extends MainEvent {}
 
+class MainOnReturned extends MainEvent {}
+
 enum ActionType { favourite, details }
 
 class MainOnActionButtonTapped extends MainEvent {
