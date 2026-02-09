@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/platform_components.dart';
 
 class BasicTextField extends StatefulWidget {

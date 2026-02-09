@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/auth/sign_in/bloc/sign_in_bloc.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/navigation/app_router.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
@@ -80,9 +78,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                       children: [
                         Text(
                           AppLocalizations.of(context)!.authSignin,
-                          style: CustomTextStyle.mobileH2(
-                            color: ColorConstants.primary,
-                          ),
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         SizedBox(height: 12),
                         BasicTextField(

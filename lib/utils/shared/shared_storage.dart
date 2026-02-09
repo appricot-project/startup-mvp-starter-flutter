@@ -1,4 +1,4 @@
-import 'package:startup_mvp_starter_flutter/utils/theme_cubit.dart';
+import 'package:flutter/material.dart';
 
 abstract class SharedStorage {
   // * MARK: Token
@@ -26,8 +26,8 @@ abstract class SharedStorage {
 
   // * MARK: Them
 
-  Future<void> setTheme(CustomTheme value);
-  Future<CustomTheme> getTheme();
+  Future<void> setTheme(ThemeMode value);
+  Future<ThemeMode> getTheme();
 
   // * MARK: Onboarding
 

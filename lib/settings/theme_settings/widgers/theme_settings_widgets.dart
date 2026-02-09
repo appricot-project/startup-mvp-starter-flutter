@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/settings/theme_settings/bloc/theme_settings_bloc.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/theme_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
@@ -20,19 +18,19 @@ class _ThemeSettingsWidgetState extends State<ThemeSettingsWidgets> {
       appBar: AppBar(
         title: Text(
           AppLocalizations.of(context)!.settingsChangeTheme,
-          style: CustomTextStyle.title1(),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
       body: SafeArea(
         child: BlocBuilder<ThemeSettingsBloc, ThemeSettingsState>(
           builder: (context, state) {
-            return BlocBuilder<ThemeCubit, ThemeState>(
+            return BlocBuilder<ThemeCubit, ThemeMode>(
               builder: (context, theme) {
                 return Padding(
                   padding: EdgeInsetsGeometry.only(left: 8, right: 8, top: 8),
                   child: Column(
                     children: [
-                      RadioGroup<CustomTheme>(
+                      RadioGroup<ThemeMode>(
                         groupValue: state.theme,
                         onChanged: (value) {
                           context.read<ThemeSettingsBloc>().add(
@@ -43,14 +41,14 @@ class _ThemeSettingsWidgetState extends State<ThemeSettingsWidgets> {
                           onTap: () {
                             context.read<ThemeSettingsBloc>().add(
                               ThemeSettingsOnChangedTheme(
-                                newTheme: CustomTheme.light,
+                                newTheme: ThemeMode.light,
                               ),
                             );
                           },
                           child: Row(
                             children: [
-                              Radio<CustomTheme>(
-                                value: CustomTheme.light,
+                              Radio<ThemeMode>(
+                                value: ThemeMode.light,
                                 fillColor:
                                     WidgetStateProperty.resolveWith<Color>((
                                       Set<WidgetState> states,
@@ -60,7 +58,7 @@ class _ThemeSettingsWidgetState extends State<ThemeSettingsWidgets> {
                                       )) {
                                         return Colors.green;
                                       }
-                                      return ColorConstants.primary;
+                                      return Theme.of(context).primaryColor;
                                     }),
                               ),
                               6.w,
@@ -68,13 +66,13 @@ class _ThemeSettingsWidgetState extends State<ThemeSettingsWidgets> {
                                 AppLocalizations.of(
                                   context,
                                 )!.settingsLightTheme,
-                                style: CustomTextStyle.body1(),
+                                style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ],
                           ),
                         ),
                       ),
-                      RadioGroup<CustomTheme>(
+                      RadioGroup<ThemeMode>(
                         groupValue: state.theme,
                         onChanged: (value) {
                           context.read<ThemeSettingsBloc>().add(
@@ -85,14 +83,14 @@ class _ThemeSettingsWidgetState extends State<ThemeSettingsWidgets> {
                           onTap: () {
                             context.read<ThemeSettingsBloc>().add(
                               ThemeSettingsOnChangedTheme(
-                                newTheme: CustomTheme.dark,
+                                newTheme: ThemeMode.dark,
                               ),
                             );
                           },
                           child: Row(
                             children: [
-                              Radio<CustomTheme>(
-                                value: CustomTheme.dark,
+                              Radio<ThemeMode>(
+                                value: ThemeMode.dark,
                                 fillColor:
                                     WidgetStateProperty.resolveWith<Color>((
                                       Set<WidgetState> states,
@@ -102,19 +100,19 @@ class _ThemeSettingsWidgetState extends State<ThemeSettingsWidgets> {
                                       )) {
                                         return Colors.green;
                                       }
-                                      return ColorConstants.primary;
+                                      return Theme.of(context).primaryColor;
                                     }),
                               ),
                               6.w,
                               Text(
                                 AppLocalizations.of(context)!.settingsDarkTheme,
-                                style: CustomTextStyle.body1(),
+                                style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ],
                           ),
                         ),
                       ),
-                      RadioGroup<CustomTheme>(
+                      RadioGroup<ThemeMode>(
                         groupValue: state.theme,
                         onChanged: (value) {
                           context.read<ThemeSettingsBloc>().add(
@@ -125,14 +123,14 @@ class _ThemeSettingsWidgetState extends State<ThemeSettingsWidgets> {
                           onTap: () {
                             context.read<ThemeSettingsBloc>().add(
                               ThemeSettingsOnChangedTheme(
-                                newTheme: CustomTheme.system,
+                                newTheme: ThemeMode.system,
                               ),
                             );
                           },
                           child: Row(
                             children: [
-                              Radio<CustomTheme>(
-                                value: CustomTheme.system,
+                              Radio<ThemeMode>(
+                                value: ThemeMode.system,
                                 fillColor:
                                     WidgetStateProperty.resolveWith<Color>((
                                       Set<WidgetState> states,
@@ -142,7 +140,7 @@ class _ThemeSettingsWidgetState extends State<ThemeSettingsWidgets> {
                                       )) {
                                         return Colors.green;
                                       }
-                                      return ColorConstants.primary;
+                                      return Theme.of(context).primaryColor;
                                     }),
                               ),
                               6.w,
@@ -150,7 +148,7 @@ class _ThemeSettingsWidgetState extends State<ThemeSettingsWidgets> {
                                 AppLocalizations.of(
                                   context,
                                 )!.settingsSystemTheme,
-                                style: CustomTextStyle.body1(),
+                                style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ],
                           ),

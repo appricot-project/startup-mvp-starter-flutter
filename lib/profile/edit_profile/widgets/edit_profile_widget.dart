@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/profile/edit_profile/bloc/edit_profile_bloc.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
@@ -61,7 +60,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         appBar: AppBar(
           title: Text(
             AppLocalizations.of(context)!.profilePersonalData,
-            style: CustomTextStyle.mobileH1(),
+            style: Theme.of(context).textTheme.headlineLarge,
           ),
         ),
         body: BlocBuilder<EditProfileBloc, EditProfileState>(

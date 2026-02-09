@@ -7,8 +7,6 @@ import 'package:startup_mvp_starter_flutter/profile/profile/bloc/profile_bloc.da
 import 'package:startup_mvp_starter_flutter/profile/profile/models/profile_info.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile/widgets/logout_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/auth_cubit.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/platform_components.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
@@ -82,7 +80,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 12.h,
                                 Text(
                                   AppLocalizations.of(context)!.profileSignIn,
-                                  style: CustomTextStyle.title1(),
+                                  style: Theme.of(context).textTheme.titleLarge,
                                 ),
                                 24.h,
                                 CustomButton(
@@ -117,7 +115,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         AppLocalizations.of(
                                           context,
                                         )!.authLogout,
-                                        style: CustomTextStyle.buttonText(),
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.titleSmall,
                                       ),
                                     ),
                                     onTap: () {
@@ -164,12 +164,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(profileInfo.name, style: CustomTextStyle.mobileH2()),
+                      Text(
+                        profileInfo.name,
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
                       SizedBox(height: 4),
                       Text(
                         profileInfo.phone,
-                        style: CustomTextStyle.body2(
-                          color: ColorConstants.secondaryText,
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.onSecondary,
                         ),
                       ),
                     ],

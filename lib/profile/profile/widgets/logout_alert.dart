@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 
 class LogoutAlert extends StatelessWidget {
   final void Function() onYes;
@@ -15,7 +14,7 @@ class LogoutAlert extends StatelessWidget {
       return CupertinoAlertDialog(
         title: Text(
           AppLocalizations.of(context)!.profileLogoutConfirm,
-          style: CustomTextStyle.title1(),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         actions: [
           TextButton(
@@ -24,7 +23,7 @@ class LogoutAlert extends StatelessWidget {
             },
             child: Text(
               AppLocalizations.of(context)!.commonNo,
-              style: CustomTextStyle.body1(),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
           TextButton(
@@ -33,7 +32,7 @@ class LogoutAlert extends StatelessWidget {
             },
             child: Text(
               AppLocalizations.of(context)!.commonYes,
-              style: CustomTextStyle.body1(),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
         ],
@@ -43,7 +42,7 @@ class LogoutAlert extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
         title: Text(
           AppLocalizations.of(context)!.profileLogoutConfirm,
-          style: CustomTextStyle.mobileH1(),
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
         actions: [
           TextButton(
@@ -52,7 +51,7 @@ class LogoutAlert extends StatelessWidget {
             },
             child: Text(
               AppLocalizations.of(context)!.commonNo,
-              style: CustomTextStyle.body1(),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
           TextButton(
@@ -61,7 +60,7 @@ class LogoutAlert extends StatelessWidget {
             },
             child: Text(
               AppLocalizations.of(context)!.commonYes,
-              style: CustomTextStyle.body1(),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
         ],

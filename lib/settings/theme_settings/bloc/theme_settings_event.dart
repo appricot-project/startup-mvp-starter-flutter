@@ -8,7 +8,7 @@ abstract class ThemeSettingsEvent extends Equatable {
 class ThemeSettingsOnApply extends ThemeSettingsEvent {}
 
 class ThemeSettingsOnChangedTheme extends ThemeSettingsEvent {
-  final CustomTheme newTheme;
+  final ThemeMode newTheme;
 
   ThemeSettingsOnChangedTheme({required this.newTheme});
 

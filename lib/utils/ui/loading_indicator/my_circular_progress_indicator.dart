@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 
 class MyCircularProgressIndicator extends StatelessWidget {
   final bool enabled;

@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 
 class MyBottomNavigationBar extends StatelessWidget {
   final TabsRouter navigationShell;
@@ -20,10 +19,10 @@ class MyBottomNavigationBar extends StatelessWidget {
         border: Border(top: BorderSide(color: Colors.grey, width: 0.5)),
       ),
       child: BottomNavigationBar(
-        backgroundColor: ColorConstants.background,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: ColorConstants.primary,
-        unselectedItemColor: ColorConstants.unselectedNavigation,
+        selectedItemColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Theme.of(context).unselectedWidgetColor,
         currentIndex: navigationShell.activeIndex,
         onTap: (index) {
           if (navigationShell.activeIndex == index) {

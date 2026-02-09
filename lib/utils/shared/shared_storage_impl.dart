@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage.dart';
-import 'package:startup_mvp_starter_flutter/utils/theme_cubit.dart';
 
 class SharedStorageImpl implements SharedStorage {
   Future<SharedPreferences> _getPrefs() async {
@@ -82,18 +82,18 @@ class SharedStorageImpl implements SharedStorage {
 
   // * MARK: Them
 
-  Future<void> setTheme(CustomTheme value) async {
+  Future<void> setTheme(ThemeMode value) async {
     final prefs = await _getPrefs();
     await prefs.setString('theme', value.name);
   }
 
-  Future<CustomTheme> getTheme() async {
+  Future<ThemeMode> getTheme() async {
     final prefs = await _getPrefs();
     final themeString = prefs.getString('theme');
 
-    return CustomTheme.values.firstWhere(
+    return ThemeMode.values.firstWhere(
       (e) => e.name == themeString,
-      orElse: () => CustomTheme.system,
+      orElse: () => ThemeMode.system,
     );
   }
 

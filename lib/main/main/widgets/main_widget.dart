@@ -7,8 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/main/main/bloc/main_bloc.dart';
 import 'package:startup_mvp_starter_flutter/main/main/models/startup_model.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
 
@@ -27,13 +25,16 @@ class MainWidget extends StatelessWidget {
                 onPressed: () {
                   _showCupertinoBottomSheet(context, state.currentSortType);
                 },
-                icon: Icon(Icons.sort, color: ColorConstants.primary),
+                icon: Icon(Icons.sort, color: Theme.of(context).primaryColor),
               );
             },
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.notifications, color: ColorConstants.primary),
+              icon: Icon(
+                Icons.notifications,
+                color: Theme.of(context).primaryColor,
+              ),
               onPressed: () {},
             ),
           ],
@@ -59,7 +60,7 @@ class MainWidget extends StatelessWidget {
                             clipBehavior: Clip.hardEdge,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
-                              color: ColorConstants.border,
+                              color: Theme.of(context).colorScheme.outline,
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +88,9 @@ class MainWidget extends StatelessWidget {
                                       return Center(
                                         child: Container(
                                           height: 200,
-                                          color: ColorConstants.border,
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.outline,
                                         ),
                                       );
                                     }
@@ -106,7 +109,9 @@ class MainWidget extends StatelessWidget {
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.left,
-                                    style: CustomTextStyle.mobileH2(),
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.headlineMedium,
                                   ),
                                 ),
                                 4.h,
@@ -120,7 +125,9 @@ class MainWidget extends StatelessWidget {
                                     startup.description,
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
-                                    style: CustomTextStyle.body2(),
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodyMedium,
                                   ),
                                 ),
                               ],
@@ -233,7 +240,7 @@ class MainWidget extends StatelessWidget {
                         Navigator.of(context, rootNavigator: true).pop();
                       },
                       child: Text(
-                        style: CustomTextStyle.body1(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: currentSortType == element
                               ? FontWeight.w600
                               : FontWeight.w400,

@@ -1,7 +1,7 @@
 part of 'theme_settings_bloc.dart';
 
 abstract class ThemeSettingsState extends Equatable {
-  final CustomTheme theme;
+  final ThemeMode theme;
 
   ThemeSettingsState({required this.theme});
 

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 
 class LoadingErrorRefreshWidget extends StatelessWidget {
   final void Function() onRefresh;

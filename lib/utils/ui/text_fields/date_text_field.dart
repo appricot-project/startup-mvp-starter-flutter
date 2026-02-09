@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/mask_text_input_formatter_consts.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/platform_components.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/text_fields/basic_text_field.dart';
