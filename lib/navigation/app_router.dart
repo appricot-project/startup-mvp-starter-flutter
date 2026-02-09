@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:startup_mvp_starter_flutter/auth/sign_in/page/sign_in_page.dart';
 import 'package:startup_mvp_starter_flutter/auth/verification_email/page/verification_email_page.dart';
 import 'package:startup_mvp_starter_flutter/main/main/page/main_page.dart';
+import 'package:startup_mvp_starter_flutter/main/main_details/page/main_details_page.dart';
 import 'package:startup_mvp_starter_flutter/navigation/home_shell_page.dart';
 import 'package:startup_mvp_starter_flutter/navigation/modal_bottom_sheet_autoroute.dart';
 import 'package:startup_mvp_starter_flutter/navigation/wrappers/favourites_tab_page.dart';
@@ -39,6 +40,7 @@ class AppRouter extends RootStackRouter {
           page: MainTabRoute.page,
           children: [
             AutoRoute(path: '', page: MainRoute.page, initial: true),
+            AutoRoute(path: 'details', page: MainDetailsRoute.page),
             // ..._commonTabChildren,
           ],
         ),
