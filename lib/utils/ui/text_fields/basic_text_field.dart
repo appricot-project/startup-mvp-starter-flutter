@@ -145,7 +145,7 @@ class _BasicTextFieldState extends State<BasicTextField> {
           child: Material(
             elevation: 4.0,
             borderRadius: BorderRadius.circular(8),
-            color: ColorConstants.border,
+            color: Theme.of(context).colorScheme.outline,
             child: ConstrainedBox(
               constraints: BoxConstraints(maxHeight: 200),
               child: ListView.separated(
@@ -187,15 +187,15 @@ class _BasicTextFieldState extends State<BasicTextField> {
 
   Color _color() {
     if (!widget.isEnabled) {
-      return ColorConstants.disable;
+      return Theme.of(context).disabledColor;
     }
     if (!(widget.error == null || widget.error == '')) {
-      return ColorConstants.error;
+      return Theme.of(context).colorScheme.error;
     } else {
       if (myFocusNode.hasFocus) {
-        return ColorConstants.activeTextField;
+        return Theme.of(context).focusColor;
       } else {
-        return ColorConstants.secondary;
+        return Theme.of(context).colorScheme.secondary;
       }
     }
   }
@@ -207,7 +207,7 @@ class _BasicTextFieldState extends State<BasicTextField> {
     if (!(widget.error == null || widget.error == '')) {
       return [
         BoxShadow(
-          color: ColorConstants.error,
+          color: Theme.of(context).colorScheme.error,
           spreadRadius: 4,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -217,7 +217,7 @@ class _BasicTextFieldState extends State<BasicTextField> {
       if (myFocusNode.hasFocus) {
         return [
           BoxShadow(
-            color: ColorConstants.primary,
+            color: Theme.of(context).primaryColor,
             spreadRadius: 4,
             blurRadius: 0,
             offset: Offset(0, 0),
@@ -258,10 +258,12 @@ class _BasicTextFieldState extends State<BasicTextField> {
                           padding: EdgeInsets.only(bottom: 6),
                           child: Text(
                             widget.label ?? '',
-                            style: CustomTextStyle.body3(
-                              color:
-                                  widget.labelColor ?? ColorConstants.secondary,
-                            ),
+                            style: Theme.of(context).textTheme.titleSmall!
+                                .copyWith(
+                                  color:
+                                      widget.labelColor ??
+                                      Theme.of(context).colorScheme.secondary,
+                                ),
                           ),
                         ),
                       SizedBox(
@@ -275,8 +277,8 @@ class _BasicTextFieldState extends State<BasicTextField> {
                             ),
                             color: widget.isEnabled
                                 ? widget.backgroundColor ??
-                                      ColorConstants.background
-                                : ColorConstants.disable,
+                                      Theme.of(context).scaffoldBackgroundColor
+                                : Theme.of(context).disabledColor,
                             boxShadow: _shadowBorder(),
                           ),
                           child: Row(
@@ -304,7 +306,7 @@ class _BasicTextFieldState extends State<BasicTextField> {
                                       ? 1
                                       : (widget.maxLines ?? 1),
                                   onTap: widget.onStartEditing,
-                                  cursorColor: ColorConstants.activeTextField,
+                                  cursorColor: Theme.of(context).focusColor,
                                   keyboardType: widget.keyboardType,
                                   inputFormatters: widget.inputFormatters,
                                   textCapitalization:
@@ -323,13 +325,16 @@ class _BasicTextFieldState extends State<BasicTextField> {
                                         ? widget.errorHintText ??
                                               widget.hintText
                                         : widget.hintText,
-                                    hintStyle: CustomTextStyle.body1(
-                                      color: ColorConstants.secondaryText,
-                                    ),
+                                    hintStyle: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .copyWith(
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onSecondary,
+                                        ),
                                   ),
-                                  style: CustomTextStyle.body1(
-                                    color: ColorConstants.primary,
-                                  ),
+                                  style: Theme.of(context).textTheme.bodyLarge,
                                   obscureText: widget.obscureText,
                                   obscuringCharacter: widget.obscuringCharacter,
                                   onChanged: (value) {
@@ -402,7 +407,9 @@ class _BasicTextFieldState extends State<BasicTextField> {
               padding: EdgeInsets.only(top: 6),
               child: Text(
                 widget.error ?? '',
-                style: CustomTextStyle.body2(color: ColorConstants.error),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  color: Theme.of(context).colorScheme.error,
+                ),
               ),
             ),
         ],

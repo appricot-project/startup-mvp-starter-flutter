@@ -97,7 +97,7 @@ class _CustomButtonState extends State<CustomButton> {
                         widget.text,
                         overflow: TextOverflow.ellipsis,
                         textAlign: widget.textAlign,
-                        style: CustomTextStyle.buttonText(
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           color: widget.tintColor ?? _getFontColor(),
                         ),
                       ),
@@ -105,9 +105,13 @@ class _CustomButtonState extends State<CustomButton> {
                         Text(
                           widget.subtitle!,
                           overflow: TextOverflow.ellipsis,
-                          style: CustomTextStyle.caption(
-                            color: ColorConstants.secondaryText,
-                          ).copyWith(height: 1),
+                          style: Theme.of(context).textTheme.bodySmall!
+                              .copyWith(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSecondary,
+                                height: 1,
+                              ),
                         ),
                     ],
                   ),
@@ -135,9 +139,15 @@ class _CustomButtonState extends State<CustomButton> {
     }
     switch (widget.color) {
       case ButtonColor.primary:
-        return Border.all(width: 1, color: ColorConstants.border);
+        return Border.all(
+          width: 1,
+          color: Theme.of(context).colorScheme.outline,
+        );
       case ButtonColor.secondary:
-        return Border.all(width: 1, color: ColorConstants.border);
+        return Border.all(
+          width: 1,
+          color: Theme.of(context).colorScheme.outline,
+        );
       case ButtonColor.tertiary:
         return null;
     }
@@ -158,28 +168,34 @@ class _CustomButtonState extends State<CustomButton> {
   Color _getFontColor() {
     if (!widget.isEnabled) {
       return widget.color == ButtonColor.tertiary
-          ? ColorConstants.disable
-          : ColorConstants.background;
+          ? Theme.of(context).disabledColor
+          : Theme.of(context).scaffoldBackgroundColor;
     }
     switch (widget.color) {
       case ButtonColor.primary:
-        return ColorConstants.primaryText;
+        return Theme.of(context).primaryColor;
       case ButtonColor.secondary:
-        return ColorConstants.primaryText;
+        return Theme.of(context).colorScheme.onPrimary;
       case ButtonColor.tertiary:
-        return isPressed ? ColorConstants.pressedColor : ColorConstants.secondary;
+        return isPressed
+            ? Theme.of(context).focusColor
+            : Theme.of(context).colorScheme.secondary;
     }
   }
 
   Color _getColor() {
     if (!widget.isEnabled && widget.color != ButtonColor.tertiary) {
-      return ColorConstants.disable;
+      return Theme.of(context).disabledColor;
     }
     switch (widget.color) {
       case ButtonColor.primary:
-        return isPressed ? ColorConstants.pressedColor : ColorConstants.primary;
+        return isPressed
+            ? Theme.of(context).focusColor
+            : Theme.of(context).primaryColor;
       case ButtonColor.secondary:
-        return isPressed ? ColorConstants.pressedColor : ColorConstants.secondary;
+        return isPressed
+            ? Theme.of(context).focusColor
+            : Theme.of(context).colorScheme.secondary;
       case ButtonColor.tertiary:
         return Colors.transparent;
     }

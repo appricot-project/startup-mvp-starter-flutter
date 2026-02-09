@@ -102,16 +102,21 @@ class _PinCodeTextFieldState extends State<PinCodeTextField> {
       decoration:
           widget.decoration ??
           BoxDecoration(
-            color: ColorConstants.primary,
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(width: 2, color: ColorConstants.border),
+            border: Border.all(
+              width: 2,
+              color: Theme.of(context).colorScheme.outline,
+            ),
           ),
       alignment: Alignment.center,
       child: Text(
         char,
         style:
             widget.textStyle ??
-            CustomTextStyle.mobileH1(color: ColorConstants.background),
+            Theme.of(context).textTheme.headlineLarge!.copyWith(
+              color: Theme.of(context).scaffoldBackgroundColor,
+            ),
       ),
     );
   }

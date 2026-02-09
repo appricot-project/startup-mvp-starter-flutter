@@ -46,9 +46,9 @@ class _DateTextFieldState extends State<DateTextField> {
                 margin: const EdgeInsets.all(4),
                 child: SfDateRangePicker(
                   headerStyle: DateRangePickerHeaderStyle(
-                    backgroundColor: ColorConstants.background,
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   ),
-                  backgroundColor: ColorConstants.background,
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   todayHighlightColor: Colors.black,
                   selectionColor: Colors.black,
                   showActionButtons: true,

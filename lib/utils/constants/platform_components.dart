@@ -12,18 +12,18 @@ class PlatformComponents {
   }
 
   static Widget profileUserIcon() {
-    return Icon(Icons.person_outline, size: 64, color: ColorConstants.primary);
+    return Icon(Icons.person_outline, size: 64);
   }
 
   static Widget arrowRightIcon() {
-    return Icon(Icons.chevron_right, size: 24, color: ColorConstants.primary);
+    return Icon(Icons.chevron_right, size: 24);
   }
 
   static Widget lineArrowLeftIcon() {
-    return Icon(Icons.arrow_back_rounded, size: 24, color: ColorConstants.primary);
+    return Icon(Icons.arrow_back_rounded, size: 24);
   }
 
   static Widget calendarIcon() {
-    return Icon(Icons.calendar_month, size: 24, color: ColorConstants.primary);
+    return Icon(Icons.calendar_month, size: 24);
   }
 }

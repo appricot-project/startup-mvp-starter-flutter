@@ -25,7 +25,7 @@ class TextThemeConstants {
       ),
       titleSmall: TextStyle(
         fontFamily: 'Calibri',
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: FontWeight.w600,
         letterSpacing: 0,
       ),

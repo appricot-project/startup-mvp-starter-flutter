@@ -21,7 +21,7 @@ class LoadingErrorRefreshWidget extends StatelessWidget {
           Text(
             'Не удалось получить данные',
             textAlign: TextAlign.center,
-            style: CustomTextStyle.body3(),
+            style: Theme.of(context).textTheme.titleSmall,
           ),
           SizedBox(height: 4),
           Wrap(
@@ -40,18 +40,11 @@ class LoadingErrorRefreshWidget extends StatelessWidget {
                   // 6.w,
                   Text(
                     'Попробовать ',
-                    style: CustomTextStyle.buttonText(
-                      color: ColorConstants.primary,
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],
               ),
-              Text(
-                'еще раз',
-                style: CustomTextStyle.buttonText(
-                  color: ColorConstants.primary,
-                ),
-              ),
+              Text('еще раз', style: Theme.of(context).textTheme.titleMedium),
             ],
           ),
         ],

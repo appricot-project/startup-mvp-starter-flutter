@@ -18,7 +18,7 @@ class MyCircularProgressIndicator extends StatelessWidget {
     } else {
       return Center(
         child: CircularProgressIndicator(
-          color: color ?? ColorConstants.primary,
+          color: color ?? Theme.of(context).primaryColor,
           strokeWidth: 2,
         ),
       );
