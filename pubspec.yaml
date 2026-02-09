@@ -37,6 +37,8 @@ dependencies:
   video_player: ^2.10.1
   auto_route: ^11.1.0
   syncfusion_flutter_datepicker: ^32.1.22
+  firebase_core: ^4.4.0
+  cloud_firestore: ^6.1.2
 
 dev_dependencies:
   flutter_test:
