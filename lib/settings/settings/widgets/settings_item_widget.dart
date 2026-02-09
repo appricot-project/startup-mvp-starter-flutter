@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/platform_components.dart';
 
