@@ -36,7 +36,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
           _emitErrorState(emit, l.message);
         },
         (r) {
-          startups = r.map((e) => StartupModel.fromDto(e)).toList();
+          startups = r;
           sortStartups();
         },
       );
