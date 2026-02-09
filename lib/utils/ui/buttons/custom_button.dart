@@ -173,7 +173,7 @@ class _CustomButtonState extends State<CustomButton> {
     }
     switch (widget.color) {
       case ButtonColor.primary:
-        return Theme.of(context).primaryColor;
+        return Theme.of(context).colorScheme.onPrimary;
       case ButtonColor.secondary:
         return Theme.of(context).colorScheme.onPrimary;
       case ButtonColor.tertiary:
