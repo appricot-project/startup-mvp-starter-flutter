@@ -7,4 +7,6 @@ abstract class MainService {
   Future<Either<ApiException, List<StartupModel>>> getStartups();
   Future<Either<ApiException, StartupDetailsModel?>> getStartupDetails(String startupId);
   Future<Either<ApiException, List<String>?>> getFavoriteIds();
+  Future<Either<ApiException, void>> addFavoriteId(String id);
+  Future<Either<ApiException, void>> removeFavoriteId(String id);
 }

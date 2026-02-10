@@ -7,12 +7,13 @@ import 'package:startup_mvp_starter_flutter/utils/auth_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/localization_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/service_locator.dart';
 import 'package:startup_mvp_starter_flutter/utils/theme_cubit.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setupLocator(flavor: Flavor.prod);
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await setupLocator(
+    flavor: Flavor.prod,
+    firebaseOptions: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(
     MultiBlocProvider(

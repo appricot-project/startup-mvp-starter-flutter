@@ -16,6 +16,14 @@
   "authCodeError": "Неверный код",
   "authVerificationTitle": "Введите код из почты",
 
+  "authSignUp": "Зарегистрироваться",
+  "authNoAccount": "Нет аккаунта? Зарегистрируйтесь",
+  "authHaveAccount": "Уже есть аккаунт? Войдите",
+  "authWrongPassword": "Неверный пароль",
+  "authUserNotFound": "Пользователь не найден",
+  "authEmailAlreadyInUse": "Email уже используется",
+  "authWeakPassword": "Слишком слабый пароль",
+
   "profileSignIn": "Войдите в профиль",
   "profileLoginSuccess": "Вы успешно вошли",
   "profileLogoutConfirm": "Вы действительно хотите выйти?",

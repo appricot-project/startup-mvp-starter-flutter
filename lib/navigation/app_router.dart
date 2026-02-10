@@ -79,7 +79,6 @@ class AppRouter extends RootStackRouter {
       page: ModalAuth.page,
       children: [
         AutoRoute(path: '', page: SignInRoute.page, initial: true),
-        AutoRoute(path: 'verificationEmail', page: VerificationEmailRoute.page),
       ],
     ),
     // * MARK: Modals

@@ -71,7 +71,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
         }
         var response = await profileService.sendProfile(
           name: event.fields['name'],
-          phone: event.fields['phonee'],
+          phone: event.fields['phone'],
           birthday: birthdayConverted,
         );
         loading = null;

@@ -224,10 +224,7 @@ class RestClient {
         );
         if (refreshTokenResponseDto.accessToken != null &&
             refreshTokenResponseDto.refreshToken != null) {
-          await locator<AuthCubit>().login(
-            refreshToken: refreshTokenResponseDto.refreshToken!,
-            accessToken: refreshTokenResponseDto.accessToken!,
-          );
+          await locator<AuthCubit>().login();
           return true;
         }
       }

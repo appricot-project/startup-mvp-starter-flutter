@@ -7,11 +7,16 @@ import 'package:startup_mvp_starter_flutter/main/service/models/startup_details_
 import 'package:startup_mvp_starter_flutter/main/service/models/startup_model_firestore.dart';
 import 'package:startup_mvp_starter_flutter/utils/rest_client/api_exception.dart';
 import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage.dart';
+import 'package:startup_mvp_starter_flutter/utils/user_document_service.dart';
 
 class MainServiceImpl extends MainService {
+  final UserDocumentService userDocumentService;
   final SharedStorage sharedStorage;
 
-  MainServiceImpl({required this.sharedStorage});
+  MainServiceImpl({
+    required this.userDocumentService,
+    required this.sharedStorage,
+  });
 
   @override
   Future<Either<ApiException, List<StartupModel>>> getStartups() async {
@@ -31,7 +36,7 @@ class MainServiceImpl extends MainService {
   Future<Either<ApiException, StartupDetailsModel?>> getStartupDetails(
     String startupId,
   ) async {
-    final doc = await await FirebaseFirestore.instance
+    final doc = await FirebaseFirestore.instance
         .collection('startups')
         .doc(startupId)
         .get();
@@ -41,6 +46,50 @@ class MainServiceImpl extends MainService {
 
   @override
   Future<Either<ApiException, List<String>?>> getFavoriteIds() async {
-    return Right(await sharedStorage.getFavoriteIds());
+    if (userDocumentService.currentUser == null) {
+      return Right(await sharedStorage.getFavoriteIds());
+    }
+    try {
+      await userDocumentService.ensureUserDocument();
+      final snapshot = await userDocumentService.userDocRef.get();
+      final data = snapshot.data() as Map<String, dynamic>?;
+      final List<dynamic> ids = data?['favoriteIds'] ?? [];
+      return Right(ids.cast<String>());
+    } catch (e) {
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, void>> addFavoriteId(String id) async {
+    if (userDocumentService.currentUser == null) {
+      await sharedStorage.addFavoriteId(id);
+      return const Right(null);
+    }
+    try {
+      await userDocumentService.ensureUserDocument();
+      await userDocumentService.userDocRef.update({
+        'favoriteIds': FieldValue.arrayUnion([id]),
+      });
+      return const Right(null);
+    } catch (e) {
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, void>> removeFavoriteId(String id) async {
+    if (userDocumentService.currentUser == null) {
+      await sharedStorage.removeFavoriteId(id);
+      return const Right(null);
+    }
+    try {
+      await userDocumentService.userDocRef.update({
+        'favoriteIds': FieldValue.arrayRemove([id]),
+      });
+      return const Right(null);
+    } catch (e) {
+      return Left(ApiException(e.toString()));
+    }
   }
 }

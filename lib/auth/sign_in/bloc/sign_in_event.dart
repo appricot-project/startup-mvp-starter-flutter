@@ -20,12 +20,18 @@ class SignInOnAppear extends SignInEvent {}
 
 class SignInOnCloseButtonTapped extends SignInEvent {}
 
-class SignInOnGetCodeButtonTapped extends SignInEvent {
-  final Map<String, String> textFields;
-  SignInOnGetCodeButtonTapped({required this.textFields});
+class SignInOnSubmitButtonTapped extends SignInEvent {
+  final String email;
+  final String password;
+  const SignInOnSubmitButtonTapped({
+    required this.email,
+    required this.password,
+  });
 
   @override
-  List<Object> get props => [super.props, textFields];
+  List<Object> get props => [email, password];
 }
+
+class SignInOnToggleMode extends SignInEvent {}
 
 class SignInOnReturned extends SignInEvent {}

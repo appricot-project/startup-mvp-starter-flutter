@@ -8,8 +8,8 @@ part 'main_event.dart';
 part 'main_state.dart';
 
 class MainBloc extends Bloc<MainEvent, MainState> {
-  final SharedStorage sharedStorage;
   final MainService mainService;
+  final SharedStorage sharedStorage;
 
   Loading? loading = Loading.initial;
   List<StartupModel> startups = [];
@@ -58,11 +58,15 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         case ActionType.favourite:
           String startupId = event.value as String;
           if (favoriteIds.contains(startupId)) {
-            await sharedStorage.removeFavoriteId(startupId);
+            await mainService.removeFavoriteId(startupId);
           } else {
-            await sharedStorage.addFavoriteId(startupId);
+            await mainService.addFavoriteId(startupId);
           }
-          favoriteIds = await sharedStorage.getFavoriteIds();
+          var favResponse = await mainService.getFavoriteIds();
+          favResponse.fold(
+            (l) => _emitErrorState(emit, l.message),
+            (r) => favoriteIds = r ?? [],
+          );
           _emitUpdatedState(emit);
           break;
         case ActionType.details:
@@ -84,7 +88,11 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     });
     on<MainOnReturned>((event, emit) async {
       _emitUpdatedState(emit);
-      favoriteIds = await sharedStorage.getFavoriteIds();
+      var favResponse = await mainService.getFavoriteIds();
+      favResponse.fold(
+        (l) => _emitErrorState(emit, l.message),
+        (r) => favoriteIds = r ?? [],
+      );
       viewedIds = await sharedStorage.getViewedIds();
       _emitUpdatedState(emit);
     });

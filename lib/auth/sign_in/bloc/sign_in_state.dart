@@ -3,21 +3,27 @@ part of 'sign_in_bloc.dart';
 sealed class SignInState extends Equatable {
   final Map<TextFieldKey, String> textFieldsErrors;
   final Loading? loading;
+  final bool isSignUp;
 
-  const SignInState({required this.textFieldsErrors, required this.loading});
+  const SignInState({
+    required this.textFieldsErrors,
+    required this.loading,
+    required this.isSignUp,
+  });
 
   @override
-  List<Object?> get props => [textFieldsErrors, loading];
+  List<Object?> get props => [textFieldsErrors, loading, isSignUp];
 }
 
 enum Loading { actionLoading }
 
-enum TextFieldKey { email }
+enum TextFieldKey { email, password }
 
 final class SignInInitial extends SignInState {
   const SignInInitial({
     required super.textFieldsErrors,
     required super.loading,
+    required super.isSignUp,
   });
 }
 
@@ -25,6 +31,7 @@ class SignInUpdated extends SignInState {
   const SignInUpdated({
     required super.textFieldsErrors,
     required super.loading,
+    required super.isSignUp,
   });
 }
 
@@ -34,6 +41,7 @@ final class SignInError extends SignInState {
     required this.error,
     required super.textFieldsErrors,
     required super.loading,
+    required super.isSignUp,
   });
 
   @override
@@ -41,17 +49,17 @@ final class SignInError extends SignInState {
 }
 
 class SignInClose extends SignInState {
-  const SignInClose({required super.textFieldsErrors, required super.loading});
-}
-
-class SignInShowVerification extends SignInState {
-  final String gmail;
-  const SignInShowVerification({
-    required this.gmail,
+  const SignInClose({
     required super.textFieldsErrors,
     required super.loading,
+    required super.isSignUp,
   });
+}
 
-  @override
-  List<Object> get props => [super.props, gmail];
+class SignInSuccess extends SignInState {
+  const SignInSuccess({
+    required super.textFieldsErrors,
+    required super.loading,
+    required super.isSignUp,
+  });
 }
