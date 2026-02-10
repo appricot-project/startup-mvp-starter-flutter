@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeCubit, ThemeMode>(
-      builder: (context, them) {
+      builder: (context, themeMode) {
         return BlocBuilder<LocalizationCubit, String>(
           builder: (context, localeState) {
             return MaterialApp.router(
@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               ],
               supportedLocales: [Locale('en'), Locale('ru')],
               locale: Locale(localeState),
-              themeMode: them,
+              themeMode: themeMode,
               theme: ThemeDataConstants.lightTheme(),
               darkTheme: ThemeDataConstants.darkTheme(),
               routerConfig: appRouter.config(

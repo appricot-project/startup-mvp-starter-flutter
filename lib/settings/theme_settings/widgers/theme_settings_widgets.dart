@@ -168,7 +168,6 @@ class _ThemeSettingsWidgetState extends State<ThemeSettingsWidgets> {
           text: AppLocalizations.of(context)!.commonApply,
           onPressed: () {
             context.read<ThemeSettingsBloc>().add(ThemeSettingsOnApply());
-            setState(() {});
           },
         ),
       ),
