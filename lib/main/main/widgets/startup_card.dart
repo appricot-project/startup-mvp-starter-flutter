@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:startup_mvp_starter_flutter/main/main/models/startup_model.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 
 class StartupCard extends StatelessWidget {
@@ -32,9 +31,7 @@ class StartupCard extends StatelessWidget {
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: ColorConstants.border,
-                ),
+                border: Border.all(color: ColorConstants.border),
                 color: ColorConstants.background,
               ),
               child: Column(
@@ -81,7 +78,7 @@ class StartupCard extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
-                      style: CustomTextStyle.mobileH2(),
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                   ),
                   4.h,
@@ -91,7 +88,7 @@ class StartupCard extends StatelessWidget {
                       startup.description,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
-                      style: CustomTextStyle.body2(),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                 ],

@@ -7,7 +7,7 @@ abstract class SettingsEvent extends Equatable {
 
 class SettingsOnReturned extends SettingsEvent {}
 
-enum ActionKey { language, them, notifications }
+enum ActionKey { language, theme, notifications }
 
 class SettingsOnTapItem extends SettingsEvent {
   final ActionKey key;

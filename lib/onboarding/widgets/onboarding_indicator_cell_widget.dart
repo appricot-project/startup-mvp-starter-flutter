@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 
 abstract class OnboardingIndicatorCellWidget extends StatelessWidget {
   final int index;
@@ -28,7 +27,7 @@ class CustomOnboardingIndicatorCellWidget
             return Container(
               width: 20,
               decoration: BoxDecoration(
-                color: ColorConstants.background,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 borderRadius: BorderRadius.circular(5),
               ),
             );
@@ -36,7 +35,7 @@ class CustomOnboardingIndicatorCellWidget
             return Container(
               width: 20,
               decoration: BoxDecoration(
-                color: ColorConstants.error,
+                color: Theme.of(context).colorScheme.error,
                 borderRadius: BorderRadius.circular(5),
               ),
             );
@@ -44,7 +43,7 @@ class CustomOnboardingIndicatorCellWidget
             return Container(
               width: 20,
               decoration: BoxDecoration(
-                color: ColorConstants.primary,
+                color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(5),
               ),
             );

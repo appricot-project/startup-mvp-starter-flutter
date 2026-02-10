@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/main/main_details/bloc/main_details_bloc.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
@@ -69,13 +68,13 @@ class MainDetailsWidget extends StatelessWidget {
                         if (state.model?.name.isNotEmpty ?? false)
                           Text(
                             state.model!.name,
-                            style: CustomTextStyle.mobileH2(),
+                            style: Theme.of(context).textTheme.headlineMedium,
                           ),
                         16.h,
                         if (state.model?.description.isNotEmpty ?? false)
                           Text(
                             state.model!.description,
-                            style: CustomTextStyle.body1(),
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                       ],
                     ),

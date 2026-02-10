@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
 
@@ -71,11 +69,14 @@ class _CustomBackButtonState extends State<CustomBackButton> {
             child: Row(
               children: [
                 widget.icon ??
-                    Icon(Icons.arrow_back, color: ColorConstants.primary),
+                    Icon(
+                      Icons.arrow_back,
+                      color: Theme.of(context).primaryColor,
+                    ),
                 4.w,
                 Text(
                   AppLocalizations.of(context)!.commonBack,
-                  style: CustomTextStyle.body1(),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 4.w,
               ],
@@ -92,9 +93,15 @@ class _CustomBackButtonState extends State<CustomBackButton> {
     }
     switch (widget.color) {
       case ButtonColor.primary:
-        return Border.all(width: 1, color: ColorConstants.border);
+        return Border.all(
+          width: 1,
+          color: Theme.of(context).colorScheme.outline,
+        );
       case ButtonColor.secondary:
-        return Border.all(width: 1, color: ColorConstants.border);
+        return Border.all(
+          width: 1,
+          color: Theme.of(context).colorScheme.outline,
+        );
       case ButtonColor.tertiary:
         return null;
     }

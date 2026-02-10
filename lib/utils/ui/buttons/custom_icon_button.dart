@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
 
 class CustomIconButton extends StatefulWidget {
@@ -67,9 +66,15 @@ class _CustomIconButtonState extends State<CustomIconButton> {
     }
     switch (widget.color) {
       case ButtonColor.primary:
-        return Border.all(width: 1, color: ColorConstants.border);
+        return Border.all(
+          width: 1,
+          color: Theme.of(context).colorScheme.outline,
+        );
       case ButtonColor.secondary:
-        return Border.all(width: 1, color: ColorConstants.border);
+        return Border.all(
+          width: 1,
+          color: Theme.of(context).colorScheme.outline,
+        );
       case ButtonColor.tertiary:
         return null;
     }
@@ -77,13 +82,17 @@ class _CustomIconButtonState extends State<CustomIconButton> {
 
   Color _getColor() {
     if (!widget.isEnabled && widget.color != ButtonColor.tertiary) {
-      return ColorConstants.disable;
+      return Theme.of(context).disabledColor;
     }
     switch (widget.color) {
       case ButtonColor.primary:
-        return isPressed ? ColorConstants.pressedColor : ColorConstants.primary;
+        return isPressed
+            ? Theme.of(context).focusColor
+            : Theme.of(context).primaryColor;
       case ButtonColor.secondary:
-        return isPressed ? ColorConstants.pressedColor : ColorConstants.secondary;
+        return isPressed
+            ? Theme.of(context).focusColor
+            : Theme.of(context).colorScheme.secondary;
       case ButtonColor.tertiary:
         return Colors.transparent;
     }

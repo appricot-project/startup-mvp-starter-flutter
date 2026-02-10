@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 
 class MyCircularProgressIndicator extends StatelessWidget {
   final bool enabled;
@@ -19,7 +18,7 @@ class MyCircularProgressIndicator extends StatelessWidget {
     } else {
       return Center(
         child: CircularProgressIndicator(
-          color: color ?? ColorConstants.primary,
+          color: color ?? Theme.of(context).primaryColor,
           strokeWidth: 2,
         ),
       );

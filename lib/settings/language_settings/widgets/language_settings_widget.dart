@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/settings/language_settings/bloc/language_settings_bloc.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
 
@@ -19,7 +17,7 @@ class _LanguageSettingsWidgetState extends State<LanguageSettingsWidget> {
       appBar: AppBar(
         title: Text(
           AppLocalizations.of(context)!.settingsChangeLanguage,
-          style: CustomTextStyle.title1(),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
       body: SafeArea(
@@ -54,11 +52,14 @@ class _LanguageSettingsWidgetState extends State<LanguageSettingsWidget> {
                               if (states.contains(WidgetState.selected)) {
                                 return Colors.green;
                               }
-                              return ColorConstants.primary;
+                              return Theme.of(context).primaryColor;
                             }),
                           ),
                           6.w,
-                          Text('Русский', style: CustomTextStyle.body1()),
+                          Text(
+                            'Русский',
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
                         ],
                       ),
                     ),
@@ -88,11 +89,14 @@ class _LanguageSettingsWidgetState extends State<LanguageSettingsWidget> {
                               if (states.contains(WidgetState.selected)) {
                                 return Colors.green;
                               }
-                              return ColorConstants.primary;
+                              return Theme.of(context).primaryColor;
                             }),
                           ),
                           6.w,
-                          Text('English', style: CustomTextStyle.body1()),
+                          Text(
+                            'English',
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
                         ],
                       ),
                     ),

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 abstract class SharedStorage {
   // * MARK: Token
 
@@ -24,8 +26,8 @@ abstract class SharedStorage {
 
   // * MARK: Them
 
-  Future<bool?> setThemeIsDark(bool? value);
-  Future<bool?> getThemeIsDark();
+  Future<void> setTheme(ThemeMode value);
+  Future<ThemeMode> getTheme();
 
   // * MARK: Onboarding
 
