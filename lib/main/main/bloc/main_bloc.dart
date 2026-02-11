@@ -149,4 +149,5 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       ),
     );
   }
+
 }
