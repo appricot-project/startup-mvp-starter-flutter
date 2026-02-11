@@ -6,8 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_indicator_cell_widget.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_indicator_widget.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_slide_widget.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 
 enum SkipButtonAlignment { topCenter, bottomLeft, bottomRight, bottomCenter }
@@ -86,7 +84,7 @@ class _OnboardingWidgetState<SlideModel>
                             child: Container(
                               height: MediaQuery.of(context).size.height,
                               width: MediaQuery.of(context).size.width,
-                              color: ColorConstants.background,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                               child: widget.slideBuilder(
                                 state.slides[state.currentPage],
                               ),
@@ -189,11 +187,13 @@ class _OnboardingWidgetState<SlideModel>
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
-        color: ColorConstants.primary.withValues(alpha: 0.5),
+        color: Theme.of(context).primaryColor.withValues(alpha: 0.5),
       ),
       child: Text(
         AppLocalizations.of(context)!.commonSkip,
-        style: CustomTextStyle.buttonText(color: ColorConstants.background),
+        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+          color: Theme.of(context).scaffoldBackgroundColor,
+        ),
       ),
     );
   }

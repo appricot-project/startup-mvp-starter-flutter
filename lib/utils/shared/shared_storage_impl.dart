@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage.dart';
 
@@ -81,18 +82,19 @@ class SharedStorageImpl implements SharedStorage {
 
   // * MARK: Them
 
-  Future<bool?> setThemeIsDark(bool? value) async {
+  Future<void> setTheme(ThemeMode value) async {
     final prefs = await _getPrefs();
-    if (value == null) {
-      prefs.remove("them");
-      return null;
-    }
-    return prefs.setBool('them', value);
+    await prefs.setString('theme', value.name);
   }
 
-  Future<bool?> getThemeIsDark() async {
+  Future<ThemeMode> getTheme() async {
     final prefs = await _getPrefs();
-    return prefs.getBool("them");
+    final themeString = prefs.getString('theme');
+
+    return ThemeMode.values.firstWhere(
+      (e) => e.name == themeString,
+      orElse: () => ThemeMode.system,
+    );
   }
 
   // * MARK: Onboarding

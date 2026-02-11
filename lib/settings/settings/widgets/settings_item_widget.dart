@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/platform_components.dart';
 
 class SettingsItemWidget extends StatelessWidget {
@@ -19,14 +16,17 @@ class SettingsItemWidget extends StatelessWidget {
       onTap: onPressed.call,
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(width: 1, color: ColorConstants.border),
+          border: Border.all(
+            width: 1,
+            color: Theme.of(context).colorScheme.outline,
+          ),
           borderRadius: BorderRadius.circular(8),
         ),
         padding: EdgeInsets.only(top: 4, bottom: 4, left: 8, right: 8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: CustomTextStyle.body1()),
+            Text(title, style: Theme.of(context).textTheme.bodyLarge),
             PlatformComponents.arrowRightIcon(),
           ],
         ),

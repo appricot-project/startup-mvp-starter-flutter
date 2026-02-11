@@ -10,7 +10,6 @@ import 'package:startup_mvp_starter_flutter/main/main/models/startup_model.dart'
 import 'package:startup_mvp_starter_flutter/main/main/widgets/startup_card.dart';
 import 'package:startup_mvp_starter_flutter/navigation/app_router.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
 
@@ -173,7 +172,7 @@ class MainWidget extends StatelessWidget {
                         Navigator.of(context, rootNavigator: true).pop();
                       },
                       child: Text(
-                        style: CustomTextStyle.body1(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: currentSortType == element
                               ? FontWeight.w600
                               : FontWeight.w400,

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/auth/sign_in/bloc/sign_in_bloc.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
@@ -74,9 +72,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                       children: [
                         Text(
                           state.isSignUp ? l10n.authSignUp : l10n.authSignin,
-                          style: CustomTextStyle.mobileH2(
-                            color: ColorConstants.primary,
-                          ),
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         SizedBox(height: 12),
                         BasicTextField(
@@ -116,8 +112,9 @@ class _SignInWidgetState extends State<SignInWidget> {
                         ),
                         SizedBox(height: 16),
                         CustomButton(
-                          text:
-                              state.isSignUp ? l10n.authSignUp : l10n.authSignin,
+                          text: state.isSignUp
+                              ? l10n.authSignUp
+                              : l10n.authSignin,
                           onPressed: () {
                             context.read<SignInBloc>().add(
                               SignInOnSubmitButtonTapped(
@@ -130,15 +127,15 @@ class _SignInWidgetState extends State<SignInWidget> {
                         SizedBox(height: 12),
                         TextButton(
                           onPressed: () {
-                            context.read<SignInBloc>().add(SignInOnToggleMode());
+                            context.read<SignInBloc>().add(
+                              SignInOnToggleMode(),
+                            );
                           },
                           child: Text(
                             state.isSignUp
                                 ? l10n.authHaveAccount
                                 : l10n.authNoAccount,
-                            style: CustomTextStyle.body2(
-                              color: ColorConstants.primary,
-                            ),
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ),
                         SizedBox(height: 16),

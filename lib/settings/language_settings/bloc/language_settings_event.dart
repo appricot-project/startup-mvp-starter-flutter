@@ -7,8 +7,6 @@ abstract class LanguageSettingsEvent extends Equatable {
 
 class LanguageSettingsOnAppear extends LanguageSettingsEvent {}
 
-class LanguageSettingsOnReturned extends LanguageSettingsEvent {}
-
 class LanguageSettingsOnApply extends LanguageSettingsEvent {}
 
 class LanguageSettingsOnChangedLanguage extends LanguageSettingsEvent {

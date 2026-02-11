@@ -21,9 +21,6 @@ class LanguageSettingsBloc
       }
       _updating(emit);
     });
-    on<LanguageSettingsOnReturned>((event, emit) {
-      _updating(emit);
-    });
     on<LanguageSettingsOnChangedLanguage>((event, emit) {
       language = event.newLanguage;
       _updating(emit);

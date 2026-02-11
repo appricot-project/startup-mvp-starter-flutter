@@ -5,7 +5,6 @@ import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/navigation/app_router.dart';
 import 'package:startup_mvp_starter_flutter/settings/settings/bloc/settings_bloc.dart';
 import 'package:startup_mvp_starter_flutter/settings/settings/widgets/settings_item_widget.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/custom_text_style.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 
 class SettingsWidgets extends StatefulWidget {
@@ -24,7 +23,10 @@ class _SettingsWidgetState extends State<SettingsWidgets> {
               context.pushRoute(LanguageSettingsRoute()).then((_) {
                 context.read<SettingsBloc>().add(SettingsOnReturned());
               });
-            case ViewKey.them:
+            case ViewKey.theme:
+              context.pushRoute(ThemeSettingsRoute()).then((_) {
+                context.read<SettingsBloc>().add(SettingsOnReturned());
+              });
             case ViewKey.notifications:
           }
         }
@@ -33,7 +35,7 @@ class _SettingsWidgetState extends State<SettingsWidgets> {
         appBar: AppBar(
           title: Text(
             AppLocalizations.of(context)!.navigationSettings,
-            style: CustomTextStyle.title1(),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
         body: SafeArea(
@@ -56,7 +58,7 @@ class _SettingsWidgetState extends State<SettingsWidgets> {
                       title: AppLocalizations.of(context)!.settingsTheme,
                       onPressed: () {
                         context.read<SettingsBloc>().add(
-                          SettingsOnTapItem(key: ActionKey.them),
+                          SettingsOnTapItem(key: ActionKey.theme),
                         );
                       },
                     ),

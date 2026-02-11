@@ -13,6 +13,7 @@ import 'package:startup_mvp_starter_flutter/profile/edit_profile/page/edit_profi
 import 'package:startup_mvp_starter_flutter/profile/profile/page/profile_page.dart';
 import 'package:startup_mvp_starter_flutter/settings/language_settings/page/language_settings_page.dart';
 import 'package:startup_mvp_starter_flutter/settings/settings/page/settings_page.dart';
+import 'package:startup_mvp_starter_flutter/settings/theme_settings/page/theme_settings_page.dart';
 import 'package:startup_mvp_starter_flutter/ui_testing_widget.dart';
 
 part 'app_router.gr.dart';
@@ -67,6 +68,7 @@ class AppRouter extends RootStackRouter {
           children: [
             AutoRoute(path: '', page: SettingsRoute.page, initial: true),
             AutoRoute(path: '', page: LanguageSettingsRoute.page),
+            AutoRoute(path: '', page: ThemeSettingsRoute.page),
             // ..._commonTabChildren,
           ],
         ),
