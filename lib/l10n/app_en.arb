@@ -16,6 +16,14 @@
   "authCodeError": "Error code",
   "authVerificationTitle": "Enter code from mail",
 
+  "authSignUp": "Sign up",
+  "authNoAccount": "Don't have an account? Sign up",
+  "authHaveAccount": "Already have an account? Sign in",
+  "authWrongPassword": "Wrong password",
+  "authUserNotFound": "User not found",
+  "authEmailAlreadyInUse": "Email already in use",
+  "authWeakPassword": "Password is too weak",
+
   "profileSignIn": "Login to your profile",
   "profileLoginSuccess": "You have successfully logged in",
   "profileLogoutConfirm": "Are you sure you want to log out?",

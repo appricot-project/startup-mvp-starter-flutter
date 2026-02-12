@@ -1,11 +1,14 @@
 plugins {
     id("com.android.application")
+    // START: FlutterFire Configuration
+    id("com.google.gms.google-services")
+    // END: FlutterFire Configuration
     id("org.jetbrains.kotlin.android")
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
-    namespace = "com.example.startup_mvp_starter_flutter"
+    namespace = "com.startup_mvp_starter.app.dev"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +24,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.startup_mvp_starter_flutter"
+        applicationId = "com.startup_mvp_starter.app.dev"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -33,11 +36,11 @@ android {
     productFlavors {
         create("dev") {
             dimension = "default"
-            applicationId = "ru.startup_mvp_starter.app_dev"
+            applicationId = "com.startup_mvp_starter.app.dev"
         }
         create("prod") {
             dimension = "default"
-            applicationId = "ru.startup_mvp_starter.app"
+            applicationId = "com.startup_mvp_starter.app"
         }
     }
 

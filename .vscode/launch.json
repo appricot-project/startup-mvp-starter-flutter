@@ -2,7 +2,7 @@
     "version": "0.0.0",
     "configurations": [
         {
-            "name": "mvp",
+            "name": "prod",
             "type": "dart",
             "request": "launch",
             "flutterMode": "debug",
@@ -13,7 +13,7 @@
             ]
         },
         {
-            "name": "mvp_dev",
+            "name": "dev",
             "type": "dart",
             "request": "launch",
             "flutterMode": "debug",

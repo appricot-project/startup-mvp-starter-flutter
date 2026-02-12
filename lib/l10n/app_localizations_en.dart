@@ -48,6 +48,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authVerificationTitle => 'Enter code from mail';
 
   @override
+  String get authSignUp => 'Sign up';
+
+  @override
+  String get authNoAccount => 'Don\'t have an account? Sign up';
+
+  @override
+  String get authHaveAccount => 'Already have an account? Sign in';
+
+  @override
+  String get authWrongPassword => 'Wrong password';
+
+  @override
+  String get authUserNotFound => 'User not found';
+
+  @override
+  String get authEmailAlreadyInUse => 'Email already in use';
+
+  @override
+  String get authWeakPassword => 'Password is too weak';
+
+  @override
   String get profileSignIn => 'Login to your profile';
 
   @override

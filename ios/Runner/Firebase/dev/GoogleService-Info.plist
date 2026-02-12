@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyD1M4Ak6rVA0ls_uVtduMCVf-fL7dGqMok</string>
+	<key>GCM_SENDER_ID</key>
+	<string>692711956593</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.startupMvpStarter.app.dev</string>
+	<key>PROJECT_ID</key>
+	<string>startup-mvp-starter</string>
+	<key>STORAGE_BUCKET</key>
+	<string>startup-mvp-starter.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:692711956593:ios:3ec48336555596025cfbd0</string>
+</dict>
+</plist>

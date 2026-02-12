@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:startup_mvp_starter_flutter/firebase_options/dev/firebase_options.dart';
 import 'package:startup_mvp_starter_flutter/my_app.dart';
 import 'package:startup_mvp_starter_flutter/utils/app_config.dart';
 import 'package:startup_mvp_starter_flutter/utils/auth_cubit.dart';
@@ -9,7 +11,14 @@ import 'package:startup_mvp_starter_flutter/utils/theme_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setupLocator(flavor: Flavor.dev);
+  await setupLocator(
+    flavor: Flavor.dev,
+    firebaseOptions: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  final currentUser = FirebaseAuth.instance.currentUser;
+  print('Current user: $currentUser');
+
   runApp(
     MultiBlocProvider(
       providers: [

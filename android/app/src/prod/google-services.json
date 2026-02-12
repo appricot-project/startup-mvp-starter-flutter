@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "692711956593",
+    "project_id": "startup-mvp-starter",
+    "storage_bucket": "startup-mvp-starter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692711956593:android:ee584b1a2f6ade9f5cfbd0",
+        "android_client_info": {
+          "package_name": "com.startup_mvp_starter.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA57ERvK8KHqW9-jk837JkNZvXENmcB6P8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

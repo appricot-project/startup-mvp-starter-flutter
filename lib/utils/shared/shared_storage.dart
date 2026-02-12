@@ -13,11 +13,11 @@ abstract class SharedStorage {
   Future<String?> getRefreshToken();
   Future<bool> deleteRefreshToken();
 
-  // * MARK: Authorization
+  // // * MARK: Authorization
 
-  Future<bool> setAuthorized(bool value);
-  Future<bool> isAuthorized();
-  Future<void> clearAuthData();
+  // Future<bool> setAuthorized(bool value);
+  // Future<bool> isAuthorized();
+  // Future<void> clearAuthData();
 
   // * MARK: Locale
 

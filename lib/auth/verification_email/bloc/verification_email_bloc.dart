@@ -72,7 +72,7 @@ class VerificationEmailBloc
         await Future.delayed(Duration(seconds: 1));
         loading = null;
         if (event.code == "1111") {
-          await locator<AuthCubit>().login(refreshToken: '', accessToken: '');
+          await locator<AuthCubit>().login();
           timer?.cancel();
           emit(
             VerificationEmailClose(

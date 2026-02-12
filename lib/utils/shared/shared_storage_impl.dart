@@ -47,22 +47,22 @@ class SharedStorageImpl implements SharedStorage {
     return prefs.remove('refresh_jwt_token');
   }
 
-  // * MARK: Authorization
+  // // * MARK: Authorization
 
-  Future<bool> setAuthorized(bool value) async {
-    final prefs = await _getPrefs();
-    return prefs.setBool('isAuthorized', value);
-  }
+  // Future<bool> setAuthorized(bool value) async {
+  //   final prefs = await _getPrefs();
+  //   return prefs.setBool('isAuthorized', value);
+  // }
 
-  Future<bool> isAuthorized() async {
-    final prefs = await _getPrefs();
-    return prefs.getBool('isAuthorized') ?? false;
-  }
+  // Future<bool> isAuthorized() async {
+  //   final prefs = await _getPrefs();
+  //   return prefs.getBool('isAuthorized') ?? false;
+  // }
 
-  Future<void> clearAuthData() async {
-    await deleteToken();
-    await deleteRefreshToken();
-  }
+  // Future<void> clearAuthData() async {
+  //   await deleteToken();
+  //   await deleteRefreshToken();
+  // }
 
   // * MARK: Locale
 

@@ -42,9 +42,7 @@ class MainDetailsBloc extends Bloc<MainDetailsEvent, MainDetailsState> {
         },
         (r) {
           if (r != null) {
-            model = StartupDetailsModel.fromDto(
-              r,
-            ).copyWith(isFavorite: favouriteIds.contains(r.id));
+            model = r.copyWith(isFavorite: favouriteIds.contains(r.id));
             loading = null;
             _emitUpdatedState(emit);
           }

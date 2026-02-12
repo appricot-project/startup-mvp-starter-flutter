@@ -48,6 +48,27 @@ class AppLocalizationsRu extends AppLocalizations {
   String get authVerificationTitle => 'Введите код из почты';
 
   @override
+  String get authSignUp => 'Зарегистрироваться';
+
+  @override
+  String get authNoAccount => 'Нет аккаунта? Зарегистрируйтесь';
+
+  @override
+  String get authHaveAccount => 'Уже есть аккаунт? Войдите';
+
+  @override
+  String get authWrongPassword => 'Неверный пароль';
+
+  @override
+  String get authUserNotFound => 'Пользователь не найден';
+
+  @override
+  String get authEmailAlreadyInUse => 'Email уже используется';
+
+  @override
+  String get authWeakPassword => 'Слишком слабый пароль';
+
+  @override
   String get profileSignIn => 'Войдите в профиль';
 
   @override
