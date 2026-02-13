@@ -59,7 +59,7 @@ class AppRouter extends RootStackRouter {
           page: ProfileTabRoute.page,
           children: [
             AutoRoute(path: '', page: ProfileRoute.page, initial: true),
-            AutoRoute(path: '', page: EditProfileRoute.page),
+            AutoRoute(path: 'edit', page: EditProfileRoute.page),
             // ..._commonTabChildren,
           ],
         ),
@@ -68,9 +68,9 @@ class AppRouter extends RootStackRouter {
           page: SettingsTabRoute.page,
           children: [
             AutoRoute(path: '', page: SettingsRoute.page, initial: true),
-            AutoRoute(path: '', page: LanguageSettingsRoute.page),
-            AutoRoute(path: '', page: ThemeSettingsRoute.page),
-            AutoRoute(path: '', page: NotificationSettingsRoute.page),
+            AutoRoute(path: 'language', page: LanguageSettingsRoute.page),
+            AutoRoute(path: 'theme', page: ThemeSettingsRoute.page),
+            AutoRoute(path: 'notification', page: NotificationSettingsRoute.page),
             // ..._commonTabChildren,
           ],
         ),
