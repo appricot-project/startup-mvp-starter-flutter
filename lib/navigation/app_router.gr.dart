@@ -27,6 +27,22 @@ class EditProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [FavouritesPage]
+class FavouritesRoute extends PageRouteInfo<void> {
+  const FavouritesRoute({List<PageRouteInfo>? children})
+    : super(FavouritesRoute.name, initialChildren: children);
+
+  static const String name = 'FavouritesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return FavouritesPage();
+    },
+  );
+}
+
+/// generated route for
 /// [FavouritesTabPage]
 class FavouritesTabRoute extends PageRouteInfo<void> {
   const FavouritesTabRoute({List<PageRouteInfo>? children})

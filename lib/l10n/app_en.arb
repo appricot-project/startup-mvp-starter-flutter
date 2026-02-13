@@ -108,5 +108,7 @@
 
   "sortTypeNewest": "By Newest",
   "sortTypeFavorites": "Favorites First",
-  "sortTypeRecentViewed": "Recently Viewed First"
+  "sortTypeRecentViewed": "Recently Viewed First",
+
+  "favouritesEmpty": "No favorites yet"
 }

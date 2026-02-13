@@ -24,7 +24,7 @@ sealed class MainState extends Equatable {
   ];
 }
 
-enum Loading { initial }
+enum Loading { initial, refresh }
 
 enum SortType { newest, favorites, recentViewed }
 

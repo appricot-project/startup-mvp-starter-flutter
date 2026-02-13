@@ -108,5 +108,7 @@
 
   "sortTypeNewest": "По новизне",
   "sortTypeFavorites": "Сначала избранные",
-  "sortTypeRecentViewed": "Сначала просмотренные"
+  "sortTypeRecentViewed": "Сначала просмотренные",
+
+  "favouritesEmpty": "В избранном пока пусто"
 }
