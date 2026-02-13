@@ -77,6 +77,8 @@
   "settingsLightTheme": "Light theme",
   "settingsSystemTheme": "System theme",
 
+  "settingsNotificationsControls": "Manage push-notifications",
+
   "settingsNotifications": "Notifications",
   "settingsPrivacy": "Privacy",
   "settingsSecurity": "Security",
