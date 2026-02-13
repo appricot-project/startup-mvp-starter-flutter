@@ -149,6 +149,22 @@ class MainTabRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [NotificationSettingsPage]
+class NotificationSettingsRoute extends PageRouteInfo<void> {
+  const NotificationSettingsRoute({List<PageRouteInfo>? children})
+    : super(NotificationSettingsRoute.name, initialChildren: children);
+
+  static const String name = 'NotificationSettingsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return NotificationSettingsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [ProfilePage]
 class ProfileRoute extends PageRouteInfo<void> {
   const ProfileRoute({List<PageRouteInfo>? children})

@@ -5,6 +5,7 @@ import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/navigation/app_router.dart';
 import 'package:startup_mvp_starter_flutter/settings/settings/bloc/settings_bloc.dart';
 import 'package:startup_mvp_starter_flutter/settings/settings/widgets/settings_item_widget.dart';
+import 'package:startup_mvp_starter_flutter/utils/auth_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 
 class SettingsWidgets extends StatefulWidget {
@@ -28,6 +29,9 @@ class _SettingsWidgetState extends State<SettingsWidgets> {
                 context.read<SettingsBloc>().add(SettingsOnReturned());
               });
             case ViewKey.notifications:
+              context.pushRoute(NotificationSettingsRoute()).then((_) {
+                context.read<SettingsBloc>().add(SettingsOnReturned());
+              });
           }
         }
       },
@@ -39,42 +43,47 @@ class _SettingsWidgetState extends State<SettingsWidgets> {
           ),
         ),
         body: SafeArea(
-          child: BlocBuilder<SettingsBloc, SettingsState>(
-            builder: (context, state) {
-              return Padding(
-                padding: EdgeInsetsGeometry.only(left: 8, right: 8, top: 8),
-                child: Column(
-                  children: [
-                    SettingsItemWidget(
-                      title: AppLocalizations.of(context)!.settingsLanguage,
-                      onPressed: () {
-                        context.read<SettingsBloc>().add(
-                          SettingsOnTapItem(key: ActionKey.language),
-                        );
-                      },
+          child: BlocBuilder<AuthCubit, bool>(
+            builder: (context, isAuthorize) {
+              return BlocBuilder<SettingsBloc, SettingsState>(
+                builder: (context, state) {
+                  return Padding(
+                    padding: EdgeInsetsGeometry.only(left: 8, right: 8, top: 8),
+                    child: Column(
+                      children: [
+                        SettingsItemWidget(
+                          title: AppLocalizations.of(context)!.settingsLanguage,
+                          onPressed: () {
+                            context.read<SettingsBloc>().add(
+                              SettingsOnTapItem(key: ActionKey.language),
+                            );
+                          },
+                        ),
+                        8.h,
+                        SettingsItemWidget(
+                          title: AppLocalizations.of(context)!.settingsTheme,
+                          onPressed: () {
+                            context.read<SettingsBloc>().add(
+                              SettingsOnTapItem(key: ActionKey.theme),
+                            );
+                          },
+                        ),
+                        8.h,
+                        if (isAuthorize)
+                          SettingsItemWidget(
+                            title: AppLocalizations.of(
+                              context,
+                            )!.settingsNotifications,
+                            onPressed: () {
+                              context.read<SettingsBloc>().add(
+                                SettingsOnTapItem(key: ActionKey.notifications),
+                              );
+                            },
+                          ),
+                      ],
                     ),
-                    8.h,
-                    SettingsItemWidget(
-                      title: AppLocalizations.of(context)!.settingsTheme,
-                      onPressed: () {
-                        context.read<SettingsBloc>().add(
-                          SettingsOnTapItem(key: ActionKey.theme),
-                        );
-                      },
-                    ),
-                    8.h,
-                    SettingsItemWidget(
-                      title: AppLocalizations.of(
-                        context,
-                      )!.settingsNotifications,
-                      onPressed: () {
-                        context.read<SettingsBloc>().add(
-                          SettingsOnTapItem(key: ActionKey.notifications),
-                        );
-                      },
-                    ),
-                  ],
-                ),
+                  );
+                },
               );
             },
           ),
