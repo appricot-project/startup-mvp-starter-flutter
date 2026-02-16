@@ -198,6 +198,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settingsSystemTheme => 'Системная тема';
 
   @override
+  String get settingsNotificationsControls => 'Управление уведомлениями';
+
+  @override
   String get settingsNotifications => 'Уведомления';
 
   @override

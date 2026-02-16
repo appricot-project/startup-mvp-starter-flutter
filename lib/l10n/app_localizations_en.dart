@@ -198,6 +198,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsSystemTheme => 'System theme';
 
   @override
+  String get settingsNotificationsControls => 'Manage push-notifications';
+
+  @override
   String get settingsNotifications => 'Notifications';
 
   @override

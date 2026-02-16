@@ -473,6 +473,12 @@ abstract class AppLocalizations {
   /// **'System theme'**
   String get settingsSystemTheme;
 
+  /// No description provided for @settingsNotificationsControls.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage push-notifications'**
+  String get settingsNotificationsControls;
+
   /// No description provided for @settingsNotifications.
   ///
   /// In en, this message translates to:
