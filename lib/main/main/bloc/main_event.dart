@@ -25,3 +25,5 @@ class MainOnSortSelected extends MainEvent {
 
   const MainOnSortSelected({required this.sortType});
 }
+
+class MainOnPullToRefresh extends MainEvent {}

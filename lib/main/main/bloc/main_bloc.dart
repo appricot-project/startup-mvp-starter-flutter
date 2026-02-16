@@ -30,26 +30,18 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     on<MainOnAppear>((event, emit) async {
       loading = Loading.initial;
       _emitUpdatedState(emit);
-      final response = await mainService.getStartups();
-      response.fold(
-        (l) {
-          _emitErrorState(emit, l.message);
-        },
-        (r) {
-          startups = r;
-          sortStartups();
-        },
-      );
-      var getFavoriteIdsResponse = await mainService.getFavoriteIds();
-      getFavoriteIdsResponse.fold(
-        (l) {
-          _emitErrorState(emit, l.message);
-        },
-        (r) {
-          favoriteIds = r ?? [];
-        },
-      );
-      viewedIds = await sharedStorage.getViewedIds();
+
+      await _loadData(emit);
+
+      loading = null;
+      _emitUpdatedState(emit);
+    });
+    on<MainOnPullToRefresh>((event, emit) async {
+      loading = Loading.refresh;
+      _emitUpdatedState(emit);
+
+      await _loadData(emit);
+
       loading = null;
       _emitUpdatedState(emit);
     });
@@ -123,6 +115,23 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         });
         break;
     }
+  }
+
+  Future<void> _loadData(Emitter<MainState> emit) async {
+    final response = await mainService.getStartups();
+    response.fold(
+      (l) => _emitErrorState(emit, l.message),
+      (r) {
+        startups = r;
+        sortStartups();
+      },
+    );
+    var getFavoriteIdsResponse = await mainService.getFavoriteIds();
+    getFavoriteIdsResponse.fold(
+      (l) => _emitErrorState(emit, l.message),
+      (r) => favoriteIds = r ?? [],
+    );
+    viewedIds = await sharedStorage.getViewedIds();
   }
 
   _emitUpdatedState(Emitter<MainState> emit) {

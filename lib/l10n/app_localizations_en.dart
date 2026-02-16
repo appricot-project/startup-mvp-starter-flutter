@@ -271,4 +271,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sortTypeRecentViewed => 'Recently Viewed First';
+
+  @override
+  String get favouritesEmpty => 'No favorites yet';
 }

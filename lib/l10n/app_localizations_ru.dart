@@ -271,4 +271,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get sortTypeRecentViewed => 'Сначала просмотренные';
+
+  @override
+  String get favouritesEmpty => 'В избранном пока пусто';
 }

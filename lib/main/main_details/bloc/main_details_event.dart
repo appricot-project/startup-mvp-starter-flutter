@@ -8,3 +8,7 @@ sealed class MainDetailsEvent extends Equatable {
 }
 
 class MainDetailsOnAppear extends MainDetailsEvent {}
+
+class MainDetailsOnFavoriteTapped extends MainDetailsEvent {}
+
+class MainDetailsOnPullToRefresh extends MainDetailsEvent {}

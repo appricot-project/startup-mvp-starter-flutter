@@ -9,7 +9,7 @@ sealed class MainDetailsState extends Equatable {
   List<Object?> get props => [loading, model];
 }
 
-enum Loading { initial }
+enum Loading { initial, refresh }
 
 final class MainDetailsInitial extends MainDetailsState {
   MainDetailsInitial({required super.loading, required super.model});

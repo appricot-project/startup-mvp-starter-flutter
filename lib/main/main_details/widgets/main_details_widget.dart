@@ -1,13 +1,40 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:startup_mvp_starter_flutter/main/main_details/bloc/main_details_bloc.dart';
+import 'package:startup_mvp_starter_flutter/navigation/route_visibility.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
 
-class MainDetailsWidget extends StatelessWidget {
+class MainDetailsWidget extends StatefulWidget {
   const MainDetailsWidget();
+
+  @override
+  State<MainDetailsWidget> createState() => _MainDetailsWidgetState();
+}
+
+class _MainDetailsWidgetState extends State<MainDetailsWidget>
+    with RouteVisibility<MainDetailsWidget> {
+  late RefreshController _refreshController;
+
+  @override
+  void didBecomeActive() {
+    context.read<MainDetailsBloc>().add(MainDetailsOnPullToRefresh());
+  }
+
+  @override
+  void initState() {
+    _refreshController = RefreshController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _refreshController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +52,11 @@ class MainDetailsWidget extends StatelessWidget {
                 return Visibility(
                   visible: state.loading != Loading.initial,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<MainDetailsBloc>().add(
+                        MainDetailsOnFavoriteTapped(),
+                      );
+                    },
                     icon: state.model?.isFavorite == true
                         ? Icon(Icons.favorite, color: Colors.red)
                         : Icon(Icons.favorite_outline, color: Colors.red),
@@ -40,6 +71,16 @@ class MainDetailsWidget extends StatelessWidget {
             builder: (context, state) {
               return LoadingIndicator(
                 initialLoading: state.loading == Loading.initial,
+                refreshController: _refreshController,
+                onPullToRefresh: () async {
+                  final bloc = context.read<MainDetailsBloc>();
+                  final future = bloc.stream.firstWhere(
+                    (state) => state.loading != Loading.refresh,
+                  );
+                  bloc.add(MainDetailsOnPullToRefresh());
+                  await future;
+                  _refreshController.refreshCompleted();
+                },
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.only(

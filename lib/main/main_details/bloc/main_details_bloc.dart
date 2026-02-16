@@ -24,35 +24,63 @@ class MainDetailsBloc extends Bloc<MainDetailsEvent, MainDetailsState> {
       loading = Loading.initial;
       _emitUpdatedState(emit);
 
-      var favouriteIds = <String>[];
-      var getFavoriteIdsResponse = await mainService.getFavoriteIds();
-      getFavoriteIdsResponse.fold(
-        (l) {
-          _emitErrorState(emit, l.message);
-        },
-        (r) {
-          favouriteIds = r ?? [];
-        },
-      );
-
-      final response = await mainService.getStartupDetails(startupId);
-      response.fold(
-        (l) {
-          _emitErrorState(emit, l.message);
-        },
-        (r) {
-          if (r != null) {
-            model = r.copyWith(isFavorite: favouriteIds.contains(r.id));
-            loading = null;
-            _emitUpdatedState(emit);
-          }
-        },
-      );
+      await _loadData(emit);
 
       if (model != null) {
         await sharedStorage.addViewedId(startupId);
       }
+
+      loading = null;
+      _emitUpdatedState(emit);
     });
+
+    on<MainDetailsOnPullToRefresh>((event, emit) async {
+      loading = Loading.refresh;
+      _emitUpdatedState(emit);
+
+      await _loadData(emit);
+
+      loading = null;
+      _emitUpdatedState(emit);
+    });
+
+    on<MainDetailsOnFavoriteTapped>((event, emit) async {
+      if (model == null) return;
+
+      if (model!.isFavorite) {
+        await mainService.removeFavoriteId(startupId);
+      } else {
+        await mainService.addFavoriteId(startupId);
+      }
+
+      model = model!.copyWith(isFavorite: !model!.isFavorite);
+      _emitUpdatedState(emit);
+    });
+  }
+
+  Future<void> _loadData(Emitter<MainDetailsState> emit) async {
+    var favouriteIds = <String>[];
+    var getFavoriteIdsResponse = await mainService.getFavoriteIds();
+    getFavoriteIdsResponse.fold(
+      (l) {
+        _emitErrorState(emit, l.message);
+      },
+      (r) {
+        favouriteIds = r ?? [];
+      },
+    );
+
+    final response = await mainService.getStartupDetails(startupId);
+    response.fold(
+      (l) {
+        _emitErrorState(emit, l.message);
+      },
+      (r) {
+        if (r != null) {
+          model = r.copyWith(isFavorite: favouriteIds.contains(r.id));
+        }
+      },
+    );
   }
 
   _emitUpdatedState(Emitter<MainDetailsState> emit) {

@@ -4,17 +4,44 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/main/main/bloc/main_bloc.dart';
 import 'package:startup_mvp_starter_flutter/main/main/models/startup_model.dart';
 import 'package:startup_mvp_starter_flutter/main/main/widgets/startup_card.dart';
 import 'package:startup_mvp_starter_flutter/navigation/app_router.dart';
+import 'package:startup_mvp_starter_flutter/navigation/route_visibility.dart';
 import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
 
-class MainWidget extends StatelessWidget {
+class MainWidget extends StatefulWidget {
   const MainWidget();
+
+  @override
+  State<MainWidget> createState() => _MainWidgetState();
+}
+
+class _MainWidgetState extends State<MainWidget>
+    with RouteVisibility<MainWidget> {
+  late RefreshController _refreshController;
+
+  @override
+  void didBecomeActive() {
+    context.read<MainBloc>().add(MainOnPullToRefresh());
+  }
+
+  @override
+  void initState() {
+    _refreshController = RefreshController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _refreshController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +87,19 @@ class MainWidget extends StatelessWidget {
             builder: (context, state) {
               return LoadingIndicator(
                 initialLoading: state.loading == Loading.initial,
+                refreshController: _refreshController,
+                onPullToRefresh: () async {
+                  final bloc = context.read<MainBloc>();
+                  final future = bloc.stream.firstWhere(
+                    (state) => state.loading != Loading.refresh,
+                  );
+                  bloc.add(MainOnPullToRefresh());
+                  await future;
+                  _refreshController.refreshCompleted();
+                },
                 child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: state.startups.length,
                   padding: EdgeInsets.all(8),
                   separatorBuilder: (context, index) => Container(height: 16),
