@@ -9,7 +9,7 @@ class ProfileOnAppear extends ProfileEvent {}
 
 class ProfileOnReturned extends ProfileEvent {}
 
-enum ActionKey { logout, signIn, logoutAlert, editProfile }
+enum ActionKey { logout, signIn, logoutAlert, editProfile, notificationList }
 
 class ProfileOnTapped extends ProfileEvent {
   final ActionKey key;

@@ -210,6 +210,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsSecurity => 'Security';
 
   @override
+  String get notificationList => 'List of notifications';
+
+  @override
   String get statusLoading => 'Loading';
 
   @override

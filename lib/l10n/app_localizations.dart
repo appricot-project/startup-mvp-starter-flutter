@@ -497,6 +497,12 @@ abstract class AppLocalizations {
   /// **'Security'**
   String get settingsSecurity;
 
+  /// No description provided for @notificationList.
+  ///
+  /// In en, this message translates to:
+  /// **'List of notifications'**
+  String get notificationList;
+
   /// No description provided for @statusLoading.
   ///
   /// In en, this message translates to:

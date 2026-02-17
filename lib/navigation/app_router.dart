@@ -9,6 +9,7 @@ import 'package:startup_mvp_starter_flutter/navigation/wrappers/favourites_tab_p
 import 'package:startup_mvp_starter_flutter/navigation/wrappers/main_tab_page.dart';
 import 'package:startup_mvp_starter_flutter/navigation/wrappers/profile_tab_page.dart';
 import 'package:startup_mvp_starter_flutter/navigation/wrappers/settings_tab_page.dart';
+import 'package:startup_mvp_starter_flutter/profile/notification_list/page/notification_list_page.dart';
 import 'package:startup_mvp_starter_flutter/profile/edit_profile/page/edit_profile_page.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile/page/profile_page.dart';
 import 'package:startup_mvp_starter_flutter/settings/language_settings/page/language_settings_page.dart';
@@ -62,6 +63,10 @@ class AppRouter extends RootStackRouter {
           children: [
             AutoRoute(path: '', page: ProfileRoute.page, initial: true),
             AutoRoute(path: 'edit', page: EditProfileRoute.page),
+            AutoRoute(
+              path: 'notification_list',
+              page: NotificationListRoute.page,
+            ),
             // ..._commonTabChildren,
           ],
         ),
@@ -72,7 +77,10 @@ class AppRouter extends RootStackRouter {
             AutoRoute(path: '', page: SettingsRoute.page, initial: true),
             AutoRoute(path: 'language', page: LanguageSettingsRoute.page),
             AutoRoute(path: 'theme', page: ThemeSettingsRoute.page),
-            AutoRoute(path: 'notification', page: NotificationSettingsRoute.page),
+            AutoRoute(
+              path: 'notification',
+              page: NotificationSettingsRoute.page,
+            ),
             // ..._commonTabChildren,
           ],
         ),

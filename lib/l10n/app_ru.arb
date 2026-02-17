@@ -83,6 +83,8 @@
   "settingsPrivacy": "Конфиденциальность",
   "settingsSecurity": "Безопасность",
 
+  "notificationList": "Список уведомлений",
+
   "statusLoading": "Загрузка",
   "statusSuccess": "Успешно",
   "statusError": "Ошибка",

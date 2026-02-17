@@ -26,4 +26,8 @@ class PlatformComponents {
   static Widget calendarIcon() {
     return Icon(Icons.calendar_month, size: 24);
   }
+
+  static Widget notificationListIcon() {
+    return Icon(Icons.notifications, size: 24);
+  }
 }
