@@ -33,6 +33,9 @@ class ProfileServiceImpl implements ProfileService {
           name: data['name'] as String?,
           birthday: birthdayTimestamp?.toDate(),
           phone: data['phone'] as String?,
+          fcmTokens: data["fcmTokens"] == null
+              ? []
+              : List<String>.from(data["fcmTokens"]),
         ),
       );
     } catch (e) {
