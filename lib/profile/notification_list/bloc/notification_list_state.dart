@@ -10,7 +10,7 @@ abstract class NotificationListState extends Equatable {
   List<Object?> get props => [loading, notifications];
 }
 
-enum Loading { initialLoading }
+enum Loading { initialLoading, refresh }
 
 class NotificationListInitial extends NotificationListState {
   NotificationListInitial({

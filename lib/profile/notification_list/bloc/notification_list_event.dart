@@ -6,3 +6,5 @@ abstract class NotificationListEvent extends Equatable {
 }
 
 class NotificationListOnAppear extends NotificationListEvent {}
+
+class NotificationListOnPullToRefresh extends NotificationListEvent {}

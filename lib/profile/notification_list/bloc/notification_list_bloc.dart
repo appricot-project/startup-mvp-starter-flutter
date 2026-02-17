@@ -20,9 +20,28 @@ class NotificationListBloc
         ),
       ) {
     on<NotificationListOnAppear>((event, emit) async {
-      await Future.delayed(Duration(seconds: 1));
+      var response = await profileService.getNotifications();
       loading = null;
+      response.fold(
+        (l) {
+          emit(
+            NotificationListError(
+              loading: loading,
+              error: l.message,
+              notifications: notifications,
+            ),
+          );
+        },
+        (r) {
+          notifications = r ?? [];
+          _updating(emit);
+        },
+      );
+    });
+    on<NotificationListOnPullToRefresh>((event, emit) {
+      loading = Loading.refresh;
       _updating(emit);
+      add(NotificationListOnAppear());
     });
   }
   _updating(Emitter<NotificationListState> emit) {

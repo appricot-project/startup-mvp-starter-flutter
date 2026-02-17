@@ -21,6 +21,7 @@ class ThemeDataConstants {
       appBarTheme: AppBarTheme(
         iconTheme: IconThemeData(color: Color.fromRGBO(25, 41, 55, 1)),
         elevation: 0,
+        centerTitle: true,
         backgroundColor: ColorConstants.background,
         surfaceTintColor: ColorConstants.background,
       ),
@@ -50,6 +51,7 @@ class ThemeDataConstants {
       appBarTheme: AppBarTheme(
         iconTheme: IconThemeData(color: Color.fromRGBO(255, 255, 255, 1)),
         elevation: 0,
+        centerTitle: true,
         backgroundColor: ColorConstants.backgroundDark,
         surfaceTintColor: ColorConstants.backgroundDark,
       ),

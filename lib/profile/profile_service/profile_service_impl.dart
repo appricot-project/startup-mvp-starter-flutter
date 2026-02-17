@@ -75,9 +75,7 @@ class ProfileServiceImpl implements ProfileService {
       final querySnapshot = await FirebaseFirestore.instance
           .collection('notifications')
           .where('userId', isEqualTo: user.uid)
-          .orderBy('createdAt', descending: true)
           .get();
-
       final notifications = querySnapshot.docs
           .map((doc) => NotificationModelFirestore.fromDocument(doc))
           .toList();

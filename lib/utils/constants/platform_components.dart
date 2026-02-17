@@ -30,4 +30,8 @@ class PlatformComponents {
   static Widget notificationListIcon() {
     return Icon(Icons.notifications, size: 24);
   }
+
+  static Widget notificationIcon() {
+    return Icon(Icons.notification_important_rounded, size: 24);
+  }
 }
