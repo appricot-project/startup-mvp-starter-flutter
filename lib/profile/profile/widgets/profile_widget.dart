@@ -54,10 +54,41 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               context.pushRoute(EditProfileRoute()).then((_) {
                 context.read<ProfileBloc>().add(ProfileOnReturned());
               });
+            case ViewKey.notificationList:
+              context.pushRoute(NotificationListRoute()).then((_) {
+                context.read<ProfileBloc>().add(ProfileOnReturned());
+              });
           }
         }
       },
       child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 30,
+          title: Padding(
+            padding: EdgeInsets.only(top: 10),
+            child: Text(
+              AppLocalizations.of(context)!.navigationProfile,
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
+          ),
+          actions: [
+            BlocBuilder<AuthCubit, bool>(
+              builder: (context, isAuthorized) {
+                return Visibility(
+                  visible: isAuthorized,
+                  child: IconButton(
+                    icon: Icon(Icons.notifications),
+                    onPressed: () {
+                      context.read<ProfileBloc>().add(
+                        ProfileOnTapped(key: ActionKey.notificationList),
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
         body: SafeArea(
           child: BlocBuilder<ProfileBloc, ProfileState>(
             builder: (context, state) {
@@ -98,11 +129,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           );
                         } else {
                           return Padding(
-                            padding: EdgeInsets.only(
-                              top: 21,
-                              left: 16,
-                              right: 16,
-                            ),
+                            padding: EdgeInsets.only(left: 16, right: 16),
                             child: Column(
                               children: [
                                 profileUserInfo(state.profile),
