@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
+import 'package:startup_mvp_starter_flutter/navigation/route_visibility.dart';
 import 'package:startup_mvp_starter_flutter/profile/notification_list/bloc/notification_list_bloc.dart';
 import 'package:startup_mvp_starter_flutter/profile/notification_list/widgets/notification_cell_widget.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
@@ -15,8 +16,14 @@ class NotificationListWidget extends StatefulWidget {
   State<NotificationListWidget> createState() => _NotificationListWidgetState();
 }
 
-class _NotificationListWidgetState extends State<NotificationListWidget> {
+class _NotificationListWidgetState extends State<NotificationListWidget>
+    with RouteVisibility<NotificationListWidget> {
   late RefreshController _refreshController;
+
+  @override
+  void didBecomeActive() {
+    context.read<NotificationListBloc>().add(NotificationListOnPullToRefresh());
+  }
 
   @override
   void initState() {

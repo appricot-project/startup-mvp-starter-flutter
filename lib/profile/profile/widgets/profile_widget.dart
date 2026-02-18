@@ -74,18 +74,17 @@ class _ProfileWidgetState extends State<ProfileWidget> {
           actions: [
             BlocBuilder<AuthCubit, bool>(
               builder: (context, isAuthorized) {
-                if (isAuthorized) {
-                  return IconButton(
+                return Visibility(
+                  visible: isAuthorized,
+                  child: IconButton(
                     icon: Icon(Icons.notifications),
                     onPressed: () {
                       context.read<ProfileBloc>().add(
                         ProfileOnTapped(key: ActionKey.notificationList),
                       );
                     },
-                  );
-                } else {
-                  return Container();
-                }
+                  ),
+                );
               },
             ),
           ],
