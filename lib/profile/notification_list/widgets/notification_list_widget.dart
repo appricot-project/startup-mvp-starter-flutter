@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/navigation/route_visibility.dart';
@@ -67,20 +68,28 @@ class _NotificationListWidgetState extends State<NotificationListWidget>
                   _refreshController.refreshCompleted();
                 },
                 initialLoading: state.loading == Loading.initialLoading,
-                child: Padding(
-                  padding: EdgeInsetsGeometry.all(16),
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return NotificationCellWidget(
-                        notification: state.notifications[index],
-                      );
-                    },
-                    separatorBuilder: (_, _) {
-                      return 8.h;
-                    },
-                    itemCount: state.notifications.length,
+                child: LazyLoadScrollView(
+                  onEndOfPage: () {
+                    context.read<NotificationListBloc>().add(
+                      NotificationListOnLoadMore(),
+                    );
+                  },
+                  isLoading: state.loading == Loading.moreLoading,
+                  child: Padding(
+                    padding: EdgeInsetsGeometry.all(16),
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return NotificationCellWidget(
+                          notification: state.notifications[index],
+                        );
+                      },
+                      separatorBuilder: (_, _) {
+                        return 8.h;
+                      },
+                      itemCount: state.notifications.length,
+                    ),
                   ),
                 ),
               ),
