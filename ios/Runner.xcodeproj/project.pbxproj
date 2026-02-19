@@ -566,18 +566,24 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 465CZ4TQ6V;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 35LR4VRSZ9;
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = lib/main.dart;
+				GID_CLIENT_ID = "692711956593-551j83nja20f4e5alruplerhjmpnf6tc.apps.googleusercontent.com";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.startupMvpStarter.app;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.appricot.startupmvpstarter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Startup MVP Starter Dev";
+				REVERSED_CLIENT_ID = "com.googleusercontent.apps.692711956593-551j83nja20f4e5alruplerhjmpnf6tc";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -671,18 +677,24 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 465CZ4TQ6V;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 35LR4VRSZ9;
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = lib/main_dev.dart;
+				GID_CLIENT_ID = "692711956593-go8mkf341b5ed53gvoc7bd59g1ni79ov.apps.googleusercontent.com";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.startupMvpStarter.app.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.appricot.startupmvpstarter.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Startup MVP Starter Dev Dev";
+				REVERSED_CLIENT_ID = "com.googleusercontent.apps.692711956593-go8mkf341b5ed53gvoc7bd59g1ni79ov";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -773,18 +785,23 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 465CZ4TQ6V;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 35LR4VRSZ9;
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = lib/main.dart;
+				GID_CLIENT_ID = "692711956593-551j83nja20f4e5alruplerhjmpnf6tc.apps.googleusercontent.com";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.startupMvpStarter.app;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.appricot.startupmvpstarter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Startup MVP Starter App Store";
+				REVERSED_CLIENT_ID = "com.googleusercontent.apps.692711956593-551j83nja20f4e5alruplerhjmpnf6tc";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -872,18 +889,25 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 465CZ4TQ6V;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 35LR4VRSZ9;
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = lib/main_dev.dart;
+				GID_CLIENT_ID = "692711956593-go8mkf341b5ed53gvoc7bd59g1ni79ov.apps.googleusercontent.com";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.startupMvpStarter.app.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.appricot.startupmvpstarter.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Startup MVP Starter Dev App Store";
+				REVERSED_CLIENT_ID = "com.googleusercontent.apps.692711956593-go8mkf341b5ed53gvoc7bd59g1ni79ov";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -969,18 +993,23 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 465CZ4TQ6V;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 35LR4VRSZ9;
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = lib/main.dart;
+				GID_CLIENT_ID = "692711956593-551j83nja20f4e5alruplerhjmpnf6tc.apps.googleusercontent.com";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.startupMvpStarter.app;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.appricot.startupmvpstarter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Startup MVP Starter App Store";
+				REVERSED_CLIENT_ID = "com.googleusercontent.apps.692711956593-551j83nja20f4e5alruplerhjmpnf6tc";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1066,18 +1095,25 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 465CZ4TQ6V;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 35LR4VRSZ9;
 				ENABLE_BITCODE = NO;
 				FLUTTER_TARGET = lib/main_dev.dart;
+				GID_CLIENT_ID = "692711956593-go8mkf341b5ed53gvoc7bd59g1ni79ov.apps.googleusercontent.com";
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.startupMvpStarter.app.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.appricot.startupmvpstarter.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Startup MVP Starter Dev App Store";
+				REVERSED_CLIENT_ID = "com.googleusercontent.apps.692711956593-go8mkf341b5ed53gvoc7bd59g1ni79ov";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

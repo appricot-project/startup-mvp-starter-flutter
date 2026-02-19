@@ -69,6 +69,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authWeakPassword => 'Password is too weak';
 
   @override
+  String get authOrDivider => 'or';
+
+  @override
+  String get authSignInWithGoogle => 'Sign in with Google';
+
+  @override
+  String get authSignInWithApple => 'Sign in with Apple';
+
+  @override
   String get profileSignIn => 'Login to your profile';
 
   @override

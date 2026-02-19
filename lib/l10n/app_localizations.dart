@@ -215,6 +215,24 @@ abstract class AppLocalizations {
   /// **'Password is too weak'**
   String get authWeakPassword;
 
+  /// No description provided for @authOrDivider.
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get authOrDivider;
+
+  /// No description provided for @authSignInWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google'**
+  String get authSignInWithGoogle;
+
+  /// No description provided for @authSignInWithApple.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Apple'**
+  String get authSignInWithApple;
+
   /// No description provided for @profileSignIn.
   ///
   /// In en, this message translates to:

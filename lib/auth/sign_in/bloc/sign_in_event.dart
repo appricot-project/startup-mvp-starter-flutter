@@ -35,3 +35,7 @@ class SignInOnSubmitButtonTapped extends SignInEvent {
 class SignInOnToggleMode extends SignInEvent {}
 
 class SignInOnReturned extends SignInEvent {}
+
+class SignInOnGoogleTapped extends SignInEvent {}
+
+class SignInOnAppleTapped extends SignInEvent {}
