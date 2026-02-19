@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/navigation/route_visibility.dart';
@@ -9,6 +8,7 @@ import 'package:startup_mvp_starter_flutter/profile/notification_list/widgets/no
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
+import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/my_circular_progress_indicator.dart';
 
 class NotificationListWidget extends StatefulWidget {
   const NotificationListWidget({super.key});
@@ -20,6 +20,7 @@ class NotificationListWidget extends StatefulWidget {
 class _NotificationListWidgetState extends State<NotificationListWidget>
     with RouteVisibility<NotificationListWidget> {
   late RefreshController _refreshController;
+  late ScrollController _scrollController;
 
   @override
   void didBecomeActive() {
@@ -29,13 +30,32 @@ class _NotificationListWidgetState extends State<NotificationListWidget>
   @override
   void initState() {
     _refreshController = RefreshController();
+    _scrollController = ScrollController();
+    _scrollController.addListener(_onScroll);
     super.initState();
   }
 
   @override
   void dispose() {
     _refreshController.dispose();
+    _scrollController.dispose();
     super.dispose();
+  }
+
+  void _onScroll() {
+    if (!_scrollController.hasClients) return;
+
+    final threshold = 50;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+
+    if (maxScroll - currentScroll <= threshold) {
+      final state = context.read<NotificationListBloc>().state;
+
+      if (state.hasMore && state.loading != Loading.moreLoading) {
+        context.read<NotificationListBloc>().add(NotificationListOnLoadMore());
+      }
+    }
   }
 
   @override
@@ -55,8 +75,18 @@ class _NotificationListWidgetState extends State<NotificationListWidget>
         ),
         body: BlocBuilder<NotificationListBloc, NotificationListState>(
           builder: (context, state) {
+            if (state.loading == null && state.notifications.isEmpty) {
+              return Center(
+                child: Text(
+                  AppLocalizations.of(context)!.notificationListEmpty,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+              );
+            }
             return SafeArea(
               child: LoadingIndicator(
+                scrollController: _scrollController,
                 refreshController: _refreshController,
                 onPullToRefresh: () async {
                   final bloc = context.read<NotificationListBloc>();
@@ -68,28 +98,25 @@ class _NotificationListWidgetState extends State<NotificationListWidget>
                   _refreshController.refreshCompleted();
                 },
                 initialLoading: state.loading == Loading.initialLoading,
-                child: LazyLoadScrollView(
-                  onEndOfPage: () {
-                    context.read<NotificationListBloc>().add(
-                      NotificationListOnLoadMore(),
-                    );
-                  },
-                  isLoading: state.loading == Loading.moreLoading,
-                  child: Padding(
-                    padding: EdgeInsetsGeometry.all(16),
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return NotificationCellWidget(
-                          notification: state.notifications[index],
+                child: Padding(
+                  padding: EdgeInsetsGeometry.all(16),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount:
+                        state.notifications.length +
+                        (state.loading == Loading.moreLoading ? 1 : 0),
+                    itemBuilder: (context, index) {
+                      if (index >= state.notifications.length) {
+                        return const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          child: Center(child: MyCircularProgressIndicator()),
                         );
-                      },
-                      separatorBuilder: (_, _) {
-                        return 8.h;
-                      },
-                      itemCount: state.notifications.length,
-                    ),
+                      }
+                      final notification = state.notifications[index];
+                      return NotificationCellWidget(notification: notification);
+                    },
+                    separatorBuilder: (_, _) => 8.h,
                   ),
                 ),
               ),

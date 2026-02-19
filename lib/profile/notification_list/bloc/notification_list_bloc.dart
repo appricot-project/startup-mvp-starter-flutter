@@ -20,6 +20,7 @@ class NotificationListBloc
         NotificationListInitial(
           loading: Loading.initialLoading,
           notifications: [],
+          hasMore: true,
         ),
       ) {
     on<NotificationListOnAppear>((event, emit) async {
@@ -55,6 +56,7 @@ class NotificationListBloc
             loading: loading,
             error: l.message,
             notifications: notifications,
+            hasMore: hasMore,
           ),
         );
       },
@@ -71,6 +73,7 @@ class NotificationListBloc
       NotificationListUpdated(
         loading: loading,
         notifications: List<NotificationModel>.from(notifications),
+        hasMore: hasMore,
       ),
     );
   }

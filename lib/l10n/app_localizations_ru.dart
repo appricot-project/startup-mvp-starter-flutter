@@ -213,6 +213,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get notificationList => 'Список уведомлений';
 
   @override
+  String get notificationListEmpty => 'Вы еще не\nполучали уведомлений';
+
+  @override
   String get statusLoading => 'Загрузка';
 
   @override
