@@ -75,15 +75,6 @@ class _NotificationListWidgetState extends State<NotificationListWidget>
         ),
         body: BlocBuilder<NotificationListBloc, NotificationListState>(
           builder: (context, state) {
-            if (state.loading == null && state.notifications.isEmpty) {
-              return Center(
-                child: Text(
-                  AppLocalizations.of(context)!.notificationListEmpty,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headlineLarge,
-                ),
-              );
-            }
             return SafeArea(
               child: LoadingIndicator(
                 scrollController: _scrollController,
@@ -98,27 +89,42 @@ class _NotificationListWidgetState extends State<NotificationListWidget>
                   _refreshController.refreshCompleted();
                 },
                 initialLoading: state.loading == Loading.initialLoading,
-                child: Padding(
-                  padding: EdgeInsetsGeometry.all(16),
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount:
-                        state.notifications.length +
-                        (state.loading == Loading.moreLoading ? 1 : 0),
-                    itemBuilder: (context, index) {
-                      if (index >= state.notifications.length) {
-                        return const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 16),
-                          child: Center(child: MyCircularProgressIndicator()),
-                        );
-                      }
-                      final notification = state.notifications[index];
-                      return NotificationCellWidget(notification: notification);
-                    },
-                    separatorBuilder: (_, _) => 8.h,
-                  ),
-                ),
+                child: state.notifications.isEmpty
+                    ? SizedBox(
+                        height: 600,
+                        child: Center(
+                          child: Text(
+                            AppLocalizations.of(context)!.notificationListEmpty,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                        ),
+                      )
+                    : Padding(
+                        padding: EdgeInsetsGeometry.all(16),
+                        child: ListView.separated(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount:
+                              state.notifications.length +
+                              (state.loading == Loading.moreLoading ? 1 : 0),
+                          itemBuilder: (context, index) {
+                            if (index >= state.notifications.length) {
+                              return const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 16),
+                                child: Center(
+                                  child: MyCircularProgressIndicator(),
+                                ),
+                              );
+                            }
+                            final notification = state.notifications[index];
+                            return NotificationCellWidget(
+                              notification: notification,
+                            );
+                          },
+                          separatorBuilder: (_, _) => 8.h,
+                        ),
+                      ),
               ),
             );
           },

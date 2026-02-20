@@ -27,7 +27,7 @@ class NotificationListBloc
       lastDocument = null;
       notifications = [];
       hasMore = true;
-      await _onLoadMore(emit);
+      await _loadData(emit);
       _updating(emit);
     });
     on<NotificationListOnPullToRefresh>((event, emit) {
@@ -38,12 +38,12 @@ class NotificationListBloc
     on<NotificationListOnLoadMore>((event, emit) async {
       loading = Loading.moreLoading;
       _updating(emit);
-      await _onLoadMore(emit);
+      await _loadData(emit);
       _updating(emit);
     });
   }
 
-  _onLoadMore(Emitter<NotificationListState> emit) async {
+  _loadData(Emitter<NotificationListState> emit) async {
     if (!hasMore) return;
     final response = await profileService.getNotifications(
       lastDocument: lastDocument,
