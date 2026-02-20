@@ -84,6 +84,7 @@
   "settingsSecurity": "Безопасность",
 
   "notificationList": "Список уведомлений",
+  "notificationListEmpty": "Вы еще не\nполучали уведомлений",
 
   "statusLoading": "Загрузка",
   "statusSuccess": "Успешно",
