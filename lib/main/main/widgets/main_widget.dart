@@ -75,12 +75,6 @@ class _MainWidgetState extends State<MainWidget>
               );
             },
           ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.notifications, color: ColorConstants.primary),
-              onPressed: () {},
-            ),
-          ],
         ),
         body: SafeArea(
           child: BlocBuilder<MainBloc, MainState>(

@@ -86,6 +86,9 @@
   "settingsPrivacy": "Privacy",
   "settingsSecurity": "Security",
 
+  "notificationList": "List of notifications",
+  "notificationListEmpty": "You haven't\napplied yet",
+
   "statusLoading": "Loading",
   "statusSuccess": "Success",
   "statusError": "Error",

@@ -6,6 +6,7 @@ class ProfileResponseDto {
   String? name;
   DateTime? birthday;
   String? phone;
+  List<String>? fcmTokens;
 
   ProfileResponseDto({
     this.id,
@@ -13,6 +14,7 @@ class ProfileResponseDto {
     this.name,
     this.birthday,
     this.phone,
+    this.fcmTokens,
   });
 
   factory ProfileResponseDto.fromRawJson(String str) =>
@@ -27,5 +29,8 @@ class ProfileResponseDto {
             ? null
             : DateTime.parse(json["birthday"]),
         phone: json["phone"],
+        fcmTokens: json["fcmTokens"] == null
+            ? []
+            : List<String>.from(json["fcmTokens"]),
       );
 }

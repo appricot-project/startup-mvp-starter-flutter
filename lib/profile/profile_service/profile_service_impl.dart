@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile_service/models/notification_model_firestore.dart';
+import 'package:startup_mvp_starter_flutter/profile/profile_service/models/notification_page.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile_service/models/profile_response_dto.dart';
 import 'package:startup_mvp_starter_flutter/profile/profile_service/profile_service.dart';
 import 'package:startup_mvp_starter_flutter/utils/rest_client/api_exception.dart';
@@ -30,6 +33,9 @@ class ProfileServiceImpl implements ProfileService {
           name: data['name'] as String?,
           birthday: birthdayTimestamp?.toDate(),
           phone: data['phone'] as String?,
+          fcmTokens: data["fcmTokens"] == null
+              ? []
+              : List<String>.from(data["fcmTokens"]),
         ),
       );
     } catch (e) {
@@ -52,6 +58,46 @@ class ProfileServiceImpl implements ProfileService {
       await userDocumentService.userDocRef.update(updates);
 
       return getProfile();
+    } catch (e) {
+      return Left(ApiException(e.toString()));
+    }
+  }
+
+  Future<Either<ApiException, NotificationPage?>> getNotifications({
+    DocumentSnapshot? lastDocument,
+    int limit = 10,
+  }) async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      return Left(ApiException('UnauthorizeUser'));
+    }
+
+    try {
+      Query query = FirebaseFirestore.instance
+          .collection('notifications')
+          .where('userId', isEqualTo: user.uid)
+          .limit(limit);
+
+      if (lastDocument != null) {
+        query = query.startAfterDocument(lastDocument);
+      }
+
+      final querySnapshot = await query.get();
+
+      final notifications = querySnapshot.docs
+          .map((doc) => NotificationModelFirestore.fromDocument(doc))
+          .toList();
+
+      return Right(
+        NotificationPage(
+          notifications: notifications,
+          lastDocument: querySnapshot.docs.isNotEmpty
+              ? querySnapshot.docs.last
+              : null,
+          hasMore: querySnapshot.docs.length == limit,
+        ),
+      );
     } catch (e) {
       return Left(ApiException(e.toString()));
     }

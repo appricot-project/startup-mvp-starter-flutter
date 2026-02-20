@@ -73,6 +73,14 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
               profile: profile,
             ),
           );
+        case ActionKey.notificationList:
+          emit(
+            ProfileShowView(
+              loading: loading,
+              key: ViewKey.notificationList,
+              profile: profile,
+            ),
+          );
       }
     });
   }

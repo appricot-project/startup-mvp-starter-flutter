@@ -515,6 +515,18 @@ abstract class AppLocalizations {
   /// **'Security'**
   String get settingsSecurity;
 
+  /// No description provided for @notificationList.
+  ///
+  /// In en, this message translates to:
+  /// **'List of notifications'**
+  String get notificationList;
+
+  /// No description provided for @notificationListEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t\napplied yet'**
+  String get notificationListEmpty;
+
   /// No description provided for @statusLoading.
   ///
   /// In en, this message translates to:
