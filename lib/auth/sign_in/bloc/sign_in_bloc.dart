@@ -9,18 +9,16 @@ part 'sign_in_event.dart';
 part 'sign_in_state.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
+  final AuthService authService;
+
   Map<TextFieldKey, String> textFieldsErrors = {};
   Loading? loading;
   bool isSignUp = false;
 
-  SignInBloc()
-      : super(
-          SignInInitial(
-            textFieldsErrors: {},
-            loading: null,
-            isSignUp: false,
-          ),
-        ) {
+  SignInBloc({required this.authService})
+    : super(
+        SignInInitial(textFieldsErrors: {}, loading: null, isSignUp: false),
+      ) {
     on<SignInOnAppear>((event, emit) {});
     on<SignInOnCloseButtonTapped>((event, emit) {
       emit(
@@ -49,7 +47,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       _updating(emit);
 
       try {
-        final authService = locator<AuthService>();
         if (isSignUp) {
           await authService.signUp(event.email, event.password);
         } else {
@@ -75,6 +72,74 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             isSignUp: isSignUp,
           ),
         );
+      }
+    });
+    on<SignInOnGoogleTapped>((event, emit) async {
+      loading = Loading.actionLoading;
+      _updating(emit);
+
+      try {
+        await authService.signInWithGoogle();
+        if (!authService.isAuthenticated) {
+          loading = null;
+          _updating(emit);
+          return;
+        }
+        await locator<AuthCubit>().login();
+        loading = null;
+        emit(
+          SignInSuccess(
+            textFieldsErrors: Map<TextFieldKey, String>.from(textFieldsErrors),
+            loading: loading,
+            isSignUp: isSignUp,
+          ),
+        );
+      } on FirebaseAuthException catch (e) {
+        loading = null;
+        final errorCode = _mapFirebaseError(e.code);
+        emit(
+          SignInError(
+            error: errorCode,
+            textFieldsErrors: Map<TextFieldKey, String>.from(textFieldsErrors),
+            loading: loading,
+            isSignUp: isSignUp,
+          ),
+        );
+      } catch (_) {
+        loading = null;
+        _updating(emit);
+      }
+    });
+    on<SignInOnAppleTapped>((event, emit) async {
+      loading = Loading.actionLoading;
+      _updating(emit);
+
+      try {
+        await authService.signInWithApple();
+        await locator<AuthCubit>().login();
+        loading = null;
+        emit(
+          SignInSuccess(
+            textFieldsErrors: Map<TextFieldKey, String>.from(textFieldsErrors),
+            loading: loading,
+            isSignUp: isSignUp,
+          ),
+        );
+      } on FirebaseAuthException catch (e) {
+        loading = null;
+        print('FirebaseAuthException: ${e.code} - ${e.message}');
+        final errorCode = _mapFirebaseError(e.code);
+        emit(
+          SignInError(
+            error: errorCode,
+            textFieldsErrors: Map<TextFieldKey, String>.from(textFieldsErrors),
+            loading: loading,
+            isSignUp: isSignUp,
+          ),
+        );
+      } catch (_) {
+        loading = null;
+        _updating(emit);
       }
     });
     on<SignInOnTextChanged>((event, emit) {

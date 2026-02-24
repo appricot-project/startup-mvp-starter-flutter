@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/auth/sign_in/bloc/sign_in_bloc.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
+import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
@@ -74,7 +76,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                           state.isSignUp ? l10n.authSignUp : l10n.authSignin,
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
-                        SizedBox(height: 12),
+                        12.h,
                         BasicTextField(
                           hintText: 'example@mail.com',
                           controller: _emailController,
@@ -92,7 +94,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                           ),
                           label: l10n.authEnterEmail,
                         ),
-                        SizedBox(height: 12),
+                        12.h,
                         BasicTextField(
                           hintText: l10n.authPassword,
                           controller: _passwordController,
@@ -110,7 +112,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                           ),
                           label: l10n.authPassword,
                         ),
-                        SizedBox(height: 16),
+                        16.h,
                         CustomButton(
                           text: state.isSignUp
                               ? l10n.authSignUp
@@ -124,7 +126,43 @@ class _SignInWidgetState extends State<SignInWidget> {
                             );
                           },
                         ),
-                        SizedBox(height: 12),
+                        16.h,
+                        Row(
+                          children: [
+                            Expanded(child: Divider()),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 16),
+                              child: Text(
+                                l10n.authOrDivider,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ),
+                            Expanded(child: Divider()),
+                          ],
+                        ),
+                        16.h,
+                        CustomButton(
+                          text: l10n.authSignInWithGoogle,
+                          color: ButtonColor.secondary,
+                          onPressed: () {
+                            context.read<SignInBloc>().add(
+                              SignInOnGoogleTapped(),
+                            );
+                          },
+                        ),
+                        if (Platform.isIOS) ...[
+                          SizedBox(height: 12),
+                          CustomButton(
+                            text: l10n.authSignInWithApple,
+                            color: ButtonColor.secondary,
+                            onPressed: () {
+                              context.read<SignInBloc>().add(
+                                SignInOnAppleTapped(),
+                              );
+                            },
+                          ),
+                        ],
+                        12.h,
                         TextButton(
                           onPressed: () {
                             context.read<SignInBloc>().add(
@@ -138,7 +176,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ),
-                        SizedBox(height: 16),
+                        16.h,
                       ],
                     ),
                   ),

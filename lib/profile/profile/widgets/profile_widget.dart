@@ -63,14 +63,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       },
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 30,
-          title: Padding(
-            padding: EdgeInsets.only(top: 10),
-            child: Text(
-              AppLocalizations.of(context)!.navigationProfile,
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-          ),
+          title: Text(AppLocalizations.of(context)!.navigationProfile),
           actions: [
             BlocBuilder<AuthCubit, bool>(
               builder: (context, isAuthorized) {
@@ -180,41 +173,47 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       padding: EdgeInsets.only(top: 24),
       child: Column(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+          GestureDetector(
+            onTap: () {
+              context.read<ProfileBloc>().add(
+                ProfileOnTapped(key: ActionKey.editProfile),
+              );
+            },
+            child: Container(
+              color: Colors.transparent,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  PlatformComponents.profileUserIcon(),
-                  SizedBox(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
                     children: [
-                      Text(
-                        profileInfo.name,
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        profileInfo.phone,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Theme.of(context).colorScheme.onSecondary,
-                        ),
+                      PlatformComponents.profileUserIcon(),
+                      SizedBox(width: 16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            profileInfo.name,
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            profileInfo.phone,
+                            style: Theme.of(context).textTheme.bodyMedium!
+                                .copyWith(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSecondary,
+                                ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
+                  PlatformComponents.arrowRightIcon(),
                 ],
               ),
-              GestureDetector(
-                onTap: () {
-                  context.read<ProfileBloc>().add(
-                    ProfileOnTapped(key: ActionKey.editProfile),
-                  );
-                },
-                child: PlatformComponents.arrowRightIcon(),
-              ),
-            ],
+            ),
           ),
           16.h,
           BasicTextField(

@@ -69,6 +69,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get authWeakPassword => 'Слишком слабый пароль';
 
   @override
+  String get authOrDivider => 'или';
+
+  @override
+  String get authSignInWithGoogle => 'Войти через Google';
+
+  @override
+  String get authSignInWithApple => 'Войти через Apple';
+
+  @override
   String get profileSignIn => 'Войдите в профиль';
 
   @override

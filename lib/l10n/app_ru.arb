@@ -23,6 +23,9 @@
   "authUserNotFound": "Пользователь не найден",
   "authEmailAlreadyInUse": "Email уже используется",
   "authWeakPassword": "Слишком слабый пароль",
+  "authOrDivider": "или",
+  "authSignInWithGoogle": "Войти через Google",
+  "authSignInWithApple": "Войти через Apple",
 
   "profileSignIn": "Войдите в профиль",
   "profileLoginSuccess": "Вы успешно вошли",
