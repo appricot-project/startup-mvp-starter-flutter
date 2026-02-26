@@ -112,7 +112,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
                             padding: EdgeInsets.only(
@@ -124,7 +124,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                             child: OnboardingIndicatorWidget(
                               countPage: state.slides.length,
                               currentPage: state.currentPage,
-                              alignment: SkipButtonAlignment.bottomLeft,
+                              alignment: SkipButtonAlignment.bottomCenter,
                               padding: EdgeInsetsGeometry.zero,
                               cellBuilder:
                                   (index, currentPage) =>

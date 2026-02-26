@@ -11,11 +11,12 @@ class TitleOnboardingSlideWidget extends OnboardingSlideWidget<String> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey,
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: EdgeInsets.all(10),
       child: Center(
         child: Text(
           slideModel,
+          textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headlineLarge,
         ),
       ),

@@ -14,7 +14,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   static final List<MyOnboardingModel> slides = [
     MyOnboardingModel(
       onboardingType: OnboardingType.title,
-      title: 'Hello world!!!',
+      title: 'Открывайте стартапы,\nкоторые меняют мир',
     ),
     MyOnboardingModel(
       onboardingType: OnboardingType.video,
@@ -29,7 +29,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     ),
     MyOnboardingModel(
       onboardingType: OnboardingType.title,
-      title: 'End!',
+      title: 'Сохраняйте лучшее в избранное.\nНачните прямо сейчас!',
     ),
   ];
 

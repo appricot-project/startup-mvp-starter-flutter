@@ -19,36 +19,17 @@ class CustomOnboardingIndicatorCellWidget
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 20,
-      child: Builder(
-        builder: (context) {
-          if (index < currentPage) {
-            return Container(
-              width: 20,
-              decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                borderRadius: BorderRadius.circular(5),
-              ),
-            );
-          } else if (index == currentPage) {
-            return Container(
-              width: 20,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.error,
-                borderRadius: BorderRadius.circular(5),
-              ),
-            );
-          } else {
-            return Container(
-              width: 20,
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(5),
-              ),
-            );
-          }
-        },
+    final isActive = index == currentPage;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+      width: isActive ? 24 : 8,
+      height: 8,
+      decoration: BoxDecoration(
+        color: isActive
+            ? Theme.of(context).primaryColor
+            : Theme.of(context).primaryColor.withValues(alpha: 0.3),
+        borderRadius: BorderRadius.circular(4),
       ),
     );
   }
