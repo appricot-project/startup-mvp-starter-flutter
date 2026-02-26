@@ -1,10 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
-import 'package:startup_mvp_starter_flutter/onboarding/models/video_onboarding_slide_model.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/page/onboarding_page.dart';
-import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_slide_widget.dart';
-import 'package:startup_mvp_starter_flutter/onboarding/widgets/video_onboarding_slide_widget.dart';
 import 'package:startup_mvp_starter_flutter/utils/extensions/sized_box.dart';
 import 'package:startup_mvp_starter_flutter/utils/localization_cubit.dart';
 import 'package:startup_mvp_starter_flutter/utils/service_locator.dart';
@@ -23,24 +20,6 @@ class UiTestingPage extends StatefulWidget {
 
 class _UiTestingPageState extends State<UiTestingPage> {
   int selectedItem = 0;
-  List<MyOnboardingModel> onboardingModel = [
-    MyOnboardingModel(
-      onboardingType: OnboardingType.title,
-      title: 'Hello world!!!',
-    ),
-    MyOnboardingModel(
-      onboardingType: OnboardingType.video,
-      videoModel: VideoOnboardingSlideModel(
-        assetPath: 'assets/videos/onboarding_first_video.mp4',
-        autoPlay: false,
-      ),
-    ),
-    MyOnboardingModel(
-      onboardingType: OnboardingType.assetImage,
-      assetPath: 'assets/images/onboarding_image.jpeg',
-    ),
-    MyOnboardingModel(onboardingType: OnboardingType.title, title: 'End!'),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -96,25 +75,7 @@ class _UiTestingPageState extends State<UiTestingPage> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
-                            return OnboardingPage<MyOnboardingModel>(
-                              slides: onboardingModel,
-                              slideBuilder: (value) {
-                                switch (value.onboardingType) {
-                                  case OnboardingType.title:
-                                    return TitleOnboardingSlideWidget(
-                                      slideModel: value.title ?? '',
-                                    );
-                                  case OnboardingType.assetImage:
-                                    return ImageOnboardingSlideWidget(
-                                      slideModel: value.assetPath ?? '',
-                                    );
-                                  case OnboardingType.video:
-                                    return VideoOnboardingSlideWidget(
-                                      slideModel: value.videoModel!,
-                                    );
-                                }
-                              },
-                            );
+                            return const OnboardingPage();
                           },
                         ),
                       );
@@ -209,18 +170,3 @@ class _UiTestingPageState extends State<UiTestingPage> {
   }
 }
 
-enum OnboardingType { video, assetImage, title }
-
-class MyOnboardingModel {
-  final OnboardingType onboardingType;
-  final String? title;
-  final String? assetPath;
-  final VideoOnboardingSlideModel? videoModel;
-
-  MyOnboardingModel({
-    required this.onboardingType,
-    this.assetPath,
-    this.videoModel,
-    this.title,
-  });
-}

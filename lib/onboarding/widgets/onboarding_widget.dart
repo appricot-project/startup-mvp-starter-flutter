@@ -3,43 +3,43 @@ import 'package:flutter/material.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/bloc/onboarding_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:startup_mvp_starter_flutter/onboarding/models/onboarding_model.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_indicator_cell_widget.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_indicator_widget.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_slide_widget.dart';
+import 'package:startup_mvp_starter_flutter/onboarding/widgets/video_onboarding_slide_widget.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 
 enum SkipButtonAlignment { topCenter, bottomLeft, bottomRight, bottomCenter }
 
-class OnboardingWidget<SlideModel> extends StatefulWidget {
-  final Widget? onboardingSkipWidget;
-  final SkipButtonAlignment skipAligmnment;
-  final OnboardingIndicatorCellWidget Function(int index, int currentPage)?
-  indicatorCellBuilder;
-  final OnboardingSlideWidget Function(SlideModel) slideBuilder;
-  final EdgeInsetsGeometry indicatorPadding;
-  final Function(int)? tapOnIndicator;
-  final double? indicatorSpacing;
-
-  const OnboardingWidget({
-    super.key,
-    this.skipAligmnment = SkipButtonAlignment.topCenter,
-    this.onboardingSkipWidget,
-    this.indicatorCellBuilder,
-    this.indicatorPadding = EdgeInsetsGeometry.zero,
-    this.tapOnIndicator,
-    this.indicatorSpacing,
-    required this.slideBuilder,
-  });
+class OnboardingWidget extends StatefulWidget {
+  const OnboardingWidget({super.key});
 
   @override
-  State<OnboardingWidget> createState() => _OnboardingWidgetState<SlideModel>();
+  State<OnboardingWidget> createState() => _OnboardingWidgetState();
 }
 
-class _OnboardingWidgetState<SlideModel>
-    extends State<OnboardingWidget<SlideModel>> {
+class _OnboardingWidgetState extends State<OnboardingWidget> {
+  static OnboardingSlideWidget _buildSlide(MyOnboardingModel value) {
+    switch (value.onboardingType) {
+      case OnboardingType.title:
+        return TitleOnboardingSlideWidget(
+          slideModel: value.title ?? '',
+        );
+      case OnboardingType.assetImage:
+        return ImageOnboardingSlideWidget(
+          slideModel: value.assetPath ?? '',
+        );
+      case OnboardingType.video:
+        return VideoOnboardingSlideWidget(
+          slideModel: value.videoModel!,
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<OnboardingBloc<SlideModel>, OnboardingState>(
+    return BlocListener<OnboardingBloc, OnboardingState>(
       listener: (context, state) {
         if (state is OnboardingError) {
           showErrorAlert(context: context, error: state.error ?? '');
@@ -49,7 +49,7 @@ class _OnboardingWidgetState<SlideModel>
         }
       },
       child: Scaffold(
-        body: BlocBuilder<OnboardingBloc<SlideModel>, OnboardingState>(
+        body: BlocBuilder<OnboardingBloc, OnboardingState>(
           builder: (context, state) {
             return Stack(
               children: [
@@ -68,13 +68,13 @@ class _OnboardingWidgetState<SlideModel>
                             onTapUp: (details) {
                               final width = MediaQuery.of(context).size.width;
                               if (details.localPosition.dx > width / 2) {
-                                context.read<OnboardingBloc<SlideModel>>().add(
+                                context.read<OnboardingBloc>().add(
                                   OnboardingOnChangedCurrentPage(
                                     newPage: state.currentPage + 1,
                                   ),
                                 );
                               } else {
-                                context.read<OnboardingBloc<SlideModel>>().add(
+                                context.read<OnboardingBloc>().add(
                                   OnboardingOnChangedCurrentPage(
                                     newPage: state.currentPage - 1,
                                   ),
@@ -85,7 +85,7 @@ class _OnboardingWidgetState<SlideModel>
                               height: MediaQuery.of(context).size.height,
                               width: MediaQuery.of(context).size.width,
                               color: Theme.of(context).scaffoldBackgroundColor,
-                              child: widget.slideBuilder(
+                              child: _buildSlide(
                                 state.slides[state.currentPage],
                               ),
                             ),
@@ -103,18 +103,16 @@ class _OnboardingWidgetState<SlideModel>
                         padding: EdgeInsetsGeometry.only(),
                         child: GestureDetector(
                           onTap: () {
-                            context.read<OnboardingBloc<SlideModel>>().add(
+                            context.read<OnboardingBloc>().add(
                               OnboardingOnSkip(),
                             );
                           },
-                          child:
-                              widget.onboardingSkipWidget ??
-                              _customSkipButton(),
+                          child: _customSkipButton(),
                         ),
                       ),
                       Column(
-                        mainAxisAlignment: _skipMainAlignment(),
-                        crossAxisAlignment: _skipCrossAlignment(),
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: EdgeInsets.only(
@@ -126,27 +124,25 @@ class _OnboardingWidgetState<SlideModel>
                             child: OnboardingIndicatorWidget(
                               countPage: state.slides.length,
                               currentPage: state.currentPage,
-                              alignment: widget.skipAligmnment,
-                              padding: widget.indicatorPadding,
+                              alignment: SkipButtonAlignment.bottomLeft,
+                              padding: EdgeInsetsGeometry.zero,
                               cellBuilder:
-                                  widget.indicatorCellBuilder ??
                                   (index, currentPage) =>
                                       CustomOnboardingIndicatorCellWidget(
                                         index: index,
                                         currentPage: currentPage,
                                       ),
                               tapOn:
-                                  widget.tapOnIndicator ??
                                   (index) {
                                     context
-                                        .read<OnboardingBloc<SlideModel>>()
+                                        .read<OnboardingBloc>()
                                         .add(
                                           OnboardingOnChangedCurrentPage(
                                             newPage: index,
                                           ),
                                         );
                                   },
-                              spacing: widget.indicatorSpacing ?? 4,
+                              spacing: 4,
                             ),
                           ),
                         ],
@@ -160,25 +156,6 @@ class _OnboardingWidgetState<SlideModel>
         ),
       ),
     );
-  }
-
-  MainAxisAlignment _skipMainAlignment() {
-    if (widget.skipAligmnment == SkipButtonAlignment.topCenter) {
-      return MainAxisAlignment.start;
-    } else {
-      return MainAxisAlignment.end;
-    }
-  }
-
-  CrossAxisAlignment _skipCrossAlignment() {
-    if (widget.skipAligmnment == SkipButtonAlignment.topCenter ||
-        widget.skipAligmnment == SkipButtonAlignment.bottomCenter) {
-      return CrossAxisAlignment.center;
-    } else if (widget.skipAligmnment == SkipButtonAlignment.bottomRight) {
-      return CrossAxisAlignment.end;
-    } else {
-      return CrossAxisAlignment.start;
-    }
   }
 
   Widget _customSkipButton() {

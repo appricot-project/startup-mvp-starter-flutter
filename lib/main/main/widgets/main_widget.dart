@@ -11,7 +11,6 @@ import 'package:startup_mvp_starter_flutter/main/main/models/startup_model.dart'
 import 'package:startup_mvp_starter_flutter/main/main/widgets/startup_card.dart';
 import 'package:startup_mvp_starter_flutter/navigation/app_router.dart';
 import 'package:startup_mvp_starter_flutter/navigation/route_visibility.dart';
-import 'package:startup_mvp_starter_flutter/utils/constants/color_constants.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
 import 'package:startup_mvp_starter_flutter/utils/ui/loading_indicator/loading_indicator.dart';
 
