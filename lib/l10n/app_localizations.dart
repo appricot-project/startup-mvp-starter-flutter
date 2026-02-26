@@ -221,17 +221,17 @@ abstract class AppLocalizations {
   /// **'or'**
   String get authOrDivider;
 
-  /// No description provided for @authSignInWithGoogle.
+  /// No description provided for @authContinueWithGoogle.
   ///
   /// In en, this message translates to:
-  /// **'Sign in with Google'**
-  String get authSignInWithGoogle;
+  /// **'Continue with Google'**
+  String get authContinueWithGoogle;
 
-  /// No description provided for @authSignInWithApple.
+  /// No description provided for @authContinueWithApple.
   ///
   /// In en, this message translates to:
-  /// **'Sign in with Apple'**
-  String get authSignInWithApple;
+  /// **'Continue with Apple'**
+  String get authContinueWithApple;
 
   /// No description provided for @profileSignIn.
   ///

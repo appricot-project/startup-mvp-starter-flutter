@@ -24,8 +24,8 @@
   "authEmailAlreadyInUse": "Email already in use",
   "authWeakPassword": "Password is too weak",
   "authOrDivider": "or",
-  "authSignInWithGoogle": "Sign in with Google",
-  "authSignInWithApple": "Sign in with Apple",
+  "authContinueWithGoogle": "Continue with Google",
+  "authContinueWithApple": "Continue with Apple",
 
   "profileSignIn": "Login to your profile",
   "profileLoginSuccess": "You have successfully logged in",

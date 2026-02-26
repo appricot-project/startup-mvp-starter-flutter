@@ -72,10 +72,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authOrDivider => 'or';
 
   @override
-  String get authSignInWithGoogle => 'Sign in with Google';
+  String get authContinueWithGoogle => 'Continue with Google';
 
   @override
-  String get authSignInWithApple => 'Sign in with Apple';
+  String get authContinueWithApple => 'Continue with Apple';
 
   @override
   String get profileSignIn => 'Login to your profile';

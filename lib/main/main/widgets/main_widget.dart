@@ -71,7 +71,7 @@ class _MainWidgetState extends State<MainWidget>
                 onPressed: () {
                   _showCupertinoBottomSheet(context, state.currentSortType);
                 },
-                icon: Icon(Icons.sort, color: ColorConstants.primary),
+                icon: Icon(Icons.sort),
               );
             },
           ),
