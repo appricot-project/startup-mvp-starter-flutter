@@ -70,7 +70,6 @@ class _NotificationListWidgetState extends State<NotificationListWidget>
         appBar: AppBar(
           title: Text(
             AppLocalizations.of(context)!.notificationList,
-            style: Theme.of(context).textTheme.headlineLarge,
           ),
         ),
         body: BlocBuilder<NotificationListBloc, NotificationListState>(

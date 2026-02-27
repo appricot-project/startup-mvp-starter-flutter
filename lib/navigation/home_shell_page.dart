@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:startup_mvp_starter_flutter/navigation/app_router.dart';
 import 'package:startup_mvp_starter_flutter/navigation/my_bottom_navigation_bar.dart';
 import 'package:startup_mvp_starter_flutter/utils/auth_cubit.dart';
+import 'package:startup_mvp_starter_flutter/utils/service_locator.dart';
+import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage.dart';
 
 @RoutePage()
 class HomeShellPage extends StatefulWidget {
@@ -17,18 +19,17 @@ class _HomeShellPageState extends State<HomeShellPage> {
   TabsRouter? tabsRouter;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
-  @override
   void initState() {
     super.initState();
+    _checkOnboarding();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  Future<void> _checkOnboarding() async {
+    final shared = locator<SharedStorage>();
+    final wasShown = await shared.isShowOnboarding();
+    if (wasShown && mounted) {
+      context.router.push(const OnboardingRoute());
+    }
   }
 
   @override

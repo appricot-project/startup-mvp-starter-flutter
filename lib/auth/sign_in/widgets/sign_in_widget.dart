@@ -142,8 +142,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                         ),
                         16.h,
                         CustomButton(
-                          text: l10n.authSignInWithGoogle,
-                          color: ButtonColor.secondary,
+                          text: l10n.authContinueWithGoogle,
                           onPressed: () {
                             context.read<SignInBloc>().add(
                               SignInOnGoogleTapped(),
@@ -153,8 +152,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                         if (Platform.isIOS) ...[
                           SizedBox(height: 12),
                           CustomButton(
-                            text: l10n.authSignInWithApple,
-                            color: ButtonColor.secondary,
+                            text: l10n.authContinueWithApple,
                             onPressed: () {
                               context.read<SignInBloc>().add(
                                 SignInOnAppleTapped(),

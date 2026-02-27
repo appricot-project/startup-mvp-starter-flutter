@@ -1,157 +1,172 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:startup_mvp_starter_flutter/l10n/app_localizations.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/bloc/onboarding_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:startup_mvp_starter_flutter/onboarding/models/onboarding_model.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_indicator_cell_widget.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_indicator_widget.dart';
 import 'package:startup_mvp_starter_flutter/onboarding/widgets/onboarding_slide_widget.dart';
+import 'package:startup_mvp_starter_flutter/onboarding/widgets/video_onboarding_slide_widget.dart';
 import 'package:startup_mvp_starter_flutter/utils/funcs/show_error_alert.dart';
+import 'package:startup_mvp_starter_flutter/utils/ui/buttons/custom_button.dart';
 
 enum SkipButtonAlignment { topCenter, bottomLeft, bottomRight, bottomCenter }
 
-class OnboardingWidget<SlideModel> extends StatefulWidget {
-  final Widget? onboardingSkipWidget;
-  final SkipButtonAlignment skipAligmnment;
-  final OnboardingIndicatorCellWidget Function(int index, int currentPage)?
-  indicatorCellBuilder;
-  final OnboardingSlideWidget Function(SlideModel) slideBuilder;
-  final EdgeInsetsGeometry indicatorPadding;
-  final Function(int)? tapOnIndicator;
-  final double? indicatorSpacing;
-
-  const OnboardingWidget({
-    super.key,
-    this.skipAligmnment = SkipButtonAlignment.topCenter,
-    this.onboardingSkipWidget,
-    this.indicatorCellBuilder,
-    this.indicatorPadding = EdgeInsetsGeometry.zero,
-    this.tapOnIndicator,
-    this.indicatorSpacing,
-    required this.slideBuilder,
-  });
+class OnboardingWidget extends StatefulWidget {
+  const OnboardingWidget({super.key});
 
   @override
-  State<OnboardingWidget> createState() => _OnboardingWidgetState<SlideModel>();
+  State<OnboardingWidget> createState() => _OnboardingWidgetState();
 }
 
-class _OnboardingWidgetState<SlideModel>
-    extends State<OnboardingWidget<SlideModel>> {
+class _OnboardingWidgetState extends State<OnboardingWidget> {
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  static OnboardingSlideWidget _buildSlide(MyOnboardingModel value) {
+    switch (value.onboardingType) {
+      case OnboardingType.title:
+        return TitleOnboardingSlideWidget(
+          slideModel: value.title ?? '',
+        );
+      case OnboardingType.assetImage:
+        return ImageOnboardingSlideWidget(
+          slideModel: value.assetPath ?? '',
+        );
+      case OnboardingType.video:
+        return VideoOnboardingSlideWidget(
+          slideModel: value.videoModel!,
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<OnboardingBloc<SlideModel>, OnboardingState>(
+    return BlocListener<OnboardingBloc, OnboardingState>(
       listener: (context, state) {
         if (state is OnboardingError) {
           showErrorAlert(context: context, error: state.error ?? '');
         }
         if (state is OnboardingSkip) {
           Navigator.of(context).pop();
+          return;
+        }
+        // Sync PageController with bloc state
+        if (_pageController.hasClients &&
+            _pageController.page?.round() != state.currentPage) {
+          _pageController.animateToPage(
+            state.currentPage,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          );
         }
       },
       child: Scaffold(
-        body: BlocBuilder<OnboardingBloc<SlideModel>, OnboardingState>(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          actions: [
+            TextButton(
+              onPressed: () {
+                context.read<OnboardingBloc>().add(OnboardingOnSkip());
+              },
+              child: Text(
+                AppLocalizations.of(context)!.commonSkip,
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            ),
+          ],
+        ),
+        body: BlocBuilder<OnboardingBloc, OnboardingState>(
           builder: (context, state) {
-            return Stack(
+            if (state.slides.isEmpty) {
+              return const SizedBox.shrink();
+            }
+            return Column(
               children: [
-                Builder(
-                  builder: (context) {
-                    if (state.slides.isEmpty) {
-                      return Container();
-                    } else {
-                      return Stack(
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height,
-                            width: MediaQuery.of(context).size.width,
-                          ),
-                          GestureDetector(
-                            onTapUp: (details) {
-                              final width = MediaQuery.of(context).size.width;
-                              if (details.localPosition.dx > width / 2) {
-                                context.read<OnboardingBloc<SlideModel>>().add(
-                                  OnboardingOnChangedCurrentPage(
-                                    newPage: state.currentPage + 1,
-                                  ),
-                                );
-                              } else {
-                                context.read<OnboardingBloc<SlideModel>>().add(
-                                  OnboardingOnChangedCurrentPage(
-                                    newPage: state.currentPage - 1,
-                                  ),
-                                );
-                              }
-                            },
-                            child: Container(
-                              height: MediaQuery.of(context).size.height,
-                              width: MediaQuery.of(context).size.width,
-                              color: Theme.of(context).scaffoldBackgroundColor,
-                              child: widget.slideBuilder(
-                                state.slides[state.currentPage],
-                              ),
-                            ),
-                          ),
-                        ],
+                Expanded(
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: state.slides.length,
+                    onPageChanged: (index) {
+                      context.read<OnboardingBloc>().add(
+                        OnboardingOnChangedCurrentPage(newPage: index),
                       );
-                    }
-                  },
+                    },
+                    itemBuilder: (context, index) => SafeArea(
+                      bottom: false,
+                      child: _buildSlide(state.slides[index]),
+                    ),
+                  ),
                 ),
                 SafeArea(
-                  child: Stack(
-                    alignment: AlignmentGeometry.topRight,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsGeometry.only(),
-                        child: GestureDetector(
-                          onTap: () {
-                            context.read<OnboardingBloc<SlideModel>>().add(
-                              OnboardingOnSkip(),
+                  top: false,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                      bottom: 16,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        OnboardingIndicatorWidget(
+                          countPage: state.slides.length,
+                          currentPage: state.currentPage,
+                          alignment: SkipButtonAlignment.bottomCenter,
+                          padding: EdgeInsetsGeometry.zero,
+                          cellBuilder: (index, currentPage) =>
+                              CustomOnboardingIndicatorCellWidget(
+                                index: index,
+                                currentPage: currentPage,
+                              ),
+                          tapOn: (index) {
+                            context.read<OnboardingBloc>().add(
+                              OnboardingOnChangedCurrentPage(
+                                newPage: index,
+                              ),
                             );
                           },
-                          child:
-                              widget.onboardingSkipWidget ??
-                              _customSkipButton(),
+                          spacing: 4,
                         ),
-                      ),
-                      Column(
-                        mainAxisAlignment: _skipMainAlignment(),
-                        crossAxisAlignment: _skipCrossAlignment(),
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: 8,
-                              right: 8,
-                              top: 8,
-                              bottom: 8,
-                            ),
-                            child: OnboardingIndicatorWidget(
-                              countPage: state.slides.length,
-                              currentPage: state.currentPage,
-                              alignment: widget.skipAligmnment,
-                              padding: widget.indicatorPadding,
-                              cellBuilder:
-                                  widget.indicatorCellBuilder ??
-                                  (index, currentPage) =>
-                                      CustomOnboardingIndicatorCellWidget(
-                                        index: index,
-                                        currentPage: currentPage,
-                                      ),
-                              tapOn:
-                                  widget.tapOnIndicator ??
-                                  (index) {
-                                    context
-                                        .read<OnboardingBloc<SlideModel>>()
-                                        .add(
-                                          OnboardingOnChangedCurrentPage(
-                                            newPage: index,
-                                          ),
-                                        );
-                                  },
-                              spacing: widget.indicatorSpacing ?? 4,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                        const SizedBox(height: 16),
+                        CustomButton(
+                          text: state.currentPage == state.slides.length - 1
+                              ? AppLocalizations.of(context)!.commonStart
+                              : AppLocalizations.of(context)!.commonNext,
+                          onPressed: () {
+                            final isLastPage = state.currentPage ==
+                                state.slides.length - 1;
+                            if (isLastPage) {
+                              context
+                                  .read<OnboardingBloc>()
+                                  .add(OnboardingOnSkip());
+                            } else {
+                              context.read<OnboardingBloc>().add(
+                                OnboardingOnChangedCurrentPage(
+                                  newPage: state.currentPage + 1,
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -160,47 +175,5 @@ class _OnboardingWidgetState<SlideModel>
         ),
       ),
     );
-  }
-
-  MainAxisAlignment _skipMainAlignment() {
-    if (widget.skipAligmnment == SkipButtonAlignment.topCenter) {
-      return MainAxisAlignment.start;
-    } else {
-      return MainAxisAlignment.end;
-    }
-  }
-
-  CrossAxisAlignment _skipCrossAlignment() {
-    if (widget.skipAligmnment == SkipButtonAlignment.topCenter ||
-        widget.skipAligmnment == SkipButtonAlignment.bottomCenter) {
-      return CrossAxisAlignment.center;
-    } else if (widget.skipAligmnment == SkipButtonAlignment.bottomRight) {
-      return CrossAxisAlignment.end;
-    } else {
-      return CrossAxisAlignment.start;
-    }
-  }
-
-  Widget _customSkipButton() {
-    return Container(
-      margin: EdgeInsets.only(right: 16),
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6),
-        color: Theme.of(context).primaryColor.withValues(alpha: 0.5),
-      ),
-      child: Text(
-        AppLocalizations.of(context)!.commonSkip,
-        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-          color: Theme.of(context).scaffoldBackgroundColor,
-        ),
-      ),
-    );
-  }
-
-  Future<Image> loadImage(String url, BuildContext context) async {
-    final image = Image.network(url, fit: BoxFit.cover);
-    await precacheImage(image.image, context);
-    return image;
   }
 }

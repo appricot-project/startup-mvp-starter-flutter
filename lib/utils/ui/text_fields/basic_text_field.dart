@@ -208,7 +208,7 @@ class _BasicTextFieldState extends State<BasicTextField> {
       return [
         BoxShadow(
           color: Theme.of(context).colorScheme.error,
-          spreadRadius: 4,
+          spreadRadius: 1,
           blurRadius: 0,
           offset: Offset(0, 0),
         ),
@@ -218,7 +218,7 @@ class _BasicTextFieldState extends State<BasicTextField> {
         return [
           BoxShadow(
             color: Theme.of(context).primaryColor,
-            spreadRadius: 4,
+            spreadRadius: 1,
             blurRadius: 0,
             offset: Offset(0, 0),
           ),

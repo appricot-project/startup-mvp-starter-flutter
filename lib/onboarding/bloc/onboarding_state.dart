@@ -1,7 +1,7 @@
 part of 'onboarding_bloc.dart';
 
-abstract class OnboardingState<SlideModel> extends Equatable {
-  final List<SlideModel> slides;
+abstract class OnboardingState extends Equatable {
+  final List<MyOnboardingModel> slides;
   final int currentPage;
 
   const OnboardingState({
@@ -15,8 +15,6 @@ abstract class OnboardingState<SlideModel> extends Equatable {
     currentPage,
   ];
 }
-
-// enum Loading { initialLoading, storyLoading }
 
 class OnboardingInitial extends OnboardingState {
   const OnboardingInitial({

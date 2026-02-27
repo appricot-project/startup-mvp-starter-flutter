@@ -31,8 +31,10 @@ class StartupCard extends StatelessWidget {
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: ColorConstants.border),
-                color: ColorConstants.background,
+              ),
+              foregroundDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

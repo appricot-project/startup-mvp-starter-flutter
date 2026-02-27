@@ -72,10 +72,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get authOrDivider => 'или';
 
   @override
-  String get authSignInWithGoogle => 'Войти через Google';
+  String get authContinueWithGoogle => 'Продолжить через Google';
 
   @override
-  String get authSignInWithApple => 'Войти через Apple';
+  String get authContinueWithApple => 'Продолжить через Apple';
 
   @override
   String get profileSignIn => 'Войдите в профиль';
@@ -124,6 +124,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get commonSkip => 'Пропустить';
+
+  @override
+  String get commonStart => 'Начать';
 
   @override
   String get commonAgree => 'Согласен';

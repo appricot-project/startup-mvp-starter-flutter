@@ -60,7 +60,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         appBar: AppBar(
           title: Text(
             AppLocalizations.of(context)!.profilePersonalData,
-            style: Theme.of(context).textTheme.headlineLarge,
           ),
         ),
         body: BlocBuilder<EditProfileBloc, EditProfileState>(

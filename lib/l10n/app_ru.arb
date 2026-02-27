@@ -24,8 +24,8 @@
   "authEmailAlreadyInUse": "Email уже используется",
   "authWeakPassword": "Слишком слабый пароль",
   "authOrDivider": "или",
-  "authSignInWithGoogle": "Войти через Google",
-  "authSignInWithApple": "Войти через Apple",
+  "authContinueWithGoogle": "Продолжить через Google",
+  "authContinueWithApple": "Продолжить через Apple",
 
   "profileSignIn": "Войдите в профиль",
   "profileLoginSuccess": "Вы успешно вошли",
@@ -46,6 +46,7 @@
   "commonBack": "Назад",
   "commonNext": "Дальше",
   "commonSkip": "Пропустить",
+  "commonStart": "Начать",
 
   "commonAgree": "Согласен",
   "commonDisagree": "Не согласен",

@@ -1,20 +1,40 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:startup_mvp_starter_flutter/onboarding/models/onboarding_model.dart';
+import 'package:startup_mvp_starter_flutter/onboarding/models/video_onboarding_slide_model.dart';
 import 'package:startup_mvp_starter_flutter/utils/shared/shared_storage.dart';
 
 part 'onboarding_event.dart';
 part 'onboarding_state.dart';
 
-class OnboardingBloc<SlideModel>
-    extends Bloc<OnboardingEvent, OnboardingState> {
+class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   SharedStorage shared;
-
-  final List<SlideModel> slides;
   int currentPage;
+
+  static final List<MyOnboardingModel> slides = [
+    MyOnboardingModel(
+      onboardingType: OnboardingType.title,
+      title: 'Открывайте стартапы,\nкоторые меняют мир',
+    ),
+    MyOnboardingModel(
+      onboardingType: OnboardingType.video,
+      videoModel: VideoOnboardingSlideModel(
+        assetPath: 'assets/videos/onboarding_first_video.mp4',
+        autoPlay: false,
+      ),
+    ),
+    MyOnboardingModel(
+      onboardingType: OnboardingType.assetImage,
+      assetPath: 'assets/images/onboarding_image.jpeg',
+    ),
+    MyOnboardingModel(
+      onboardingType: OnboardingType.title,
+      title: 'Сохраняйте лучшее в избранное.\nНачните прямо сейчас!',
+    ),
+  ];
 
   OnboardingBloc({
     required this.shared,
-    required this.slides,
     this.currentPage = 0,
   }) : super(OnboardingInitial(slides: slides, currentPage: currentPage)) {
     on<OnboardingOnAppear>((event, emit) async {

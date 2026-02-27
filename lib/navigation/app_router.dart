@@ -17,6 +17,7 @@ import 'package:startup_mvp_starter_flutter/settings/notification_settings/page/
 import 'package:startup_mvp_starter_flutter/settings/settings/page/settings_page.dart';
 import 'package:startup_mvp_starter_flutter/settings/theme_settings/page/theme_settings_page.dart';
 import 'package:startup_mvp_starter_flutter/favourites/favourites/page/favourites_page.dart';
+import 'package:startup_mvp_starter_flutter/onboarding/page/onboarding_page.dart';
 import 'package:startup_mvp_starter_flutter/ui_testing_widget.dart';
 
 part 'app_router.gr.dart';
@@ -87,23 +88,21 @@ class AppRouter extends RootStackRouter {
       ],
     ),
 
-    // ModalBottomSheetAutoRoute(page: SignInRoute.page, enableDrag: false),
+    // * MARK: Custom routes
+
+    CustomRoute(
+      path: '/onboarding',
+      page: OnboardingRoute.page,
+      transitionsBuilder: TransitionsBuilders.noTransition,
+      duration: Duration.zero,
+    ),
+
+    // * MARK: Modals
+
     ModalBottomSheetAutoRoute(
       path: '/modal/auth',
       page: ModalAuth.page,
       children: [AutoRoute(path: '', page: SignInRoute.page, initial: true)],
     ),
-    // * MARK: Modals
-    // ModalBottomSheetAutoRoute(page: SelectCityRoute.page, enableDrag: false),
-
-    // ModalBottomSheetAutoRoute(
-    //   path: '/modal/auth',
-    //   page: ModalAuth.page,
-    //   children: [
-    //     AutoRoute(path: '', page: SignInRoute.page, initial: true),
-    //     AutoRoute(path: 'confirmation', page: SmsConfirmationRoute.page),
-    //     AutoRoute(path: 'agreements', page: ArticleDetailsRoute.page),
-    //   ],
-    // ),
   ];
 }
