@@ -29,6 +29,12 @@ class ImageOnboardingSlideWidget extends OnboardingSlideWidget<String> {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(slideModel, fit: BoxFit.fitHeight);
+    return ClipRect(
+      child: Image.asset(
+        slideModel,
+        fit: BoxFit.contain,
+        width: double.infinity,
+      ),
+    );
   }
 }

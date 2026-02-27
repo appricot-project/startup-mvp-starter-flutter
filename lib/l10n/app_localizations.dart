@@ -329,6 +329,12 @@ abstract class AppLocalizations {
   /// **'Skip'**
   String get commonSkip;
 
+  /// No description provided for @commonStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get commonStart;
+
   /// No description provided for @commonAgree.
   ///
   /// In en, this message translates to:

@@ -126,6 +126,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonSkip => 'Skip';
 
   @override
+  String get commonStart => 'Start';
+
+  @override
   String get commonAgree => 'Agree';
 
   @override

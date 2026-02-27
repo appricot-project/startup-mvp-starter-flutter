@@ -126,6 +126,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get commonSkip => 'Пропустить';
 
   @override
+  String get commonStart => 'Начать';
+
+  @override
   String get commonAgree => 'Согласен';
 
   @override
