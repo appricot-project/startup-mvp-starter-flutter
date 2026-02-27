@@ -27,7 +27,7 @@ class _HomeShellPageState extends State<HomeShellPage> {
   Future<void> _checkOnboarding() async {
     final shared = locator<SharedStorage>();
     final wasShown = await shared.isShowOnboarding();
-    if (wasShown && mounted) {
+    if (!wasShown && mounted) {
       context.router.push(const OnboardingRoute());
     }
   }
