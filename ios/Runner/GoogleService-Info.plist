@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>692711956593-go8mkf341b5ed53gvoc7bd59g1ni79ov.apps.googleusercontent.com</string>
+	<string>692711956593-551j83nja20f4e5alruplerhjmpnf6tc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.692711956593-go8mkf341b5ed53gvoc7bd59g1ni79ov</string>
+	<string>com.googleusercontent.apps.692711956593-551j83nja20f4e5alruplerhjmpnf6tc</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>692711956593-4g5fqg94mfu3a0qt440m5dmmpgt0khtg.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>ru.appricot.startupmvpstarter.dev</string>
+	<string>ru.appricot.startupmvpstarter</string>
 	<key>PROJECT_ID</key>
 	<string>startup-mvp-starter</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:692711956593:ios:d19adbb3695a49cd5cfbd0</string>
+	<string>1:692711956593:ios:08f33ff2596d75175cfbd0</string>
 </dict>
 </plist>
